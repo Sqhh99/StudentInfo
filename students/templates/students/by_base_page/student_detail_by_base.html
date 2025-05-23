@@ -1,0 +1,316 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %} {{ student.name }} 详情 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/by_base_page/student_detail_by_base.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container student-profile">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="profile-card mb-4">
+                    <div class="profile-header">
+                        <img src="{% static 'images/default-profile.png' %}" alt="{{ student.name }}" class="profile-avatar">
+                        <h4 class="mt-2">{{ student.name }}</h4>
+                        <p class="text-muted mb-1">{{ student.student_id }}</p>
+                        <p class="text-muted mb-0">{{ student.major.name }} - {{ student.class_field.name }}</p>
+                    </div>
+                    <div class="profile-body">
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="label">学号:</span>
+                            <span class="value">{{ student.student_id }}</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="label">姓名:</span>
+                            <span class="value">{{ student.name }}</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="label">性别:</span>
+                            <span class="value">{{ student.get_gender_display }}</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="label">专业:</span>
+                            <span class="value">{{ student.major.name }}</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="label">班级:</span>
+                            <span class="value">{{ student.class_field.name }}</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="label">入学时间:</span>
+                            <span class="value">{{ student.enrollment_date }}</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="label">联系电话:</span>
+                            <span class="value">{{ student.phone }}</span>
+                        </div>
+                        <div class="info-item d-flex justify-content-between">
+                            <span class="label">邮箱:</span>
+                            <span class="value">{{ student.email }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <!-- 成绩概览卡片 -->
+                <div class="chart-card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">成绩概览</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <div class="mb-2">平均分</div>
+                                <h3>{{ student_stats.avg_score|floatformat:1 }}</h3>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div class="mb-2">最高分</div>
+                                <h3>{{ student_stats.max_score }}</h3>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div class="mb-2">最低分</div>
+                                <h3>{{ student_stats.min_score }}</h3>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <div class="mb-2">课程总数</div>
+                                <h3>{{ student_stats.course_count }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 成绩比较图表 -->
+                <div class="chart-card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">成绩比较</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="scoreComparisonChart" style="height: 350px;"></div>
+                    </div>
+                </div>
+                
+                <!-- 成绩分布图表 -->
+                <div class="chart-card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">成绩分布</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="scoreDistributionChart" style="height: 350px;"></div>
+                    </div>
+                </div>
+                
+                <!-- 课程成绩表格 -->
+                <div class="chart-card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">课程成绩</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table course-table">
+                                <thead>
+                                    <tr>
+                                        <th>课程编码</th>
+                                        <th>课程名称</th>
+                                        <th>学期</th>
+                                        <th>分数</th>
+                                        <th>等级</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for score in student_scores %}
+                                    <tr>
+                                        <td>{{ score.course.code }}</td>
+                                        <td>{{ score.course.name }}</td>
+                                        <td>{{ score.semester }}</td>
+                                        <td>{{ score.score }}</td>
+                                        <td>
+                                            {% if score.score >= 90 %}
+                                            <span class="grade-badge grade-A">A</span>
+                                            {% elif score.score >= 80 %}
+                                            <span class="grade-badge grade-B">B</span>
+                                            {% elif score.score >= 60 %}
+                                            <span class="grade-badge grade-C">C</span>
+                                            {% else %}
+                                            <span class="grade-badge grade-D">D</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="5" class="text-center">暂无成绩记录</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 成绩比较图表
+            const scoreComparisonChart = echarts.init(document.getElementById('scoreComparisonChart'));
+            const scoreComparisonOption = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['我的成绩', '班级平均', '专业平均']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    data: [
+                        {% for score in student_scores %}
+                        '{{ score.course.name }}',
+                        {% endfor %}
+                    ],
+                    axisLabel: {
+                        interval: 0,
+                        rotate: 30
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    min: 0,
+                    max: 100,
+                    name: '分数'
+                },
+                series: [
+                    {
+                        name: '我的成绩',
+                        type: 'bar',
+                        data: [
+                            {% for score in student_scores %}
+                            {{ score.score }},
+                            {% endfor %}
+                        ],
+                        itemStyle: {
+                            color: '#5ac8fa'
+                        }
+                    },
+                    {
+                        name: '班级平均',
+                        type: 'bar',
+                        data: [
+                            {% for score in student_scores %}
+                            {{ score.course.class_avg|default:75 }},
+                            {% endfor %}
+                        ],
+                        itemStyle: {
+                            color: '#ffcc00'
+                        }
+                    },
+                    {
+                        name: '专业平均',
+                        type: 'bar',
+                        data: [
+                            {% for score in student_scores %}
+                            {{ score.course.major_avg|default:70 }},
+                            {% endfor %}
+                        ],
+                        itemStyle: {
+                            color: '#ff9500'
+                        }
+                    }
+                ]
+            };
+            scoreComparisonChart.setOption(scoreComparisonOption);
+            
+            // 成绩分布图表
+            const scoreDistributionChart = echarts.init(document.getElementById('scoreDistributionChart'));
+            const scoreDistributionOption = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b}: {c} ({d}%)'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 10,
+                    data: ['90-100分', '80-89分', '70-79分', '60-69分', '低于60分']
+                },
+                series: [
+                    {
+                        name: '成绩分布',
+                        type: 'pie',
+                        radius: ['50%', '70%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: '18',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: [
+                            {
+                                value: {{ excellent_count }}, 
+                                name: '90-100分',
+                                itemStyle: { color: '#4cd964' }
+                            },
+                            {
+                                value: {{ good_count }}, 
+                                name: '80-89分',
+                                itemStyle: { color: '#5ac8fa' }
+                            },
+                            {
+                                value: {{ fair_count }}, 
+                                name: '70-79分',
+                                itemStyle: { color: '#ffcc00' }
+                            },
+                            {
+                                value: {{ pass_count }}, 
+                                name: '60-69分',
+                                itemStyle: { color: '#ff9500' }
+                            },
+                            {
+                                value: {{ fail_count }}, 
+                                name: '低于60分',
+                                itemStyle: { color: '#ff3b30' }
+                            }
+                        ]
+                    }
+                ]
+            };
+            scoreDistributionChart.setOption(scoreDistributionOption);
+            
+            // 窗口大小变化时重新调整图表大小
+            window.addEventListener('resize', function() {
+                scoreComparisonChart.resize();
+                scoreDistributionChart.resize();
+            });
+        });
+    </script>
+{% endblock %} 

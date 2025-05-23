@@ -1,0 +1,297 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %} 课程管理 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/by_base_page/course_management.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- 主体内容区域 -->
+    <main>
+        <!-- 页面标题 -->
+        <div class="page-header text-center">
+            <h1 class="display-5 fw-bold">课程管理</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">管理所有课程信息，包括课程添加、编辑、删除及查询功能</p>
+            </div>
+        </div>
+
+        <!-- 消息提示区域 -->
+        {% if messages %}
+        <div class="messages-container mb-3">
+            {% for message in messages %}
+            <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- 操作区 -->
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <div class="card filter-card">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">
+                            <i class="bi bi-funnel me-2"></i>查询筛选
+                        </h5>
+                        <form class="row g-3" method="get" action="{% url 'course_management' %}">
+                            <div class="col-md-4">
+                                <label for="courseCode" class="form-label">课程编号</label>
+                                <input type="text" class="form-control" id="courseCode" name="code"
+                                       placeholder="输入课程编号" value="{{ form.code.value|default:'' }}">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="courseName" class="form-label">课程名称</label>
+                                <input type="text" class="form-control" id="courseName" name="name"
+                                       placeholder="输入课程名称" value="{{ form.name.value|default:'' }}">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="courseTeacher" class="form-label">任课教师</label>
+                                <input type="text" class="form-control" id="courseTeacher" name="teacher"
+                                       placeholder="输入教师姓名" value="{{ form.teacher.value|default:'' }}">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="courseDept" class="form-label">所属院系</label>
+                                <select class="form-select" id="courseDept" name="department">
+                                    <option value="">全部院系</option>
+                                    {% for dept in departments %}
+                                        <option value="{{ dept.id }}" {% if form.department.value == dept.id|stringformat:"i" %}selected{% endif %}>{{ dept.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="courseCredit" class="form-label">学分范围</label>
+                                <select class="form-select" id="courseCredit" name="credit">
+                                    <option value="">全部学分</option>
+                                    <option value="1" {% if form.credit.value == '1' %}selected{% endif %}>1学分</option>
+                                    <option value="2" {% if form.credit.value == '2' %}selected{% endif %}>2学分</option>
+                                    <option value="3" {% if form.credit.value == '3' %}selected{% endif %}>3学分</option>
+                                    <option value="4" {% if form.credit.value == '4' %}selected{% endif %}>4学分</option>
+                                    <option value="5" {% if form.credit.value == '5' %}selected{% endif %}>5学分及以上</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="courseSemester" class="form-label">开课学期</label>
+                                <input type="text" class="form-control" id="courseSemester" name="semester"
+                                       placeholder="如：2025-1" value="{{ form.semester.value|default:'' }}">
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-search me-1"></i>查询
+                                </button>
+                                <button type="reset" class="btn btn-outline-secondary ms-2">
+                                    <i class="bi bi-arrow-counterclockwise me-1"></i>重置
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title mb-3">
+                            <i class="bi bi-gear me-2"></i>课程操作
+                        </h5>
+                        <div class="d-grid gap-2 mt-auto">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#addCourseModal">
+                                <i class="bi bi-plus-circle me-1"></i> 添加新课程
+                            </button>
+                            <button type="button" class="btn btn-success">
+                                <i class="bi bi-file-earmark-excel me-1"></i> 导入课程数据
+                            </button>
+                            <a href="{% url 'export_courses_csv' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="btn btn-info text-white">
+                                <i class="bi bi-file-earmark-arrow-down me-1"></i> 导出课程数据
+                            </a>
+                            <button type="button" class="btn btn-secondary" onclick="window.print()">
+                                <i class="bi bi-printer me-1"></i> 打印课程列表
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 课程列表 -->
+        <div class="card mb-4">
+            <div class="card-header bg-white py-3">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h5 class="mb-0">
+                            <i class="bi bi-list-ul me-2"></i>课程列表
+                        </h5>
+                    </div>
+                    <div class="col-auto">
+                        <span class="text-muted">共 {{ course_count }} 条记录</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 50px;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="selectAllCourses">
+                                    <label class="form-check-label" for="selectAllCourses"></label>
+                                </div>
+                            </th>
+                            <th scope="col">课程编号</th>
+                            <th scope="col">课程名称</th>
+                            <th scope="col">学分</th>
+                            <th scope="col">任课教师</th>
+                            <th scope="col">开课时间</th>
+                            <th scope="col">所属院系</th>
+                            <th scope="col">课程状态</th>
+                            <th scope="col" style="width: 180px;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for course in courses %}
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="course{{ course.id }}">
+                                    <label class="form-check-label" for="course{{ course.id }}"></label>
+                                </div>
+                            </td>
+                            <td>{{ course.code }}</td>
+                            <td>{{ course.name }}</td>
+                            <td><span class="badge bg-primary badge-credit">{{ course.credit }}</span></td>
+                            <td>{{ course.teacher }}</td>
+                            <td>{{ course.class_time }}</td>
+                            <td>{{ course.department.name }}</td>
+                            <td>
+                                <span class="badge {% if course.status == 'active' %}bg-success{% elif course.status == 'pending' %}bg-warning{% elif course.status == 'completed' %}bg-secondary{% else %}bg-danger{% endif %}">
+                                    {{ course.get_status_display }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="{% url 'edit_course' course.id %}" class="btn btn-sm btn-outline-primary" title="编辑">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="{% url 'delete_course' course.id %}" class="btn btn-sm btn-outline-danger" title="删除">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                    <a href="{% url 'course_detail' course.id %}" class="btn btn-sm btn-outline-info" title="查看详情">
+                                        <i class="bi bi-info-circle"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="9" class="text-center py-4">暂无课程信息</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 添加课程模态框 -->
+    <div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCourseModalLabel">添加新课程</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCourseForm" method="post" action="{% url 'add_course' %}">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="id_code" class="form-label">课程编号 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="id_code" name="code" placeholder="如：CS101" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_name" class="form-label">课程名称 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="id_name" name="name" placeholder="如：计算机导论" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_credit" class="form-label">学分 <span class="text-danger">*</span></label>
+                                <input type="number" step="0.1" class="form-control" id="id_credit" name="credit" placeholder="如：3.0" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_teacher" class="form-label">任课教师 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="id_teacher" name="teacher" placeholder="如：张教授" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_department" class="form-label">所属院系 <span class="text-danger">*</span></label>
+                                <select class="form-select" id="id_department" name="department" required>
+                                    <option value="">请选择院系</option>
+                                    {% for dept in departments %}
+                                        <option value="{{ dept.id }}">{{ dept.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_semester" class="form-label">开课学期 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="id_semester" name="semester" placeholder="如：2025-1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_class_time" class="form-label">上课时间 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="id_class_time" name="class_time" placeholder="如：周一 1-2节" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_location" class="form-label">上课地点 <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="id_location" name="location" placeholder="如：教学楼A-101" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_capacity" class="form-label">课程容量 <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="id_capacity" name="capacity" min="1" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="id_status" class="form-label">课程状态 <span class="text-danger">*</span></label>
+                                <select class="form-select" id="id_status" name="status" required>
+                                    <option value="">请选择状态</option>
+                                    <option value="pending">待开课</option>
+                                    <option value="active">已开课</option>
+                                    <option value="completed">已结课</option>
+                                    <option value="cancelled">已取消</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label for="id_description" class="form-label">课程描述</label>
+                                <textarea class="form-control" id="id_description" name="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer mt-4">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                            <button type="submit" class="btn btn-primary">保存</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <!-- Bootstrap JavaScript -->
+    <script src="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- 表单验证脚本 -->
+    <script src="{% static 'js/course_form_validation.js' %}"></script>
+    
+    <script>
+        // 全选/取消全选
+        document.getElementById('selectAllCourses').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('tbody .form-check-input');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+    </script>
+{% endblock %}

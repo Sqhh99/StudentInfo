@@ -1,0 +1,36 @@
+
+.course-detail-card {
+    border-radius: 10px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    overflow: hidden;
+}
+.course-header {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.course-code {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    background-color: #6c757d;
+    color: white;
+    margin-right: 0.5rem;
+}
+.course-status {
+    display: inline-block;
+    margin-left: 1rem;
+}
+.detail-item {
+    margin-bottom: 1rem;
+}
+.detail-label {
+    font-weight: 600;
+    color: #495057;
+}

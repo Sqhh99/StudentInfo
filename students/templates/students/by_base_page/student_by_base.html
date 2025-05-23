@@ -1,0 +1,341 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %}学生信息{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/by_base_page/about.css' %}">
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css' %}">
+{% endblock %}
+
+{% block content %}
+    <!-- 主体内容区域 -->
+    <main>
+        <div class="page-header d-flex justify-content-between align-items-center">
+            <h2>学生信息管理</h2>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-plus-lg me-1" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                </svg>
+                添加学生
+            </button>
+        </div>
+
+        <!-- 消息提示区域 -->
+        {% if messages %}
+        <div class="messages-container mb-3">
+            {% for message in messages %}
+            <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- 搜索区域 -->
+        <div class="search-container">
+            <form class="row g-3" method="get" action="{% url 'students' %}">
+                <div class="col-md-3">
+                    <label for="student_id" class="form-label">学号</label>
+                    <input type="text" class="form-control" id="student_id" name="student_id" placeholder="请输入学号" value="{{ form.student_id.value|default:'' }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="name" class="form-label">姓名</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="请输入姓名" value="{{ form.name.value|default:'' }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="class_obj" class="form-label">班级</label>
+                    <select class="form-select" id="class_obj" name="class_obj">
+                        <option selected value="">所有班级</option>
+                        {% for class in classes %}
+                            <option value="{{ class.id }}" {% if form.class_obj.value == class.id|stringformat:"i" %}selected{% endif %}>{{ class.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <label for="status" class="form-label">状态</label>
+                    <select class="form-select" id="status" name="status">
+                        <option selected value="">所有状态</option>
+                        {% for status_value, status_display in form.fields.status.choices %}
+                            {% if status_value %}
+                                <option value="{{ status_value }}" {% if form.status.value == status_value %}selected{% endif %}>{{ status_display }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12 d-flex justify-content-end mt-4">
+                    <button type="reset" class="btn btn-outline-secondary me-2">重置</button>
+                    <button type="submit" class="btn btn-primary">搜索</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- 学生信息表 -->
+        <div class="card student-table">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                <h5 class="mb-0">学生列表</h5>
+                <div class="btn-group">
+                    <a href="{% url 'export_students_csv' %}" class="btn btn-outline-secondary btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-file-earmark-text me-1" viewBox="0 0 16 16">
+                            <path d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+                            <path d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z"/>
+                        </svg>
+                        导出CSV
+                    </a>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="window.print()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-printer me-1" viewBox="0 0 16 16">
+                            <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+                            <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"/>
+                        </svg>
+                        打印
+                    </button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                        <tr>
+                            <th scope="col" class="ps-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="selectAll">
+                                    <label class="form-check-label" for="selectAll"></label>
+                                </div>
+                            </th>
+                            <th scope="col">学号</th>
+                            <th scope="col">姓名</th>
+                            <th scope="col">性别</th>
+                            <th scope="col">班级</th>
+                            <th scope="col">专业</th>
+                            <th scope="col">入学时间</th>
+                            <th scope="col">联系电话</th>
+                            <th scope="col">状态</th>
+                            <th scope="col" class="text-end pe-4">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for student in students %}
+                        <tr>
+                            <td class="ps-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="student{{ student.id }}">
+                                    <label class="form-check-label" for="student{{ student.id }}"></label>
+                                </div>
+                            </td>
+                            <td>{{ student.student_id }}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    {% if student.profile_image %}
+                                    <img src="{{ student.profile_image.url }}" class="rounded-circle me-2" alt="{{ student.name }}头像" width="40" height="40">
+                                    {% else %}
+                                    <img src="{% static 'images/default-profile.png' %}" class="rounded-circle me-2" alt="{{ student.name }}头像" width="40" height="40">
+                                    {% endif %}
+                                    <div>
+                                        <p class="fw-bold mb-0">{{ student.name }}</p>
+                                        <p class="text-muted mb-0">{{ student.email|default:'' }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{{ student.get_gender_display }}</td>
+                            <td>{{ student.class_obj.name }}</td>
+                            <td>{{ student.major.name }}</td>
+                            <td>{{ student.admission_date|date:"Y-m-d" }}</td>
+                            <td>{{ student.phone|default:'-' }}</td>
+                            <td><span class="status-{{ student.status }}">{{ student.get_status_display }}</span></td>
+                            <td class="text-end pe-4">
+                                <a href="{% url 'student_detail' student.id %}" class="btn btn-outline-primary action-btn" title="查看详情">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-eye" viewBox="0 0 16 16">
+                                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                    </svg>
+                                </a>
+                                <a href="{% url 'edit_student' student.id %}" class="btn btn-outline-success action-btn" title="编辑">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg>
+                                </a>
+                                <a href="{% url 'delete_student' student.id %}" class="btn btn-outline-danger action-btn" title="删除">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="10" class="text-center py-4">暂无学生信息</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 添加学生模态框 -->
+    <div class="modal fade" id="addStudentModal" tabindex="-1" aria-labelledby="addStudentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addStudentModalLabel">添加学生</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{% url 'add_student' %}" enctype="multipart/form-data" id="addStudentForm">
+                    {% csrf_token %}
+                <div class="modal-body">
+                        <div class="row mb-3">
+                        <div class="col-md-6">
+                                <label for="id_student_id" class="form-label">学号</label>
+                                <input type="text" class="form-control" id="id_student_id" name="student_id" required>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="id_name" class="form-label">姓名</label>
+                                <input type="text" class="form-control" id="id_name" name="name" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="id_gender" class="form-label">性别</label>
+                                <select class="form-select" id="id_gender" name="gender" required>
+                                    <option value="">请选择性别</option>
+                                    <option value="male">男</option>
+                                    <option value="female">女</option>
+                            </select>
+                        </div>
+                            <div class="col-md-6">
+                                <label for="id_admission_date" class="form-label">入学时间</label>
+                                <input type="date" class="form-control" id="id_admission_date" name="admission_date" required>
+                        </div>
+                        </div>
+                        <div class="row mb-3">
+                        <div class="col-md-6">
+                                <label for="id_major" class="form-label">专业</label>
+                                <select class="form-select" id="id_major" name="major" required>
+                                    <option value="">请选择专业</option>
+                                    {% for major in majors %}
+                                    <option value="{{ major.id }}">{{ major.name }}</option>
+                                    {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="id_class_obj" class="form-label">班级</label>
+                                <select class="form-select" id="id_class_obj" name="class_obj" required>
+                                    <option value="">请先选择专业</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="row mb-3">
+                        <div class="col-md-6">
+                                <label for="id_phone" class="form-label">联系电话</label>
+                                <input type="tel" class="form-control" id="id_phone" name="phone">
+                        </div>
+                        <div class="col-md-6">
+                                <label for="id_email" class="form-label">电子邮箱</label>
+                                <input type="email" class="form-control" id="id_email" name="email">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                        <div class="col-md-6">
+                                <label for="id_status" class="form-label">状态</label>
+                                <select class="form-select" id="id_status" name="status" required>
+                                    <option value="active">在读</option>
+                                    <option value="inactive">休学</option>
+                                    <option value="graduated">已毕业</option>
+                                    <option value="transferred">已转学</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="id_profile_image" class="form-label">头像</label>
+                                <input type="file" class="form-control" id="id_profile_image" name="profile_image">
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <!-- Bootstrap JavaScript -->
+    <script src="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script>
+        // 专业和班级联动
+        document.getElementById('id_major').addEventListener('change', function() {
+            const majorId = this.value;
+            const classSelect = document.getElementById('id_class_obj');
+            
+            // 清空班级选项
+            classSelect.innerHTML = '<option value="">请选择班级</option>';
+            
+            if (majorId) {
+                // 发送AJAX请求获取班级
+                fetch(`/get-class-by-major/?major_id=${majorId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length > 0) {
+                            data.forEach(classObj => {
+                                const option = document.createElement('option');
+                                option.value = classObj.id;
+                                option.textContent = classObj.name;
+                                classSelect.appendChild(option);
+                            });
+                } else {
+                            // 如果没有找到班级，添加提示
+                            const option = document.createElement('option');
+                            option.value = "";
+                            option.textContent = "该专业下暂无班级";
+                            classSelect.appendChild(option);
+                    }
+                    })
+                    .catch(error => {
+                        console.error('获取班级数据失败:', error);
+                        // 添加错误提示选项
+                        const option = document.createElement('option');
+                        option.value = "";
+                        option.textContent = "获取班级失败，请重试";
+                        classSelect.appendChild(option);
+                    });
+            }
+        });
+        
+        // 表单验证
+        document.getElementById('addStudentForm').addEventListener('submit', function(event) {
+            const major = document.getElementById('id_major').value;
+            const classObj = document.getElementById('id_class_obj').value;
+            
+            if (major && !classObj) {
+                event.preventDefault();
+                alert('请选择班级');
+                return false;
+            }
+        });
+        
+        // 全选/取消全选
+        document.getElementById('selectAll').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('tbody .form-check-input');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+    </script>
+{% endblock %}

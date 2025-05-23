@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 标题 -->
+    <title>{% block title %} {% endblock %}</title>
+    <!-- css -->
+    {% block css %} {% endblock %}
+</head>
+<body>
+<div class="container">
+    <!-- 页头 -->
+    {% include 'students/header.html' %}
+
+    <!-- 主体 -->
+    {% block content %} {% endblock %}
+
+    <!-- 页脚 -->
+    {% include 'students/footer.html' %}
+</div>
+
+<!-- 其他 -->
+{% block other %} {% endblock %}
+
+<!-- js -->
+{% block script %} {% endblock %}
+</body>
+</html>

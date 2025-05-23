@@ -1,0 +1,1614 @@
+INFO 2025-05-08 00:13:42,338 autoreload Watching for file changes with StatReloader
+ERROR 2025-05-08 00:13:50,996 log Internal Server Error: /
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+MySQLdb.OperationalError: (1054, "Unknown column 'users_user.registration_ip' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\students\views.py", line 95, in index
+    return render(request, 'students/by_base_page/index_by_base.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 210, in render
+    return template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 173, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 320, in render
+    match = condition.eval(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 886, in eval
+    return self.value.resolve(context, ignore_failures=True)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 722, in resolve
+    obj = self.var.resolve(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 854, in resolve
+    value = self._resolve_lookup(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 891, in _resolve_lookup
+    current = current[bit]
+  File "D:\Anaconda\envs\django\lib\site-packages\django\utils\functional.py", line 251, in inner
+    self._setup()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\utils\functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\contrib\auth\middleware.py", line 39, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\contrib\auth\middleware.py", line 19, in get_user
+    request._cached_user = auth.get_user(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\contrib\auth\__init__.py", line 311, in get_user
+    user = backend.get_user(user_id)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\contrib\auth\backends.py", line 232, in get_user
+    user = UserModel._default_manager.get(pk=user_id)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 629, in get
+    num = len(clone)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 366, in __len__
+    self._fetch_all()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 1935, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\sql\compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'users_user.registration_ip' in 'field list'")
+ERROR 2025-05-08 00:13:51,031 basehttp "GET / HTTP/1.1" 500 369018
+INFO 2025-05-08 00:17:02,441 autoreload Watching for file changes with StatReloader
+INFO 2025-05-08 00:17:42,699 autoreload Watching for file changes with StatReloader
+INFO 2025-05-08 00:17:44,941 basehttp "GET / HTTP/1.1" 200 38443
+INFO 2025-05-08 00:17:48,684 basehttp "GET /profile/ HTTP/1.1" 200 39599
+INFO 2025-05-08 00:17:53,526 basehttp "GET /query_results/ HTTP/1.1" 200 85810
+INFO 2025-05-08 00:17:56,814 basehttp "GET /about/ HTTP/1.1" 200 90337
+WARNING 2025-05-08 00:17:56,868 log Not Found: /api/placeholder/600/400
+WARNING 2025-05-08 00:17:56,879 log Not Found: /api/placeholder/150/150
+WARNING 2025-05-08 00:17:56,881 basehttp "GET /api/placeholder/600/400 HTTP/1.1" 404 9489
+INFO 2025-05-08 00:17:56,882 basehttp "GET /static/images/default-profile.png HTTP/1.1" 304 0
+WARNING 2025-05-08 00:17:56,882 basehttp "GET /api/placeholder/150/150 HTTP/1.1" 404 9489
+INFO 2025-05-08 00:18:24,436 basehttp "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:18:24,449 basehttp "GET /login/ HTTP/1.1" 200 17200
+INFO 2025-05-08 00:18:35,955 basehttp "GET /register/ HTTP/1.1" 200 25696
+INFO 2025-05-08 00:18:36,230 basehttp "GET /static/css/register.css HTTP/1.1" 200 3924
+INFO 2025-05-08 00:18:47,525 basehttp "GET /login/ HTTP/1.1" 200 16642
+INFO 2025-05-08 00:18:52,612 basehttp "GET / HTTP/1.1" 200 35481
+INFO 2025-05-08 00:18:56,870 basehttp "GET / HTTP/1.1" 200 35481
+INFO 2025-05-08 00:18:57,222 basehttp "GET /students/ HTTP/1.1" 200 65468
+INFO 2025-05-08 00:18:59,884 basehttp "GET /course_management/ HTTP/1.1" 200 40114
+INFO 2025-05-08 00:18:59,923 basehttp "GET /static/js/course_form_validation.js HTTP/1.1" 304 0
+INFO 2025-05-08 00:19:01,498 basehttp "GET /query_results/ HTTP/1.1" 200 85286
+INFO 2025-05-08 00:19:02,787 basehttp "GET /about/ HTTP/1.1" 200 89813
+WARNING 2025-05-08 00:19:02,836 log Not Found: /api/placeholder/600/400
+WARNING 2025-05-08 00:19:02,846 log Not Found: /api/placeholder/150/150
+WARNING 2025-05-08 00:19:02,848 basehttp "GET /api/placeholder/600/400 HTTP/1.1" 404 9489
+WARNING 2025-05-08 00:19:02,848 basehttp "GET /api/placeholder/150/150 HTTP/1.1" 404 9489
+INFO 2025-05-08 00:19:05,606 basehttp "GET /query_results/ HTTP/1.1" 200 85286
+INFO 2025-05-08 00:19:11,988 basehttp "GET /query_results/?student_id=&student_name=&course_code=&course_name=&semester=&score_min=&score_max=&grade= HTTP/1.1" 200 85405
+INFO 2025-05-08 00:19:13,523 basehttp "GET /course_management/ HTTP/1.1" 200 40114
+INFO 2025-05-08 00:19:16,939 basehttp "GET /courses/1/delete/ HTTP/1.1" 200 12101
+INFO 2025-05-08 00:19:18,705 basehttp "GET /courses/1/detail/ HTTP/1.1" 200 17082
+INFO 2025-05-08 00:19:19,818 basehttp "GET /students/ HTTP/1.1" 200 65468
+INFO 2025-05-08 00:19:22,046 basehttp "GET /query_results/ HTTP/1.1" 200 85286
+INFO 2025-05-08 00:19:27,272 basehttp "GET /scores/33/delete/ HTTP/1.1" 200 12942
+INFO 2025-05-08 00:19:28,510 basehttp "GET /query_results/ HTTP/1.1" 200 85286
+INFO 2025-05-08 00:19:31,225 basehttp "GET /scores/4/edit/ HTTP/1.1" 200 14338
+INFO 2025-05-08 00:19:36,474 basehttp "POST /scores/4/edit/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:19:36,553 basehttp "GET /query_results/ HTTP/1.1" 200 85632
+INFO 2025-05-08 00:19:41,038 basehttp "GET /scores/4/edit/ HTTP/1.1" 200 14338
+INFO 2025-05-08 00:19:45,553 basehttp "POST /scores/4/edit/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:19:45,671 basehttp "GET /query_results/ HTTP/1.1" 200 85632
+INFO 2025-05-08 00:26:05,877 autoreload Watching for file changes with StatReloader
+INFO 2025-05-08 00:26:17,759 autoreload D:\a_django_project\StudentInfo\StudentInfo\urls.py changed, reloading.
+INFO 2025-05-08 00:26:19,662 autoreload Watching for file changes with StatReloader
+INFO 2025-05-08 00:27:22,610 autoreload D:\a_django_project\StudentInfo\users\views.py changed, reloading.
+INFO 2025-05-08 00:27:24,426 autoreload Watching for file changes with StatReloader
+INFO 2025-05-08 00:29:38,611 autoreload D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-05-08 00:29:40,394 autoreload 20156 18448 Watching for file changes with StatReloader
+INFO 2025-05-08 00:30:57,621 autoreload 12628 20668 Watching for file changes with StatReloader
+INFO 2025-05-08 00:31:02,723 basehttp 20156 13132 "GET / HTTP/1.1" 200 35481
+ERROR 2025-05-08 00:31:19,730 log 20156 13132 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'studentinfo.captcha_captchastore' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\users\views.py", line 120, in login_view
+    return render(request, 'users/login.html', {'form': form})
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1081, in render
+    return render_value_in_context(output, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1058, in render_value_in_context
+    value = str(value)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\forms\utils.py", line 79, in __str__
+    return self.as_widget()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\forms\boundfield.py", line 108, in as_widget
+    return widget.render(
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\fields.py", line 128, in render
+    self.fetch_captcha_store(name, value, attrs, self.generator)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\fields.py", line 68, in fetch_captcha_store
+    key = CaptchaStore.generate_key(generator)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\models.py", line 60, in generate_key
+    store = cls.objects.create(challenge=challenge, response=response)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\models.py", line 47, in save
+    super().save(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 1854, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\sql\compiler.py", line 1881, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'studentinfo.captcha_captchastore' doesn't exist")
+ERROR 2025-05-08 00:31:19,761 basehttp 20156 13132 "GET /login/ HTTP/1.1" 500 271512
+ERROR 2025-05-08 00:31:23,354 log 20156 13132 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'studentinfo.captcha_captchastore' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\users\views.py", line 120, in login_view
+    return render(request, 'users/login.html', {'form': form})
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1081, in render
+    return render_value_in_context(output, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1058, in render_value_in_context
+    value = str(value)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\forms\utils.py", line 79, in __str__
+    return self.as_widget()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\forms\boundfield.py", line 108, in as_widget
+    return widget.render(
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\fields.py", line 128, in render
+    self.fetch_captcha_store(name, value, attrs, self.generator)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\fields.py", line 68, in fetch_captcha_store
+    key = CaptchaStore.generate_key(generator)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\models.py", line 60, in generate_key
+    store = cls.objects.create(challenge=challenge, response=response)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\models.py", line 47, in save
+    super().save(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 1854, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\sql\compiler.py", line 1881, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'studentinfo.captcha_captchastore' doesn't exist")
+ERROR 2025-05-08 00:31:23,363 basehttp 20156 13132 "GET /login/ HTTP/1.1" 500 271526
+INFO 2025-05-08 00:31:33,526 basehttp 20156 13132 "GET / HTTP/1.1" 200 35481
+ERROR 2025-05-08 00:31:35,379 log 20156 13132 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+MySQLdb.ProgrammingError: (1146, "Table 'studentinfo.captcha_captchastore' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\users\views.py", line 120, in login_view
+    return render(request, 'users/login.html', {'form': form})
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1081, in render
+    return render_value_in_context(output, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1058, in render_value_in_context
+    value = str(value)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\forms\utils.py", line 79, in __str__
+    return self.as_widget()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\forms\boundfield.py", line 108, in as_widget
+    return widget.render(
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\fields.py", line 128, in render
+    self.fetch_captcha_store(name, value, attrs, self.generator)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\fields.py", line 68, in fetch_captcha_store
+    key = CaptchaStore.generate_key(generator)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\models.py", line 60, in generate_key
+    store = cls.objects.create(challenge=challenge, response=response)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 663, in create
+    obj.save(force_insert=True, using=self.db)
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\models.py", line 47, in save
+    super().save(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 902, in save
+    self.save_base(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1008, in save_base
+    updated = self._save_table(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1169, in _save_table
+    results = self._do_insert(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\base.py", line 1210, in _do_insert
+    return manager._insert(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\query.py", line 1854, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\models\sql\compiler.py", line 1881, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\db\backends\mysql\base.py", line 76, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 179, in execute
+    res = self._query(mogrified_query)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\cursors.py", line 330, in _query
+    db.query(q)
+  File "D:\Anaconda\envs\django\lib\site-packages\MySQLdb\connections.py", line 280, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'studentinfo.captcha_captchastore' doesn't exist")
+ERROR 2025-05-08 00:31:35,390 basehttp 20156 13132 "GET /login/ HTTP/1.1" 500 271512
+INFO 2025-05-08 00:33:14,632 autoreload 16584 8492 Watching for file changes with StatReloader
+INFO 2025-05-08 00:33:22,545 basehttp 20156 13132 "GET / HTTP/1.1" 200 35481
+INFO 2025-05-08 00:33:30,210 basehttp 20156 13132 "GET /course_management/ HTTP/1.1" 200 40114
+INFO 2025-05-08 00:33:30,245 basehttp 20156 13132 "GET /static/js/course_form_validation.js HTTP/1.1" 304 0
+INFO 2025-05-08 00:33:35,259 basehttp 20156 13132 "GET /query_results/ HTTP/1.1" 200 85334
+INFO 2025-05-08 00:33:42,129 basehttp 20156 13132 "GET /students/ HTTP/1.1" 200 65368
+INFO 2025-05-08 00:33:42,160 basehttp 20156 13132 "GET /static/images/default-profile.png HTTP/1.1" 304 0
+INFO 2025-05-08 00:33:43,317 basehttp 20156 13132 "GET / HTTP/1.1" 200 35481
+INFO 2025-05-08 00:33:51,203 basehttp 20156 13132 "GET /login/ HTTP/1.1" 200 17724
+INFO 2025-05-08 00:33:51,320 basehttp 20156 13132 "GET /captcha/image/d6d05b60c96556b1cc02a1ab47e258c813c04073/ HTTP/1.1" 200 7796
+INFO 2025-05-08 00:34:08,788 basehttp 20156 13132 "POST /login/ HTTP/1.1" 200 18238
+INFO 2025-05-08 00:34:08,827 basehttp 20156 13132 "GET /captcha/image/c8edb2050127c3a0401c5b3351c95becc79ea706/ HTTP/1.1" 200 8058
+INFO 2025-05-08 00:34:27,194 basehttp 20156 13132 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:34:27,291 basehttp 20156 13132 "GET / HTTP/1.1" 200 38443
+INFO 2025-05-08 00:34:41,260 basehttp 20156 13132 "GET /query_results/ HTTP/1.1" 200 86210
+INFO 2025-05-08 00:34:50,969 basehttp 20156 13132 "GET / HTTP/1.1" 200 38443
+INFO 2025-05-08 00:34:57,343 basehttp 20156 13132 "GET /students/ HTTP/1.1" 200 65892
+INFO 2025-05-08 00:34:58,841 basehttp 20156 13132 "GET /course_management/ HTTP/1.1" 200 40638
+INFO 2025-05-08 00:34:59,894 basehttp 20156 13132 "GET /query_results/ HTTP/1.1" 200 85858
+INFO 2025-05-08 00:35:01,877 basehttp 20156 13132 "GET /about/ HTTP/1.1" 200 90337
+WARNING 2025-05-08 00:35:01,937 basehttp 20156 13132 "GET /api/placeholder/600/400 HTTP/1.1" 404 9640
+WARNING 2025-05-08 00:35:01,938 basehttp 20156 6536 "GET /api/placeholder/150/150 HTTP/1.1" 404 9640
+INFO 2025-05-08 00:35:13,043 basehttp 20156 6536 "GET / HTTP/1.1" 200 38443
+INFO 2025-05-08 00:35:18,097 basehttp 20156 6536 "GET /students/ HTTP/1.1" 200 65892
+INFO 2025-05-08 00:35:22,409 basehttp 20156 6536 "GET /course_management/ HTTP/1.1" 200 40638
+INFO 2025-05-08 00:35:23,978 basehttp 20156 6536 "GET /profile/ HTTP/1.1" 200 39407
+INFO 2025-05-08 00:35:26,734 basehttp 20156 6536 "GET / HTTP/1.1" 200 38443
+INFO 2025-05-08 00:35:36,457 basehttp 20156 6536 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:35:36,483 basehttp 20156 6536 "GET /login/ HTTP/1.1" 200 18282
+INFO 2025-05-08 00:35:36,531 basehttp 20156 6536 "GET /captcha/image/24aabc59ca505428fc030ce64e56d4e86522a668/ HTTP/1.1" 200 9104
+INFO 2025-05-08 00:36:23,769 autoreload 16584 8492 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-05-08 00:36:24,340 autoreload 20156 18448 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-05-08 00:36:25,853 autoreload 17700 6832 Watching for file changes with StatReloader
+INFO 2025-05-08 00:36:26,464 autoreload 18844 4164 Watching for file changes with StatReloader
+INFO 2025-05-08 00:37:44,326 autoreload 18844 4164 D:\a_django_project\StudentInfo\users\views.py changed, reloading.
+INFO 2025-05-08 00:37:46,145 autoreload 14988 21860 Watching for file changes with StatReloader
+INFO 2025-05-08 00:37:58,278 autoreload 14988 21860 D:\a_django_project\StudentInfo\users\views.py changed, reloading.
+INFO 2025-05-08 00:38:00,210 autoreload 14616 19920 Watching for file changes with StatReloader
+INFO 2025-05-08 00:38:10,969 autoreload 14616 19920 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-05-08 00:38:12,842 autoreload 8836 18348 Watching for file changes with StatReloader
+INFO 2025-05-08 00:38:28,899 autoreload 8836 18348 D:\a_django_project\StudentInfo\users\urls.py changed, reloading.
+INFO 2025-05-08 00:38:30,676 autoreload 8104 2964 Watching for file changes with StatReloader
+INFO 2025-05-08 00:41:32,944 autoreload 8104 2964 D:\a_django_project\StudentInfo\users\views.py changed, reloading.
+INFO 2025-05-08 00:41:34,831 autoreload 7296 7632 Watching for file changes with StatReloader
+INFO 2025-05-08 00:41:51,920 autoreload 7296 7632 D:\a_django_project\StudentInfo\users\middleware.py changed, reloading.
+INFO 2025-05-08 00:41:53,727 autoreload 18460 21392 Watching for file changes with StatReloader
+INFO 2025-05-08 00:42:18,109 autoreload 18460 21392 D:\a_django_project\StudentInfo\users\admin.py changed, reloading.
+INFO 2025-05-08 00:42:20,036 autoreload 13588 3312 Watching for file changes with StatReloader
+INFO 2025-05-08 00:44:26,164 autoreload 12988 12436 Watching for file changes with StatReloader
+INFO 2025-05-08 00:44:56,393 basehttp 13588 18212 "GET / HTTP/1.1" 200 35481
+INFO 2025-05-08 00:45:02,331 basehttp 13588 18212 "GET /students/10/detail/ HTTP/1.1" 200 27181
+INFO 2025-05-08 00:45:02,365 basehttp 13588 18212 "GET /static/images/default-profile.png HTTP/1.1" 304 0
+INFO 2025-05-08 00:45:12,218 basehttp 13588 18212 "GET /login/ HTTP/1.1" 200 17724
+INFO 2025-05-08 00:45:12,322 basehttp 13588 18212 "GET /captcha/image/6a846c108ae81bcbd5e8a7c8609fabdadc245e1b/ HTTP/1.1" 200 7961
+INFO 2025-05-08 00:45:33,593 basehttp 13588 18212 "POST /login/ HTTP/1.1" 200 18562
+INFO 2025-05-08 00:45:33,641 basehttp 13588 18212 "GET /captcha/image/b11b053f4691e856fbb5102d47d8c11505ac57ec/ HTTP/1.1" 200 7409
+INFO 2025-05-08 00:45:47,308 basehttp 13588 18212 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:45:47,458 basehttp 13588 18212 "GET / HTTP/1.1" 200 38443
+INFO 2025-05-08 00:45:50,642 basehttp 13588 18212 "GET /profile/ HTTP/1.1" 200 41942
+INFO 2025-05-08 00:45:56,764 basehttp 13588 18212 "GET /sessions/ HTTP/1.1" 200 27364
+INFO 2025-05-08 00:46:16,745 basehttp 13588 18212 "GET / HTTP/1.1" 200 38443
+INFO 2025-05-08 00:46:20,475 basehttp 13588 18212 "GET /query_results/ HTTP/1.1" 200 85858
+INFO 2025-05-08 00:46:30,367 basehttp 13588 18212 "GET /about/ HTTP/1.1" 200 90337
+WARNING 2025-05-08 00:46:30,526 basehttp 13588 18212 "GET /api/placeholder/600/400 HTTP/1.1" 404 11313
+WARNING 2025-05-08 00:46:30,625 basehttp 13588 19960 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 00:46:49,541 basehttp 13588 19960 "GET /login/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:46:49,708 basehttp 13588 19960 "GET / HTTP/1.1" 200 38443
+INFO 2025-05-08 00:46:52,541 basehttp 13588 19960 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:46:52,561 basehttp 13588 19960 "GET /login/ HTTP/1.1" 200 18282
+INFO 2025-05-08 00:46:52,620 basehttp 13588 19960 "GET /captcha/image/d7762c2b235a3b4fbb42dd46da69ff373f377824/ HTTP/1.1" 200 8483
+INFO 2025-05-08 00:47:04,818 basehttp 13588 19960 "GET /register/ HTTP/1.1" 200 27011
+INFO 2025-05-08 00:47:04,881 basehttp 13588 18212 "GET /captcha/image/9a0785e051b8fccbe94e777b40d51a133becc2c5/ HTTP/1.1" 200 8697
+INFO 2025-05-08 00:47:05,146 basehttp 13588 19960 "GET /static/css/register.css HTTP/1.1" 200 4534
+INFO 2025-05-08 00:47:54,965 basehttp 13588 19960 "POST /register/ HTTP/1.1" 200 27563
+INFO 2025-05-08 00:47:55,006 basehttp 13588 19960 "GET /captcha/image/7ba3fa99b2e14801757d0554f63317323892197b/ HTTP/1.1" 200 8170
+INFO 2025-05-08 00:48:23,291 basehttp 13588 19960 "POST /register/ HTTP/1.1" 200 27868
+INFO 2025-05-08 00:48:23,328 basehttp 13588 19960 "GET /captcha/image/bb3d734a16c48c24a4dde9ee505035d8c14d96c5/ HTTP/1.1" 200 7902
+INFO 2025-05-08 00:48:54,924 basehttp 13588 19960 "POST /register/ HTTP/1.1" 200 27980
+INFO 2025-05-08 00:48:54,958 basehttp 13588 15588 "GET /static/css/register.css HTTP/1.1" 304 0
+INFO 2025-05-08 00:48:54,970 basehttp 13588 2548 "GET /captcha/image/6edebdd1aaedbef8d27ebbda7438d2c1652dc6cc/ HTTP/1.1" 200 7113
+INFO 2025-05-08 00:49:22,987 basehttp 13588 2548 "POST /register/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:49:23,133 basehttp 13588 2548 "GET / HTTP/1.1" 200 38447
+INFO 2025-05-08 00:49:38,962 basehttp 13588 2548 "GET / HTTP/1.1" 200 38447
+INFO 2025-05-08 00:49:48,592 basehttp 13588 2548 "GET /profile/ HTTP/1.1" 200 41989
+INFO 2025-05-08 00:49:59,090 basehttp 13588 2548 "GET / HTTP/1.1" 200 38447
+INFO 2025-05-08 00:50:00,514 basehttp 13588 2548 "GET /students/ HTTP/1.1" 200 65896
+INFO 2025-05-08 00:50:06,958 basehttp 13588 2548 "GET /students/2/detail/ HTTP/1.1" 200 27719
+INFO 2025-05-08 00:51:18,222 autoreload 4196 12972 Watching for file changes with StatReloader
+INFO 2025-05-08 00:51:21,642 basehttp 13588 17628 "GET / HTTP/1.1" 200 35481
+INFO 2025-05-08 00:51:21,723 basehttp 13588 21620 "GET / HTTP/1.1" 200 35481
+INFO 2025-05-08 00:51:21,823 basehttp 13588 17628 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-08 00:51:26,672 basehttp 13588 17628 "GET /login/ HTTP/1.1" 200 17724
+INFO 2025-05-08 00:51:26,715 basehttp 13588 17628 "GET /captcha/image/ef127d87cf1839eee472c8699a356adc19e699e7/ HTTP/1.1" 200 9483
+INFO 2025-05-08 00:51:45,790 basehttp 13588 17628 "POST /login/ HTTP/1.1" 200 18249
+INFO 2025-05-08 00:51:45,832 basehttp 13588 17628 "GET /captcha/image/1f0e6208eb7ba0d43e502d2f0415dddc8800a244/ HTTP/1.1" 200 8171
+INFO 2025-05-08 00:51:58,492 basehttp 13588 17628 "POST /login/ HTTP/1.1" 200 18566
+INFO 2025-05-08 00:51:58,527 basehttp 13588 17628 "GET /captcha/image/3651a9a9b5cee14fcb99315ecd235d3aee286575/ HTTP/1.1" 200 8900
+INFO 2025-05-08 00:52:10,925 basehttp 13588 17628 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:52:11,117 basehttp 13588 17628 "GET / HTTP/1.1" 200 38447
+INFO 2025-05-08 00:52:16,832 basehttp 13588 17628 "GET /export-students-csv/ HTTP/1.1" 200 1100
+INFO 2025-05-08 00:52:48,204 basehttp 13588 17628 "GET /students/ HTTP/1.1" 200 66252
+INFO 2025-05-08 00:52:48,239 basehttp 13588 17628 "GET /static/images/default-profile.png HTTP/1.1" 304 0
+INFO 2025-05-08 00:53:33,820 basehttp 13588 17360 "GET / HTTP/1.1" 200 38395
+INFO 2025-05-08 00:53:34,009 basehttp 13588 17360 "GET / HTTP/1.1" 200 38395
+WARNING 2025-05-08 00:53:34,327 basehttp 13588 17360 "GET /favicon.ico HTTP/1.1" 404 11277
+WARNING 2025-05-08 00:53:34,422 basehttp 13588 17360 "GET /favicon.ico HTTP/1.1" 404 11277
+INFO 2025-05-08 00:53:37,637 basehttp 13588 20716 "GET / HTTP/1.1" 200 38395
+INFO 2025-05-08 00:53:38,697 basehttp 13588 10892 "GET /students/ HTTP/1.1" 200 65844
+INFO 2025-05-08 00:53:39,767 basehttp 13588 10892 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 00:53:39,792 basehttp 13588 10892 "GET /static/js/course_form_validation.js HTTP/1.1" 200 5215
+INFO 2025-05-08 00:53:40,889 basehttp 13588 10892 "GET /query_results/ HTTP/1.1" 200 85810
+INFO 2025-05-08 00:53:42,274 basehttp 13588 10892 "GET /about/ HTTP/1.1" 200 90289
+WARNING 2025-05-08 00:53:42,406 basehttp 13588 10892 "GET /api/placeholder/600/400 HTTP/1.1" 404 11313
+WARNING 2025-05-08 00:53:47,479 basehttp 13588 17440 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 00:53:49,422 basehttp 13588 17440 "GET / HTTP/1.1" 200 35429
+INFO 2025-05-08 00:53:52,783 basehttp 13588 17440 "GET /course_management/ HTTP/1.1" 200 40062
+INFO 2025-05-08 00:53:53,993 basehttp 13588 17440 "GET /query_results/ HTTP/1.1" 200 85282
+INFO 2025-05-08 00:53:54,732 basehttp 13588 17440 "GET /about/ HTTP/1.1" 200 89761
+WARNING 2025-05-08 00:53:54,856 basehttp 13588 17440 "GET /api/placeholder/600/400 HTTP/1.1" 404 11313
+WARNING 2025-05-08 00:53:54,868 basehttp 13588 10892 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 00:53:55,986 basehttp 13588 10892 "GET / HTTP/1.1" 200 35429
+INFO 2025-05-08 00:54:36,690 basehttp 13588 10892 "GET /about/ HTTP/1.1" 200 89761
+WARNING 2025-05-08 00:54:36,825 basehttp 13588 10892 "GET /api/placeholder/600/400 HTTP/1.1" 404 11313
+WARNING 2025-05-08 00:54:36,833 basehttp 13588 17440 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 00:54:38,666 basehttp 13588 17440 "GET /login/ HTTP/1.1" 200 17724
+INFO 2025-05-08 00:54:38,791 basehttp 13588 17440 "GET /captcha/image/f49172e50b9d313124b3717727b4523095d5eaad/ HTTP/1.1" 200 8289
+INFO 2025-05-08 00:55:03,299 basehttp 13588 17440 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:55:03,449 basehttp 13588 17440 "GET / HTTP/1.1" 200 38395
+INFO 2025-05-08 00:55:08,243 basehttp 13588 17440 "GET /about/ HTTP/1.1" 200 90289
+WARNING 2025-05-08 00:55:08,368 basehttp 13588 17440 "GET /api/placeholder/600/400 HTTP/1.1" 404 11313
+WARNING 2025-05-08 00:55:08,378 basehttp 13588 10892 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 00:56:14,880 basehttp 13588 10892 "GET /about/ HTTP/1.1" 200 90287
+INFO 2025-05-08 00:56:14,919 basehttp 13588 10892 "GET /static/images/img.png HTTP/1.1" 200 91367
+WARNING 2025-05-08 00:56:14,997 basehttp 13588 17440 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 00:56:26,202 basehttp 13588 17440 "GET /students/ HTTP/1.1" 200 66200
+INFO 2025-05-08 00:56:29,082 basehttp 13588 17440 "GET / HTTP/1.1" 200 38395
+INFO 2025-05-08 00:56:39,225 basehttp 13588 17440 "GET /about/ HTTP/1.1" 200 90287
+INFO 2025-05-08 00:56:39,273 basehttp 13588 17440 "GET /static/images/img.png HTTP/1.1" 304 0
+WARNING 2025-05-08 00:56:39,345 basehttp 13588 10892 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 00:56:46,900 basehttp 13588 10892 "GET /profile/ HTTP/1.1" 200 41659
+INFO 2025-05-08 00:56:56,949 basehttp 13588 10892 "GET /sessions/ HTTP/1.1" 200 27316
+INFO 2025-05-08 00:56:59,524 basehttp 13588 10892 "POST /sessions/refresh/ HTTP/1.1" 302 0
+INFO 2025-05-08 00:56:59,622 basehttp 13588 10892 "GET /sessions/ HTTP/1.1" 200 27316
+INFO 2025-05-08 00:57:08,696 basehttp 13588 10892 "GET /query_results/ HTTP/1.1" 200 86171
+INFO 2025-05-08 00:57:09,990 basehttp 13588 10892 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 00:57:11,056 basehttp 13588 10892 "GET /students/ HTTP/1.1" 200 65844
+INFO 2025-05-08 00:57:13,364 basehttp 13588 10892 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 00:57:16,256 basehttp 13588 10892 "GET / HTTP/1.1" 200 38395
+INFO 2025-05-08 00:59:45,259 autoreload 13588 3312 D:\a_django_project\StudentInfo\users\models.py changed, reloading.
+INFO 2025-05-08 00:59:47,217 autoreload 12784 8080 Watching for file changes with StatReloader
+INFO 2025-05-08 01:19:23,597 autoreload 5040 11876 Watching for file changes with StatReloader
+INFO 2025-05-08 01:19:26,983 basehttp 5040 1040 "GET / HTTP/1.1" 200 38395
+INFO 2025-05-08 01:19:27,193 basehttp 5040 5632 "GET / HTTP/1.1" 200 38395
+WARNING 2025-05-08 01:19:27,810 basehttp 5040 5632 "GET /favicon.ico HTTP/1.1" 404 11277
+WARNING 2025-05-08 01:19:27,911 basehttp 5040 1040 "GET /favicon.ico HTTP/1.1" 404 11277
+INFO 2025-05-08 01:19:30,135 basehttp 5040 1040 "GET /students/ HTTP/1.1" 200 66638
+INFO 2025-05-08 01:19:30,179 basehttp 5040 1040 "GET /static/images/default-profile.png HTTP/1.1" 304 0
+INFO 2025-05-08 01:19:32,346 basehttp 5040 1040 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 01:19:32,380 basehttp 5040 1040 "GET /static/js/course_form_validation.js HTTP/1.1" 304 0
+INFO 2025-05-08 01:19:34,669 basehttp 5040 1040 "GET /query_results/ HTTP/1.1" 200 85818
+INFO 2025-05-08 01:20:46,409 basehttp 5040 1040 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 01:32:30,880 autoreload 5888 21532 Watching for file changes with StatReloader
+INFO 2025-05-08 01:32:34,802 basehttp 5888 8672 "GET / HTTP/1.1" 200 43289
+WARNING 2025-05-08 01:32:35,366 basehttp 5888 8672 "GET /favicon.ico HTTP/1.1" 404 11277
+INFO 2025-05-08 01:32:50,008 basehttp 5888 8672 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 01:32:50,048 basehttp 5888 8672 "GET /static/js/course_form_validation.js HTTP/1.1" 304 0
+INFO 2025-05-08 01:32:57,148 basehttp 5888 8672 "GET /students/ HTTP/1.1" 200 657773
+INFO 2025-05-08 01:32:57,180 basehttp 5888 8672 "GET /static/images/default-profile.png HTTP/1.1" 304 0
+INFO 2025-05-08 01:33:02,859 basehttp 5888 8672 "GET /students/134/detail/ HTTP/1.1" 200 24382
+INFO 2025-05-08 01:33:11,137 basehttp 5888 8672 "GET /query_results/ HTTP/1.1" 200 85818
+INFO 2025-05-08 01:33:18,809 basehttp 5888 8672 "GET /students/ HTTP/1.1" 200 657773
+INFO 2025-05-08 01:33:25,170 basehttp 5888 8672 "GET / HTTP/1.1" 200 43289
+INFO 2025-05-08 01:33:39,446 basehttp 5888 8672 "GET /students/ HTTP/1.1" 200 657773
+INFO 2025-05-08 01:33:49,689 basehttp 5888 8672 "GET /students/?student_id=&name=&class_obj=8&status= HTTP/1.1" 200 39986
+INFO 2025-05-08 01:33:52,949 basehttp 5888 8672 "GET / HTTP/1.1" 200 43289
+INFO 2025-05-08 01:33:55,822 basehttp 5888 8672 "GET /query_results/ HTTP/1.1" 200 85818
+INFO 2025-05-08 01:33:58,367 basehttp 5888 8672 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 01:34:09,647 basehttp 5888 8672 "GET /query_results/ HTTP/1.1" 200 85818
+WARNING 2025-05-08 01:34:11,159 basehttp 5888 8672 "GET /api/students/ HTTP/1.1" 404 11283
+WARNING 2025-05-08 01:34:11,257 basehttp 5888 18632 "GET /api/courses/ HTTP/1.1" 404 11280
+INFO 2025-05-08 01:34:25,481 basehttp 5888 18632 "GET /students/ HTTP/1.1" 200 657773
+INFO 2025-05-08 01:34:27,095 basehttp 5888 18632 "GET / HTTP/1.1" 200 43289
+INFO 2025-05-08 01:35:00,144 basehttp 5888 18632 "GET /students/ HTTP/1.1" 200 657773
+INFO 2025-05-08 01:35:03,370 basehttp 5888 18632 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 01:35:56,702 basehttp 5888 18632 "GET /query_results/ HTTP/1.1" 200 85818
+INFO 2025-05-08 01:36:07,740 basehttp 5888 18632 "GET /course_management/ HTTP/1.1" 200 40590
+INFO 2025-05-08 01:36:10,830 basehttp 5888 18632 "GET /students/ HTTP/1.1" 200 657773
+INFO 2025-05-08 01:36:29,339 basehttp 5888 18632 "GET /students/ HTTP/1.1" 200 657773
+INFO 2025-05-08 01:36:36,821 basehttp 5888 18632 "GET /students/?student_id=&name=&class_obj=15&status= HTTP/1.1" 200 48826
+INFO 2025-05-08 01:36:39,596 basehttp 5888 18632 "GET /students/41/detail/ HTTP/1.1" 200 24390
+INFO 2025-05-08 01:38:40,376 basehttp 5888 22116 "GET /students/ HTTP/1.1" 200 657773
+INFO 2025-05-08 01:38:42,301 basehttp 5888 22116 "GET /students/2/detail/ HTTP/1.1" 200 27667
+INFO 2025-05-08 01:42:09,248 autoreload 4408 3076 Watching for file changes with StatReloader
+INFO 2025-05-08 01:42:12,159 basehttp 4408 18404 "GET / HTTP/1.1" 200 40662
+INFO 2025-05-08 01:42:19,709 basehttp 4408 18404 "GET /course_management/ HTTP/1.1" 200 63018
+INFO 2025-05-08 01:42:22,876 autoreload 4408 3076 D:\a_django_project\StudentInfo\students\views.py changed, reloading.
+INFO 2025-05-08 01:42:24,810 autoreload 14708 15212 Watching for file changes with StatReloader
+INFO 2025-05-08 01:42:37,169 basehttp 14708 2292 "GET /students/ HTTP/1.1" 200 608299
+INFO 2025-05-08 01:42:44,988 basehttp 14708 2292 "GET /query_results/ HTTP/1.1" 200 1233911
+INFO 2025-05-08 01:43:03,546 basehttp 14708 2292 "GET /about/ HTTP/1.1" 200 90287
+WARNING 2025-05-08 01:43:03,673 basehttp 14708 21096 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 01:43:03,815 basehttp 14708 2292 "GET /static/images/img.png HTTP/1.1" 200 91367
+INFO 2025-05-08 01:43:08,239 basehttp 14708 2292 "GET / HTTP/1.1" 200 40896
+INFO 2025-05-08 01:43:22,648 basehttp 14708 2292 "GET /students/272/detail/ HTTP/1.1" 200 32162
+INFO 2025-05-08 10:58:06,547 autoreload 1112 11296 Watching for file changes with StatReloader
+INFO 2025-05-08 10:58:30,519 basehttp 1112 18220 "GET / HTTP/1.1" 200 40896
+INFO 2025-05-08 10:58:30,814 basehttp 1112 18724 "GET / HTTP/1.1" 200 40896
+INFO 2025-05-08 10:58:39,244 basehttp 1112 18724 "GET /students/ HTTP/1.1" 200 608299
+INFO 2025-05-08 10:58:39,284 basehttp 1112 18724 "GET /static/images/default-profile.png HTTP/1.1" 304 0
+INFO 2025-05-08 10:58:53,181 basehttp 1112 18724 "GET /course_management/ HTTP/1.1" 200 63018
+INFO 2025-05-08 10:58:53,254 basehttp 1112 18724 "GET /static/js/course_form_validation.js HTTP/1.1" 304 0
+INFO 2025-05-08 10:59:00,160 basehttp 1112 18724 "GET /query_results/ HTTP/1.1" 200 1233911
+INFO 2025-05-08 10:59:04,636 basehttp 1112 18724 "GET / HTTP/1.1" 200 40896
+INFO 2025-05-08 11:06:18,933 autoreload 15612 2284 Watching for file changes with StatReloader
+INFO 2025-05-08 11:06:23,590 basehttp 15612 4840 "GET / HTTP/1.1" 200 40917
+INFO 2025-05-08 11:06:23,957 basehttp 15612 4840 "GET /static/css/students/index.css HTTP/1.1" 200 762
+INFO 2025-05-08 11:06:27,625 basehttp 15612 4840 "GET /students/ HTTP/1.1" 200 608320
+INFO 2025-05-08 11:06:27,679 basehttp 15612 4840 "GET /static/css/students/about.css HTTP/1.1" 200 2725
+INFO 2025-05-08 11:06:28,769 basehttp 15612 4840 "GET /course_management/ HTTP/1.1" 200 63039
+INFO 2025-05-08 11:06:28,830 basehttp 15612 4840 "GET /static/css/students/course_management.css HTTP/1.1" 200 3158
+INFO 2025-05-08 11:06:30,806 basehttp 15612 4840 "GET /query_results/ HTTP/1.1" 200 1233923
+INFO 2025-05-08 11:06:33,044 basehttp 15612 4840 "GET /about/ HTTP/1.1" 200 90308
+INFO 2025-05-08 11:06:33,096 basehttp 15612 4840 "GET /static/images/img.png HTTP/1.1" 304 0
+WARNING 2025-05-08 11:06:33,194 basehttp 15612 16968 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-08 11:06:35,885 basehttp 15612 16968 "GET /query_results/ HTTP/1.1" 200 1233923
+WARNING 2025-05-08 11:06:37,273 basehttp 15612 16968 "GET /api/students/ HTTP/1.1" 404 11283
+WARNING 2025-05-08 11:06:37,440 basehttp 15612 4840 "GET /api/courses/ HTTP/1.1" 404 11280
+INFO 2025-05-08 11:06:40,356 basehttp 15612 4840 "GET /course_management/ HTTP/1.1" 200 63039
+INFO 2025-05-08 11:06:59,193 basehttp 15612 4840 "GET / HTTP/1.1" 200 40917
+INFO 2025-05-08 11:09:01,795 autoreload 19024 12344 Watching for file changes with StatReloader
+INFO 2025-05-08 11:09:04,701 basehttp 19024 10296 "GET / HTTP/1.1" 200 40917
+INFO 2025-05-08 11:09:09,315 basehttp 19024 10296 "GET /profile/ HTTP/1.1" 200 41663
+INFO 2025-05-08 11:09:16,126 basehttp 19024 10296 "GET /sessions/ HTTP/1.1" 200 27329
+INFO 2025-05-08 11:12:17,618 basehttp 19024 10296 "GET /sessions/ HTTP/1.1" 200 26665
+INFO 2025-05-08 11:12:17,898 basehttp 19024 10296 "GET /static/css/users/session_management.css HTTP/1.1" 200 1565
+INFO 2025-05-08 11:12:19,116 basehttp 19024 10296 "GET /sessions/ HTTP/1.1" 200 26665
+INFO 2025-05-08 11:12:19,141 basehttp 19024 10296 "GET /static/css/users/session_management.css HTTP/1.1" 304 0
+INFO 2025-05-08 11:26:13,603 autoreload 11052 14492 Watching for file changes with StatReloader
+INFO 2025-05-08 11:26:18,574 basehttp 11052 17860 "GET / HTTP/1.1" 200 40930
+INFO 2025-05-08 11:26:18,857 basehttp 11052 17860 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-08 11:26:21,519 basehttp 11052 17860 "GET /profile/ HTTP/1.1" 200 35601
+INFO 2025-05-08 11:26:21,571 basehttp 11052 17860 "GET /static/css/students/profile.css HTTP/1.1" 200 4507
+INFO 2025-05-08 11:26:46,302 basehttp 11052 17860 "GET / HTTP/1.1" 200 40930
+INFO 2025-05-09 13:19:00,562 autoreload 18136 5212 Watching for file changes with StatReloader
+INFO 2025-05-09 13:19:04,566 basehttp 18136 7880 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-09 13:19:04,626 basehttp 18136 1256 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+INFO 2025-05-09 13:19:04,626 basehttp 18136 6796 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 304 0
+INFO 2025-05-09 13:19:04,931 basehttp 18136 7880 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+WARNING 2025-05-09 13:19:05,688 basehttp 18136 5508 "GET /favicon.ico HTTP/1.1" 404 11277
+INFO 2025-05-09 13:19:08,906 basehttp 18136 9620 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:19:09,075 basehttp 18136 9620 "GET /login/ HTTP/1.1" 200 18288
+INFO 2025-05-09 13:19:09,140 basehttp 18136 9620 "GET /static/css/users/login.css HTTP/1.1" 200 4330
+INFO 2025-05-09 13:19:09,302 basehttp 18136 15696 "GET /captcha/image/42d32e984728fef7b4bfcebd23efe259d865c8b8/ HTTP/1.1" 200 7895
+WARNING 2025-05-09 13:19:27,933 basehttp 18136 15696 "GET /index HTTP/1.1" 404 11259
+INFO 2025-05-09 13:19:37,241 basehttp 18136 15696 "GET /course_management HTTP/1.1" 301 0
+INFO 2025-05-09 13:19:37,326 basehttp 18136 9620 "GET /course_management/ HTTP/1.1" 200 62578
+INFO 2025-05-09 13:19:37,377 basehttp 18136 9620 "GET /static/css/students/by_base_page/course_management.css HTTP/1.1" 200 3158
+INFO 2025-05-09 13:19:37,378 basehttp 18136 11248 "GET /static/js/course_form_validation.js HTTP/1.1" 200 5215
+INFO 2025-05-09 13:19:40,905 basehttp 18136 11248 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 13:19:42,335 basehttp 18136 11248 "GET /students/ HTTP/1.1" 200 607859
+INFO 2025-05-09 13:19:42,379 basehttp 18136 9620 "GET /static/images/default-profile.png HTTP/1.1" 200 1320
+INFO 2025-05-09 13:19:42,381 basehttp 18136 11248 "GET /static/css/students/by_base_page/about.css HTTP/1.1" 200 2725
+INFO 2025-05-09 13:19:43,207 basehttp 18136 11248 "GET /course_management/ HTTP/1.1" 200 62578
+INFO 2025-05-09 13:19:44,888 basehttp 18136 11248 - Broken pipe from ('127.0.0.1', 10850)
+INFO 2025-05-09 13:19:45,618 basehttp 18136 9620 "GET /query_results/ HTTP/1.1" 200 1233449
+INFO 2025-05-09 13:19:48,447 basehttp 18136 9620 "GET /about/ HTTP/1.1" 200 89847
+WARNING 2025-05-09 13:19:48,490 basehttp 18136 11200 "GET /api/placeholder/150/150 HTTP/1.1" 404 11313
+INFO 2025-05-09 13:19:48,506 basehttp 18136 9620 "GET /static/images/img.png HTTP/1.1" 200 91367
+INFO 2025-05-09 13:31:11,799 autoreload 19284 19332 Watching for file changes with StatReloader
+INFO 2025-05-09 13:31:19,512 basehttp 19284 17620 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-09 13:31:19,554 basehttp 19284 11168 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 304 0
+INFO 2025-05-09 13:31:19,559 basehttp 19284 11168 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 304 0
+INFO 2025-05-09 13:31:19,890 basehttp 19284 17620 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+WARNING 2025-05-09 13:31:20,418 basehttp 19284 2064 "GET /favicon.ico HTTP/1.1" 404 11551
+INFO 2025-05-09 13:31:25,479 basehttp 19284 16684 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:31:25,519 basehttp 19284 16684 "GET /login/ HTTP/1.1" 200 18288
+INFO 2025-05-09 13:31:25,560 basehttp 19284 3720 "GET /captcha/image/d2b18b0e31bd765d9eaaf2496b94745a070d18b0/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:31:25,562 basehttp 19284 16684 "GET /static/css/users/login.css HTTP/1.1" 200 4330
+INFO 2025-05-09 13:31:25,579 basehttp 19284 16684 "GET /unauthorized/ HTTP/1.1" 200 1908
+INFO 2025-05-09 13:31:31,779 basehttp 19284 16684 "GET /index HTTP/1.1" 302 0
+INFO 2025-05-09 13:31:31,784 basehttp 19284 16684 "GET /unauthorized/ HTTP/1.1" 200 1908
+INFO 2025-05-09 13:33:06,931 autoreload 16500 13292 Watching for file changes with StatReloader
+INFO 2025-05-09 13:33:09,702 basehttp 16500 436 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 13:33:19,186 basehttp 16500 436 "GET /students/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:33:19,196 basehttp 16500 436 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:33:21,954 basehttp 16500 436 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 13:33:28,533 basehttp 16500 436 "GET /course_management/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:33:28,540 basehttp 16500 436 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:33:42,829 basehttp 16500 436 "GET /query_results/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:33:42,835 basehttp 16500 436 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:33:44,892 basehttp 16500 436 "GET /course_management/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:33:44,898 basehttp 16500 436 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:33:47,521 basehttp 16500 436 "GET /login/ HTTP/1.1" 200 17730
+INFO 2025-05-09 13:33:47,552 basehttp 16500 436 "GET /captcha/image/08e3e4c81b09202a87066c03333f9325b137f9ce/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:33:47,579 basehttp 16500 436 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:33:55,080 basehttp 16500 436 "GET /login/ HTTP/1.1" 200 17730
+INFO 2025-05-09 13:33:55,103 basehttp 16500 436 "GET /captcha/image/e1a6a1f4db4609c390b54421f0f9c7974545a100/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:33:55,111 basehttp 16500 436 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:33:57,613 basehttp 16500 436 "GET /login/ HTTP/1.1" 200 17730
+INFO 2025-05-09 13:33:57,633 basehttp 16500 436 "GET /captcha/image/6720d353f0276292ffc4081379d864b813cf2bde/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:33:57,644 basehttp 16500 436 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:34:00,653 basehttp 16500 436 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-09 13:34:00,684 basehttp 16500 9920 "GET /captcha/image/dcc4908d73cb64dff9eee016ca3f606e8103a09e/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:34:00,690 basehttp 16500 9920 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:34:00,936 basehttp 16500 436 "GET /static/css/users/register.css HTTP/1.1" 200 4534
+INFO 2025-05-09 13:36:39,927 autoreload 17804 10424 Watching for file changes with StatReloader
+INFO 2025-05-09 13:36:43,991 basehttp 17804 9724 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 13:36:44,642 basehttp 17804 10784 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:36:44,655 basehttp 17804 10784 "GET /unauthorized/ HTTP/1.1" 200 2115
+ERROR 2025-05-09 13:36:51,188 log 17804 10784 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\users\views.py", line 155, in login_view
+    return render(request, 'users/login.html', {'form': form})
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1075, in render
+    output = self.filter_expression.resolve(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 722, in resolve
+    obj = self.var.resolve(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 854, in resolve
+    value = self._resolve_lookup(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 925, in _resolve_lookup
+    current = current()
+  File "D:\Anaconda\envs\django\lib\site-packages\captcha\fields.py", line 81, in image_url
+    return reverse("captcha-image", kwargs={"key": self._key})
+AttributeError: 'CaptchaTextInput' object has no attribute '_key'
+ERROR 2025-05-09 13:36:51,196 basehttp 17804 10784 "GET /login/ HTTP/1.1" 500 149941
+INFO 2025-05-09 13:36:51,360 basehttp 17804 10784 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:36:51,368 basehttp 17804 10784 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:28,178 autoreload 19876 19880 Watching for file changes with StatReloader
+INFO 2025-05-09 13:38:30,790 basehttp 19876 4216 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 13:38:31,331 basehttp 19876 4216 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:31,344 basehttp 19876 4216 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:32,701 basehttp 19876 4216 "GET /login/ HTTP/1.1" 200 19051
+INFO 2025-05-09 13:38:32,775 basehttp 19876 4216 "GET /captcha/image/2e9a046ed57b7223b4966c0ffa6422e8df2473e8/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:32,833 basehttp 19876 4216 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:32,918 basehttp 19876 4216 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:32,987 basehttp 19876 4216 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:39,101 basehttp 19876 4216 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-09 13:38:39,132 basehttp 19876 4216 "GET /captcha/image/7b3bfea1d3c366e80eef17e4acfc4f6781595c6a/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:39,168 basehttp 19876 4216 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:39,182 basehttp 19876 4216 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:39,189 basehttp 19876 4216 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:42,913 basehttp 19876 4216 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 13:38:43,045 basehttp 19876 4216 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:43,051 basehttp 19876 4216 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:44,520 basehttp 19876 4216 "GET /about/ HTTP/1.1" 200 89847
+INFO 2025-05-09 13:38:44,554 basehttp 19876 12220 "GET /api/placeholder/150/150 HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:44,561 basehttp 19876 12220 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:44,562 basehttp 19876 1888 "GET /static/images/default-profile.png HTTP/1.1" 304 0
+INFO 2025-05-09 13:38:45,047 basehttp 19876 4216 "GET /static/css/students/by_base_page/about.css HTTP/1.1" 200 2725
+INFO 2025-05-09 13:38:45,050 basehttp 19876 16328 "GET /static/images/img.png HTTP/1.1" 200 91367
+INFO 2025-05-09 13:38:45,251 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:45,256 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:51,922 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:51,928 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:52,845 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:52,853 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:38:54,913 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:38:54,919 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:40,261 basehttp 19876 16328 "GET /login/ HTTP/1.1" 200 19051
+INFO 2025-05-09 13:39:40,278 basehttp 19876 16328 "GET /captcha/image/3766b9c0ae43c51afd2640f40129369cb4edd598/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:40,289 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:40,296 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:40,301 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:42,153 basehttp 19876 16328 "GET /login/ HTTP/1.1" 200 19051
+INFO 2025-05-09 13:39:42,178 basehttp 19876 16328 "GET /captcha/image/bfb68455a2810919f8a95feac8b88a5550b387ad/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:42,186 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:42,195 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:42,203 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:42,922 basehttp 19876 16328 "GET /login/ HTTP/1.1" 200 19051
+INFO 2025-05-09 13:39:42,941 basehttp 19876 16328 "GET /captcha/image/d3341afa8b9cc02145e1bc80a36e760a49edc20e/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:42,952 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:42,961 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:42,969 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:43,417 basehttp 19876 16328 "GET /login/ HTTP/1.1" 200 19051
+INFO 2025-05-09 13:39:43,439 basehttp 19876 16328 "GET /captcha/image/99551b4df68d7e615c3b8b74706ec55133643e37/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:43,446 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:43,454 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:43,458 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:43,907 basehttp 19876 16328 "GET /login/ HTTP/1.1" 200 19051
+INFO 2025-05-09 13:39:43,926 basehttp 19876 16328 "GET /captcha/image/dad5481c25cc8202446e24328baed40d50daae91/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:43,935 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:43,947 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:43,947 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:44,554 basehttp 19876 16328 "GET /login/ HTTP/1.1" 200 19051
+INFO 2025-05-09 13:39:44,573 basehttp 19876 16328 "GET /captcha/image/088b859c81ad407b4f081c2598755416d254e368/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:44,585 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:39:44,594 basehttp 19876 16328 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:39:44,599 basehttp 19876 16328 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:41:23,048 autoreload 18768 13488 Watching for file changes with StatReloader
+INFO 2025-05-09 13:41:28,776 basehttp 18768 12040 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 13:41:29,286 basehttp 18768 7408 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:41:29,301 basehttp 18768 7408 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:41:31,959 basehttp 18768 16836 "GET /login/ HTTP/1.1" 200 19685
+INFO 2025-05-09 13:41:31,994 basehttp 18768 16836 "GET /captcha/image/default/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:41:32,011 basehttp 18768 16836 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:41:32,088 basehttp 18768 16836 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 13:41:32,123 basehttp 18768 16836 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:41:34,193 basehttp 18768 16836 "GET /captcha/image/tasoni0oewf7xhkijr0va/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:41:34,198 basehttp 18768 16836 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:41:34,768 basehttp 18768 16836 "GET /captcha/image/5bn8uqwherkey6ypxtg5wv/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:41:34,782 basehttp 18768 16836 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:41:35,424 basehttp 18768 16836 "GET /captcha/image/vzah0cn33vc3zrcgciuepf/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:41:35,430 basehttp 18768 16836 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:41:37,321 basehttp 18768 16836 "GET /captcha/image/74fslrdfar969gzs3s583m/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:41:37,332 basehttp 18768 16836 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 13:41:38,432 basehttp 18768 16836 "GET /captcha/image/lh9z0xugs5dgq388s02c86/ HTTP/1.1" 302 0
+INFO 2025-05-09 13:41:38,448 basehttp 18768 16836 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 15:50:08,651 autoreload 2596 15920 Watching for file changes with StatReloader
+INFO 2025-05-09 15:50:20,373 basehttp 18768 16644 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 15:50:20,605 basehttp 18768 16644 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 15:50:21,097 basehttp 18768 16644 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 15:50:21,117 basehttp 18768 16644 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 15:50:21,158 basehttp 18768 16644 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 15:50:21,182 basehttp 18768 16644 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 15:50:22,591 basehttp 18768 16644 "GET /login/ HTTP/1.1" 200 19685
+INFO 2025-05-09 15:50:22,663 basehttp 18768 16644 "GET /captcha/image/default/ HTTP/1.1" 302 0
+INFO 2025-05-09 15:50:22,692 basehttp 18768 16644 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 15:50:22,744 basehttp 18768 16644 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 15:50:22,759 basehttp 18768 16644 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 15:50:24,439 basehttp 18768 16644 "GET /captcha/image/syd911wlxers5hunks1dt/ HTTP/1.1" 302 0
+INFO 2025-05-09 15:50:24,447 basehttp 18768 16644 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 15:50:24,821 basehttp 18768 16644 "GET /captcha/image/zqq2froqnz9yausksvb8d9/ HTTP/1.1" 302 0
+INFO 2025-05-09 15:50:24,832 basehttp 18768 16644 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 15:59:14,199 autoreload 20980 5172 Watching for file changes with StatReloader
+INFO 2025-05-09 15:59:18,707 basehttp 20980 10624 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 15:59:19,242 basehttp 20980 10624 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 15:59:19,259 basehttp 20980 10624 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 15:59:33,861 basehttp 20980 17252 "GET /login/ HTTP/1.1" 200 18842
+INFO 2025-05-09 15:59:34,107 basehttp 20980 17252 "GET /captcha/image/2cd59fa919b12200bd99b12e1a80238567c52177/ HTTP/1.1" 200 7737
+INFO 2025-05-09 15:59:34,122 basehttp 20980 17252 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 15:59:34,131 basehttp 20980 17252 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:00:04,852 basehttp 20980 17252 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:00:05,088 basehttp 20980 17252 "GET / HTTP/1.1" 200 41076
+WARNING 2025-05-09 16:00:05,441 basehttp 20980 17252 "GET /favicon.ico HTTP/1.1" 404 11551
+INFO 2025-05-09 16:00:08,519 basehttp 20980 17252 "GET /students/ HTTP/1.1" 200 608831
+INFO 2025-05-09 16:00:12,138 basehttp 20980 17252 "GET /course_management/ HTTP/1.1" 200 63198
+INFO 2025-05-09 16:00:12,178 basehttp 20980 3836 "GET /static/js/course_form_validation.js HTTP/1.1" 304 0
+INFO 2025-05-09 16:00:12,451 basehttp 20980 17252 "GET /static/css/students/by_base_page/course_management.css HTTP/1.1" 200 3158
+INFO 2025-05-09 16:00:15,028 basehttp 20980 17252 "GET /query_results/ HTTP/1.1" 200 1234069
+INFO 2025-05-09 16:00:19,510 basehttp 20980 17252 "GET /about/ HTTP/1.1" 200 90467
+WARNING 2025-05-09 16:00:19,698 basehttp 20980 17252 "GET /api/placeholder/150/150 HTTP/1.1" 404 11587
+INFO 2025-05-09 16:00:21,596 basehttp 20980 17252 "GET /students/ HTTP/1.1" 200 608479
+INFO 2025-05-09 16:00:25,276 basehttp 20980 17252 "GET /profile/ HTTP/1.1" 200 36872
+INFO 2025-05-09 16:00:25,364 basehttp 20980 17252 "GET /static/css/students/profile.css HTTP/1.1" 200 4507
+INFO 2025-05-09 16:01:12,947 basehttp 20980 17252 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:01:12,964 basehttp 20980 17252 "GET /login/ HTTP/1.1" 200 19400
+INFO 2025-05-09 16:01:13,031 basehttp 20980 17252 "GET /captcha/image/ea1172a77d07965bea9101067b00ad9056c8e615/ HTTP/1.1" 200 7216
+INFO 2025-05-09 16:01:35,282 basehttp 20980 17252 "GET /index HTTP/1.1" 302 0
+INFO 2025-05-09 16:01:35,293 basehttp 20980 17252 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:01:38,931 basehttp 20980 17252 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 16:01:42,476 basehttp 20980 17252 "GET /students/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:01:42,488 basehttp 20980 17252 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:01:44,435 basehttp 20980 17252 "GET /login/ HTTP/1.1" 200 18842
+INFO 2025-05-09 16:01:44,507 basehttp 20980 17252 "GET /captcha/image/11b9432442b43bf03be14f70619b4a60c00cd7b2/ HTTP/1.1" 200 6888
+INFO 2025-05-09 16:01:46,093 basehttp 20980 17252 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-09 16:01:46,155 basehttp 20980 17252 "GET /captcha/image/23cf3505aa881961b35bd739d7dd618fc7087c6d/ HTTP/1.1" 200 7144
+INFO 2025-05-09 16:02:10,923 basehttp 20980 17252 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-09 16:02:10,965 basehttp 20980 17252 "GET /captcha/image/267bf2e1c45e35f01ac97b9fe768511a550f4c88/ HTTP/1.1" 200 7873
+INFO 2025-05-09 16:02:13,542 basehttp 20980 17252 "GET /login/ HTTP/1.1" 200 18842
+INFO 2025-05-09 16:02:13,604 basehttp 20980 17252 "GET /captcha/image/980fed120403e9a77eb8eb5b0ad121d1d77012ef/ HTTP/1.1" 200 8615
+INFO 2025-05-09 16:02:32,666 basehttp 20980 17252 "POST /login/ HTTP/1.1" 200 19684
+INFO 2025-05-09 16:02:32,727 basehttp 20980 17252 "GET /captcha/image/84f6e6902dd5b984395f8c0def96afdf6fe7d35c/ HTTP/1.1" 200 8065
+INFO 2025-05-09 16:02:52,241 basehttp 20980 17252 "POST /login/ HTTP/1.1" 200 19684
+INFO 2025-05-09 16:02:52,315 basehttp 20980 17252 "GET /captcha/image/e3848e4f7c5a675d211b710a101a886df5dcfef1/ HTTP/1.1" 200 8049
+INFO 2025-05-09 16:03:40,069 basehttp 20980 17252 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:03:40,283 basehttp 20980 17252 "GET / HTTP/1.1" 200 41076
+INFO 2025-05-09 16:03:58,498 basehttp 20980 17252 "GET /admin HTTP/1.1" 301 0
+INFO 2025-05-09 16:03:58,651 basehttp 20980 3836 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:03:58,980 basehttp 20980 3836 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3815
+INFO 2025-05-09 16:03:59,070 basehttp 20980 19776 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2025-05-09 16:03:59,071 basehttp 20980 3836 "GET /static/admin/css/base.css HTTP/1.1" 200 22154
+INFO 2025-05-09 16:03:59,125 basehttp 20980 17456 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-05-09 16:03:59,125 basehttp 20980 5624 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-05-09 16:03:59,127 basehttp 20980 8968 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16632
+INFO 2025-05-09 16:03:59,141 basehttp 20980 16000 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-05-09 16:03:59,165 basehttp 20980 8968 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-05-09 16:03:59,175 basehttp 20980 16000 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-05-09 16:05:20,922 basehttp 20980 16000 "GET /profile/ HTTP/1.1" 200 36872
+INFO 2025-05-09 16:09:54,517 autoreload 21764 12900 Watching for file changes with StatReloader
+INFO 2025-05-09 16:09:57,913 basehttp 21764 8780 "GET / HTTP/1.1" 200 41076
+INFO 2025-05-09 16:10:03,957 basehttp 21764 8780 "GET /admin HTTP/1.1" 301 0
+INFO 2025-05-09 16:10:04,084 basehttp 21764 1352 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:10:04,237 basehttp 21764 1352 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 3685
+INFO 2025-05-09 16:10:11,113 basehttp 21764 1352 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:10:11,306 basehttp 21764 1352 "GET /admin/ HTTP/1.1" 200 8823
+INFO 2025-05-09 16:10:11,834 basehttp 21764 1352 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-05-09 16:10:11,989 basehttp 21764 3836 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-05-09 16:10:12,003 basehttp 21764 19736 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-05-09 16:10:17,381 basehttp 21764 19736 "GET /admin/users/user/ HTTP/1.1" 200 16484
+INFO 2025-05-09 16:10:17,452 basehttp 21764 19736 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-05-09 16:10:17,460 basehttp 21764 8816 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-05-09 16:10:17,473 basehttp 21764 16188 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-05-09 16:10:17,488 basehttp 21764 20712 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2025-05-09 16:10:17,497 basehttp 21764 8816 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-05-09 16:10:17,497 basehttp 21764 19736 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-05-09 16:10:17,511 basehttp 21764 16188 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-05-09 16:10:17,521 basehttp 21764 8816 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-05-09 16:10:17,530 basehttp 21764 19736 "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2025-05-09 16:10:17,555 basehttp 21764 1352 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-05-09 16:10:17,590 basehttp 21764 3836 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:10:17,622 basehttp 21764 3836 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-05-09 16:10:17,686 basehttp 21764 20712 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-05-09 16:10:17,732 basehttp 21764 3836 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-05-09 16:10:17,733 basehttp 21764 20712 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-05-09 16:10:25,206 basehttp 21764 20712 "GET /admin/users/user/2/change/ HTTP/1.1" 200 26275
+INFO 2025-05-09 16:10:25,263 basehttp 21764 20712 "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2025-05-09 16:10:25,269 basehttp 21764 8816 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-05-09 16:10:25,275 basehttp 21764 1352 "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2025-05-09 16:10:25,283 basehttp 21764 19736 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-05-09 16:10:25,289 basehttp 21764 20712 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+INFO 2025-05-09 16:10:25,321 basehttp 21764 20712 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-05-09 16:10:25,341 basehttp 21764 3836 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:10:25,435 basehttp 21764 3836 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-05-09 16:10:25,435 basehttp 21764 20712 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-05-09 16:10:54,034 basehttp 21764 20712 "GET /admin/auth/group/ HTTP/1.1" 200 9867
+INFO 2025-05-09 16:10:54,167 basehttp 21764 20712 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:10:56,649 basehttp 21764 20712 "GET /admin/students/class/ HTTP/1.1" 200 33340
+INFO 2025-05-09 16:10:56,789 basehttp 21764 20712 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:11:04,803 basehttp 21764 20712 "GET /admin/students/student/ HTTP/1.1" 200 74091
+INFO 2025-05-09 16:11:04,932 basehttp 21764 20712 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:11:11,399 basehttp 21764 20712 "GET /admin/students/major/ HTTP/1.1" 200 14231
+INFO 2025-05-09 16:11:11,521 basehttp 21764 20712 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:11:17,239 basehttp 21764 20712 "GET /admin/students/class/ HTTP/1.1" 200 33340
+INFO 2025-05-09 16:11:17,357 basehttp 21764 20712 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:11:50,736 basehttp 21764 20712 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:11:50,767 basehttp 21764 20712 "GET /login/ HTTP/1.1" 200 19400
+INFO 2025-05-09 16:11:50,926 basehttp 21764 20712 "GET /captcha/image/2696c7d14d55634e2debb8965f15fd3ed2c1a87c/ HTTP/1.1" 200 8153
+INFO 2025-05-09 16:12:06,260 basehttp 21764 20712 "POST /login/ HTTP/1.1" 200 19677
+INFO 2025-05-09 16:12:06,310 basehttp 21764 20712 "GET /captcha/image/ff9fdd1ff4eddbb436870cb247709bc279cc21e8/ HTTP/1.1" 200 8014
+INFO 2025-05-09 16:12:23,219 basehttp 21764 20712 "POST /login/ HTTP/1.1" 200 19677
+INFO 2025-05-09 16:12:23,269 basehttp 21764 20712 "GET /captcha/image/3e2f72ffb1542fe1c694931359725e9f98578495/ HTTP/1.1" 200 7345
+INFO 2025-05-09 16:17:33,864 autoreload 5652 22172 Watching for file changes with StatReloader
+INFO 2025-05-09 16:17:52,431 basehttp 21764 12172 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 16:17:52,785 basehttp 21764 12172 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:17:52,794 basehttp 21764 12172 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:17:54,774 basehttp 21764 12172 "GET /login/ HTTP/1.1" 200 18842
+INFO 2025-05-09 16:17:54,831 basehttp 21764 12172 "GET /captcha/image/c61ff86db433b911a82ebc9ceffca8fe5ae4f88b/ HTTP/1.1" 200 7416
+INFO 2025-05-09 16:17:54,884 basehttp 21764 12172 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:17:54,892 basehttp 21764 12172 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:18:01,480 basehttp 21764 21848 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-09 16:18:01,546 basehttp 21764 21848 "GET /static/css/users/register.css HTTP/1.1" 200 4534
+INFO 2025-05-09 16:18:01,562 basehttp 21764 21848 "GET /captcha/image/f6782be4dbfe129b4899b1b19e4ccf9b91f6c31c/ HTTP/1.1" 200 7810
+INFO 2025-05-09 16:18:01,595 basehttp 21764 21848 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:18:01,603 basehttp 21764 21848 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:19:15,041 basehttp 21764 21484 "POST /register/ HTTP/1.1" 200 27569
+INFO 2025-05-09 16:19:15,094 basehttp 21764 21484 "GET /captcha/image/a8acf6dd52664f887e6f160b10604dbc9ef956f5/ HTTP/1.1" 200 8619
+INFO 2025-05-09 16:19:15,131 basehttp 21764 21484 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:19:15,160 basehttp 21764 21484 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:19:38,150 basehttp 21764 21484 "POST /register/ HTTP/1.1" 200 27569
+INFO 2025-05-09 16:19:38,194 basehttp 21764 21484 "GET /captcha/image/6a4c89f5fc865fe0a5fb049661bc83d27c9e9489/ HTTP/1.1" 200 8109
+INFO 2025-05-09 16:19:38,206 basehttp 21764 21484 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:19:38,214 basehttp 21764 21484 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:20:09,382 basehttp 21764 21484 "POST /register/ HTTP/1.1" 200 27874
+INFO 2025-05-09 16:20:09,455 basehttp 21764 21484 "GET /captcha/image/b7b1608bc9c738b87933a3387c1b5e5a55d4380a/ HTTP/1.1" 200 8024
+INFO 2025-05-09 16:20:09,467 basehttp 21764 21484 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:20:09,470 basehttp 21764 21484 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:20:48,832 basehttp 21764 21484 "POST /register/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:20:49,032 basehttp 21764 21484 "GET / HTTP/1.1" 200 41080
+WARNING 2025-05-09 16:20:49,285 basehttp 21764 21484 "GET /favicon.ico HTTP/1.1" 404 11551
+INFO 2025-05-09 16:20:54,257 basehttp 21764 21484 "GET /profile/ HTTP/1.1" 200 37273
+INFO 2025-05-09 16:20:54,292 basehttp 21764 21484 "GET /static/css/students/profile.css HTTP/1.1" 200 4507
+INFO 2025-05-09 16:21:04,595 basehttp 21764 21484 "GET /sessions/ HTTP/1.1" 200 26578
+INFO 2025-05-09 16:21:04,650 basehttp 21764 21484 "GET /static/css/users/session_management.css HTTP/1.1" 200 1565
+INFO 2025-05-09 16:21:08,521 basehttp 21764 21484 "POST /sessions/refresh/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:21:08,619 basehttp 21764 21484 "GET /sessions/ HTTP/1.1" 200 26613
+INFO 2025-05-09 16:21:09,940 basehttp 21764 21484 "POST /sessions/refresh/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:21:10,028 basehttp 21764 21484 "GET /sessions/ HTTP/1.1" 200 26613
+INFO 2025-05-09 16:21:16,997 basehttp 21764 21484 "GET /students/ HTTP/1.1" 200 609122
+INFO 2025-05-09 16:21:25,256 basehttp 21764 21484 "GET /students/143/detail/ HTTP/1.1" 200 30311
+INFO 2025-05-09 16:21:25,340 basehttp 21764 21484 "GET /static/css/students/by_base_page/student_detail_by_base.css HTTP/1.1" 200 1550
+INFO 2025-05-09 16:21:30,263 basehttp 21764 21484 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-09 16:21:36,396 basehttp 21764 21484 "GET /students/ HTTP/1.1" 200 608483
+INFO 2025-05-09 16:22:43,612 basehttp 21764 21484 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:22:43,633 basehttp 21764 21484 "GET /login/ HTTP/1.1" 200 19400
+INFO 2025-05-09 16:22:43,723 basehttp 21764 21484 "GET /captcha/image/4f1a2a19cbfff74711afb6a6176a0c6aa3326a36/ HTTP/1.1" 200 8130
+INFO 2025-05-09 16:22:56,486 basehttp 21764 21484 "POST /login/ HTTP/1.1" 200 19937
+INFO 2025-05-09 16:22:56,534 basehttp 21764 21484 "GET /captcha/image/691e67fb53d8d643d67c13a78014fe292efcb559/ HTTP/1.1" 200 8038
+INFO 2025-05-09 16:23:06,864 basehttp 21764 21484 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:23:07,068 basehttp 21764 21484 "GET / HTTP/1.1" 200 41241
+INFO 2025-05-09 16:23:12,923 basehttp 21764 21484 "GET /admin HTTP/1.1" 301 0
+INFO 2025-05-09 16:23:13,034 basehttp 21764 11928 "GET /admin/ HTTP/1.1" 200 8951
+INFO 2025-05-09 16:23:13,092 basehttp 21764 11928 "GET /static/admin/css/base.css HTTP/1.1" 200 22154
+INFO 2025-05-09 16:23:13,101 basehttp 21764 11928 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2808
+INFO 2025-05-09 16:23:13,108 basehttp 21764 11928 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-05-09 16:23:13,117 basehttp 21764 11928 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-05-09 16:23:13,122 basehttp 21764 11928 "GET /static/admin/css/responsive.css HTTP/1.1" 200 16632
+INFO 2025-05-09 16:23:13,128 basehttp 21764 11928 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-05-09 16:23:13,134 basehttp 21764 11928 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-05-09 16:23:13,143 basehttp 21764 11928 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-05-09 16:23:13,150 basehttp 21764 11928 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-05-09 16:23:13,156 basehttp 21764 11928 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-05-09 16:23:20,152 basehttp 21764 11928 "GET /students/ HTTP/1.1" 200 608644
+INFO 2025-05-09 16:23:22,211 basehttp 21764 11928 "GET /course_management/ HTTP/1.1" 200 63363
+INFO 2025-05-09 16:23:50,483 basehttp 21764 11928 "GET /admin/ HTTP/1.1" 200 8823
+INFO 2025-05-09 16:23:59,420 basehttp 21764 11928 "GET /admin/ HTTP/1.1" 200 8823
+INFO 2025-05-09 16:24:01,530 basehttp 21764 11928 "GET /admin/students/class/ HTTP/1.1" 200 33340
+INFO 2025-05-09 16:24:01,585 basehttp 21764 11928 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-05-09 16:24:01,585 basehttp 21764 9452 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-05-09 16:24:01,588 basehttp 21764 16592 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2025-05-09 16:24:01,588 basehttp 21764 21928 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-05-09 16:24:01,598 basehttp 21764 16592 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-05-09 16:24:01,599 basehttp 21764 11928 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-05-09 16:24:01,601 basehttp 21764 9452 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-05-09 16:24:01,609 basehttp 21764 11928 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-05-09 16:24:01,610 basehttp 21764 20928 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-05-09 16:24:01,620 basehttp 21764 21928 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-05-09 16:24:01,668 basehttp 21764 21928 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-05-09 16:24:01,669 basehttp 21764 5484 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:24:01,731 basehttp 21764 5484 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-05-09 16:24:01,735 basehttp 21764 21928 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-05-09 16:24:12,305 basehttp 21764 21928 "GET /admin/students/class/85/change/ HTTP/1.1" 200 13887
+INFO 2025-05-09 16:24:12,341 basehttp 21764 5484 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-05-09 16:24:12,342 basehttp 21764 21928 "GET /static/admin/css/forms.css HTTP/1.1" 200 8525
+INFO 2025-05-09 16:24:12,352 basehttp 21764 21928 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-05-09 16:24:12,354 basehttp 21764 5484 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11991
+INFO 2025-05-09 16:24:12,432 basehttp 21764 20928 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:24:18,361 basehttp 21764 20928 "GET /admin/users/user/ HTTP/1.1" 200 16484
+INFO 2025-05-09 16:24:18,393 basehttp 21764 5484 "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2025-05-09 16:24:18,476 basehttp 21764 20928 "GET /admin/jsi18n/ HTTP/1.1" 200 9327
+INFO 2025-05-09 16:31:02,130 basehttp 5652 18556 "GET /admin/students/class/85/change/ HTTP/1.1" 200 13887
+INFO 2025-05-09 16:31:03,337 basehttp 5652 18556 "GET /admin/students/class/ HTTP/1.1" 200 33340
+INFO 2025-05-09 16:31:04,322 basehttp 5652 18556 "GET /admin/ HTTP/1.1" 200 8823
+WARNING 2025-05-09 16:31:09,748 basehttp 5652 18556 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11662
+INFO 2025-05-09 16:31:09,951 basehttp 5652 19208 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 333974
+INFO 2025-05-09 16:31:09,977 basehttp 5652 17640 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css.map HTTP/1.1" 200 658460
+INFO 2025-05-09 16:31:57,839 basehttp 5652 17640 "GET /students/ HTTP/1.1" 200 608644
+INFO 2025-05-09 16:31:57,938 basehttp 5652 18556 "GET /static/css/students/by_base_page/about.css HTTP/1.1" 200 2725
+INFO 2025-05-09 16:31:57,946 basehttp 5652 19208 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-09 16:31:57,949 basehttp 5652 18556 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-09 16:31:57,954 basehttp 5652 19208 "GET /static/images/default-profile.png HTTP/1.1" 200 1320
+WARNING 2025-05-09 16:31:57,999 basehttp 5652 17640 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11662
+INFO 2025-05-09 16:31:58,340 basehttp 5652 17640 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css.map HTTP/1.1" 200 658460
+INFO 2025-05-09 16:31:58,348 basehttp 5652 19208 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 333974
+INFO 2025-05-09 16:33:34,168 basehttp 5652 19208 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:33:34,197 basehttp 5652 19208 "GET /login/ HTTP/1.1" 200 19407
+INFO 2025-05-09 16:33:34,331 basehttp 5652 19208 "GET /captcha/image/78d4fc26180855c35689df1e5d511517adaf6310/ HTTP/1.1" 200 8747
+INFO 2025-05-09 16:33:55,388 basehttp 5652 19208 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:33:55,610 basehttp 5652 19208 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-09 16:33:59,731 basehttp 5652 19208 "GET /students/ HTTP/1.1" 200 608839
+INFO 2025-05-09 16:34:05,933 basehttp 5652 19208 "GET /query_results/ HTTP/1.1" 200 1234073
+INFO 2025-05-09 16:34:21,291 basehttp 5652 19208 "GET /query_results/?student_id=&student_name=&course_code=&course_name=&semester=&score_min=&score_max=&grade=A%2B HTTP/1.1" 200 143073
+INFO 2025-05-09 16:34:34,535 basehttp 5652 19208 "GET /query_results/?student_id=&student_name=&course_code=&course_name=&semester=&score_min=&score_max=&grade= HTTP/1.1" 200 1234192
+INFO 2025-05-09 16:38:06,036 autoreload 11720 6876 Watching for file changes with StatReloader
+INFO 2025-05-09 16:38:44,535 autoreload 8764 3408 Watching for file changes with StatReloader
+INFO 2025-05-09 16:38:48,672 basehttp 8764 21616 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 16:38:49,077 basehttp 8764 21616 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:38:49,087 basehttp 8764 21616 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:38:51,752 basehttp 8764 21616 "GET /students/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:38:51,759 basehttp 8764 21616 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:38:51,835 basehttp 8764 21616 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:38:51,850 basehttp 8764 21616 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:38:54,237 basehttp 8764 12280 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-09 16:38:54,391 basehttp 8764 12280 "GET /captcha/image/d53c122bc0032f37cd7f7a8f657fa7fee26bc636/ HTTP/1.1" 200 7360
+INFO 2025-05-09 16:38:54,402 basehttp 8764 12280 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-09 16:38:54,431 basehttp 8764 12280 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:39:21,429 basehttp 8764 4704 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:39:21,634 basehttp 8764 4704 "GET / HTTP/1.1" 200 41080
+WARNING 2025-05-09 16:39:21,907 basehttp 8764 4704 "GET /favicon.ico HTTP/1.1" 404 11551
+INFO 2025-05-09 16:40:02,888 basehttp 8764 4704 "GET /students/ HTTP/1.1" 200 608839
+INFO 2025-05-09 16:43:55,565 autoreload 4864 3856 Watching for file changes with StatReloader
+INFO 2025-05-09 16:43:58,951 basehttp 4864 16276 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-09 16:44:01,407 basehttp 4864 16276 "GET /students/ HTTP/1.1" 200 608483
+INFO 2025-05-09 16:44:06,121 basehttp 4864 16276 "GET /profile/ HTTP/1.1" 200 36895
+INFO 2025-05-09 16:44:12,439 basehttp 4864 16276 "GET /students/ HTTP/1.1" 200 608483
+INFO 2025-05-09 16:50:50,503 basehttp 4864 3916 "GET /students/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:50:50,518 basehttp 4864 3916 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-09 16:50:52,669 basehttp 4864 3916 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-09 16:50:54,750 basehttp 4864 3916 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-09 16:50:54,888 basehttp 4864 3916 "GET /captcha/image/ff34a0c511bb19d3b787e4344b8267d4317af380/ HTTP/1.1" 200 7908
+INFO 2025-05-09 16:51:11,695 basehttp 4864 3916 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:51:11,897 basehttp 4864 3916 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-09 16:51:14,428 basehttp 4864 3916 "GET /students/ HTTP/1.1" 200 608944
+INFO 2025-05-09 16:51:16,446 basehttp 4864 3916 "GET /course_management/ HTTP/1.1" 200 63202
+INFO 2025-05-09 16:52:04,380 autoreload 2560 20736 Watching for file changes with StatReloader
+INFO 2025-05-09 16:52:18,532 basehttp 2560 11952 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-09 16:52:18,812 basehttp 2560 13496 "GET / HTTP/1.1" 200 41080
+WARNING 2025-05-09 16:52:19,175 basehttp 2560 13496 "GET /favicon.ico HTTP/1.1" 404 11551
+INFO 2025-05-09 16:52:25,743 basehttp 2560 13496 "GET /students/ HTTP/1.1" 200 608588
+INFO 2025-05-09 16:52:35,017 basehttp 2560 13496 "GET /profile/ HTTP/1.1" 200 36895
+INFO 2025-05-09 16:52:43,119 basehttp 2560 13496 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:52:43,155 basehttp 2560 13496 "GET /login/ HTTP/1.1" 200 19407
+INFO 2025-05-09 16:52:43,284 basehttp 2560 13496 "GET /captcha/image/491fe0f928b441cd155a2f6f90ffd0d4c4b69349/ HTTP/1.1" 200 7629
+INFO 2025-05-09 16:52:57,411 basehttp 2560 13496 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:52:57,629 basehttp 2560 13496 "GET / HTTP/1.1" 200 41241
+INFO 2025-05-09 16:53:01,122 basehttp 2560 13496 "GET /profile/ HTTP/1.1" 200 37407
+INFO 2025-05-09 16:53:09,834 basehttp 2560 13496 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:53:09,852 basehttp 2560 13496 "GET /login/ HTTP/1.1" 200 19407
+INFO 2025-05-09 16:53:09,936 basehttp 2560 13496 "GET /captcha/image/792e3ce17f5628ecc7913ddc7f1d3f5a28f38641/ HTTP/1.1" 200 8201
+INFO 2025-05-09 16:53:31,112 basehttp 2560 13496 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:53:31,293 basehttp 2560 13496 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-09 16:53:34,098 basehttp 2560 13496 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:53:34,115 basehttp 2560 13496 "GET /login/ HTTP/1.1" 200 19800
+INFO 2025-05-09 16:53:34,202 basehttp 2560 13496 "GET /captcha/image/6a96589726c40e26c9a1523da07c99deb5415269/ HTTP/1.1" 200 8436
+INFO 2025-05-09 16:53:58,875 basehttp 2560 13496 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-09 16:53:59,121 basehttp 2560 13496 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-13 17:03:48,724 autoreload 17476 8936 Watching for file changes with StatReloader
+INFO 2025-05-13 17:03:51,809 basehttp 17476 20184 "GET / HTTP/1.1" 200 41080
+INFO 2025-05-13 17:03:51,902 basehttp 17476 20184 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 304 0
+INFO 2025-05-13 17:03:51,904 basehttp 17476 15676 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 304 0
+WARNING 2025-05-13 17:03:52,377 basehttp 17476 15676 "GET /favicon.ico HTTP/1.1" 404 11551
+INFO 2025-05-15 02:31:14,337 autoreload 9704 21748 Watching for file changes with StatReloader
+INFO 2025-05-15 02:32:01,983 autoreload 21776 22456 Watching for file changes with StatReloader
+INFO 2025-05-15 02:32:11,472 basehttp 21776 22172 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-15 02:32:12,791 basehttp 21776 17780 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-15 02:32:12,835 basehttp 21776 21744 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css HTTP/1.1" 200 98255
+INFO 2025-05-15 02:32:12,914 basehttp 21776 17908 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-15 02:32:12,925 basehttp 21776 7552 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-15 02:32:12,949 basehttp 21776 20076 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-15 02:32:13,018 basehttp 21776 20076 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6 HTTP/1.1" 200 130396
+INFO 2025-05-15 02:32:13,202 basehttp 21776 20076 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:32:13,212 basehttp 21776 20076 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:32:50,299 autoreload 10576 18556 Watching for file changes with StatReloader
+INFO 2025-05-15 02:33:59,328 autoreload 15152 20844 Watching for file changes with StatReloader
+INFO 2025-05-15 02:34:36,586 autoreload 19232 17032 Watching for file changes with StatReloader
+INFO 2025-05-15 02:35:38,518 autoreload 19232 17032 D:\a_django_project\StudentInfo\users\middleware.py changed, reloading.
+INFO 2025-05-15 02:35:40,614 autoreload 4100 1872 Watching for file changes with StatReloader
+INFO 2025-05-15 02:35:55,357 autoreload 4100 1872 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-05-15 02:35:57,440 autoreload 18760 19512 Watching for file changes with StatReloader
+INFO 2025-05-15 02:36:06,924 autoreload 18760 19512 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-05-15 02:36:08,988 autoreload 11940 21684 Watching for file changes with StatReloader
+INFO 2025-05-15 02:39:08,762 autoreload 23248 23072 Watching for file changes with StatReloader
+INFO 2025-05-15 02:39:18,413 basehttp 23248 22444 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-15 02:39:18,834 basehttp 23248 22444 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:39:18,844 basehttp 23248 22444 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:39:58,708 autoreload 18684 22552 Watching for file changes with StatReloader
+INFO 2025-05-15 02:40:01,309 basehttp 18684 21780 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-15 02:40:01,708 basehttp 18684 21780 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:40:01,725 basehttp 18684 21780 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:40:08,735 basehttp 18684 21780 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-15 02:40:08,919 basehttp 18684 12352 "GET /captcha/image/8520050d541327e400f75737f88fe9be2b3f4cb7/ HTTP/1.1" 200 8759
+INFO 2025-05-15 02:40:08,992 basehttp 18684 21780 "GET /static/css/users/login.css HTTP/1.1" 200 4330
+INFO 2025-05-15 02:40:09,021 basehttp 18684 21780 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:40:09,029 basehttp 18684 21780 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:40:29,587 basehttp 18684 21780 "POST /login/ HTTP/1.1" 200 19684
+INFO 2025-05-15 02:40:29,624 basehttp 18684 21780 "GET /captcha/image/101d296dc16cb8ba03dd1235d01a81f9622c37f5/ HTTP/1.1" 200 8291
+INFO 2025-05-15 02:40:29,632 basehttp 18684 21780 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:40:29,637 basehttp 18684 21780 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:41:18,864 basehttp 18684 12352 "POST /login/ HTTP/1.1" 200 19944
+INFO 2025-05-15 02:41:18,907 basehttp 18684 12352 "GET /captcha/image/dc4cb5d9f81e09bb52067528d308a34dc7f95da8/ HTTP/1.1" 200 9280
+INFO 2025-05-15 02:41:18,918 basehttp 18684 12352 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:41:18,926 basehttp 18684 12352 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:41:40,008 basehttp 18684 22816 "POST /login/ HTTP/1.1" 200 19951
+INFO 2025-05-15 02:41:40,047 basehttp 18684 22816 "GET /captcha/image/371938cfe33e051fcc9b1330772e8dfe8a48f06d/ HTTP/1.1" 200 7488
+INFO 2025-05-15 02:41:40,055 basehttp 18684 22816 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:41:40,062 basehttp 18684 22816 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:42:07,698 autoreload 2160 23408 Watching for file changes with StatReloader
+INFO 2025-05-15 02:42:28,398 autoreload 2160 23408 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-05-15 02:42:30,346 autoreload 10208 23208 Watching for file changes with StatReloader
+INFO 2025-05-15 02:42:57,539 autoreload 17124 22900 Watching for file changes with StatReloader
+INFO 2025-05-15 02:44:01,881 autoreload 17124 22900 D:\a_django_project\StudentInfo\users\middleware.py changed, reloading.
+INFO 2025-05-15 02:44:03,972 autoreload 6232 3548 Watching for file changes with StatReloader
+INFO 2025-05-15 02:44:12,192 autoreload 6232 3548 D:\a_django_project\StudentInfo\users\middleware.py changed, reloading.
+INFO 2025-05-15 02:44:14,424 autoreload 3156 9692 Watching for file changes with StatReloader
+INFO 2025-05-15 02:44:22,535 autoreload 3156 9692 D:\a_django_project\StudentInfo\users\middleware.py changed, reloading.
+INFO 2025-05-15 02:44:24,570 autoreload 11172 8036 Watching for file changes with StatReloader
+INFO 2025-05-15 02:44:31,517 autoreload 11172 8036 D:\a_django_project\StudentInfo\users\middleware.py changed, reloading.
+INFO 2025-05-15 02:44:33,525 autoreload 18924 14620 Watching for file changes with StatReloader
+INFO 2025-05-15 02:44:40,336 autoreload 23544 16016 Watching for file changes with StatReloader
+INFO 2025-05-15 02:44:50,487 basehttp 23544 8052 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-15 02:44:50,851 basehttp 23544 8052 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:44:50,865 basehttp 23544 8052 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:44:52,153 basehttp 23544 8052 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-15 02:44:52,258 basehttp 23544 8052 "GET /captcha/image/3bf7ed746f39a9035539794a54e13d1c104d90df/ HTTP/1.1" 200 8629
+INFO 2025-05-15 02:44:52,276 basehttp 23544 8052 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:44:52,281 basehttp 23544 8052 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:49:03,543 autoreload 7724 5644 Watching for file changes with StatReloader
+INFO 2025-05-15 02:49:07,206 basehttp 7724 19660 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-15 02:49:07,954 basehttp 7724 18988 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:49:07,961 basehttp 7724 18988 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:49:09,367 basehttp 7724 18988 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-15 02:49:09,478 basehttp 7724 18988 "GET /captcha/image/1c21eac156379b80ce1c75345a7a3576dae050ba/ HTTP/1.1" 200 9704
+INFO 2025-05-15 02:49:09,488 basehttp 7724 18988 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:49:09,497 basehttp 7724 18988 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:49:20,738 basehttp 7724 6232 "POST /login/ HTTP/1.1" 200 19944
+INFO 2025-05-15 02:49:20,774 basehttp 7724 6232 "GET /captcha/image/fedf5e976eaa78e983763a5ef2fbbd0e9a8660fc/ HTTP/1.1" 200 8055
+INFO 2025-05-15 02:49:20,786 basehttp 7724 6232 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:49:20,793 basehttp 7724 6232 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:52:14,398 autoreload 9084 6624 Watching for file changes with StatReloader
+INFO 2025-05-15 02:53:55,520 autoreload 9084 6624 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-05-15 02:53:57,913 autoreload 11932 18072 Watching for file changes with StatReloader
+INFO 2025-05-15 02:54:00,742 basehttp 11932 14636 "GET / HTTP/1.1" 200 38018
+INFO 2025-05-15 02:54:01,082 basehttp 11932 14636 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:54:01,092 basehttp 11932 14636 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:54:02,303 basehttp 11932 14636 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-15 02:54:02,408 basehttp 11932 14636 "GET /captcha/image/5444f73e9c914b086adc6d61bd3021a44478101d/ HTTP/1.1" 200 8234
+INFO 2025-05-15 02:54:02,417 basehttp 11932 14636 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:54:02,424 basehttp 11932 14636 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:54:12,351 basehttp 11932 14636 "POST /login/ HTTP/1.1" 200 19944
+INFO 2025-05-15 02:54:12,391 basehttp 11932 14636 "GET /captcha/image/73b5b972a91ebeb2c5620d83b16514c3bc8af1cb/ HTTP/1.1" 200 7788
+INFO 2025-05-15 02:54:12,400 basehttp 11932 14636 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 02:54:12,405 basehttp 11932 14636 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 02:54:23,799 basehttp 11932 14636 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-15 02:54:24,019 basehttp 11932 14636 "GET / HTTP/1.1" 200 41241
+WARNING 2025-05-15 02:54:24,272 basehttp 11932 14636 "GET /favicon.ico HTTP/1.1" 404 11551
+INFO 2025-05-15 02:54:55,453 autoreload 10500 24552 Watching for file changes with StatReloader
+INFO 2025-05-15 03:57:32,351 autoreload 23680 16732 Watching for file changes with StatReloader
+INFO 2025-05-15 03:57:35,307 basehttp 23680 12212 "GET / HTTP/1.1" 200 41242
+WARNING 2025-05-15 03:57:35,740 basehttp 23680 12212 "GET /favicon.ico HTTP/1.1" 404 11551
+INFO 2025-05-15 04:18:53,676 autoreload 21 139855193213736 Watching for file changes with StatReloader
+INFO 2025-05-15 04:19:59,460 basehttp 21 139855127624504 "GET /query_results/ HTTP/1.1" 200 667195
+INFO 2025-05-15 04:35:32,838 autoreload 20 140255787129640 Watching for file changes with StatReloader
+INFO 2025-05-15 04:39:00,564 autoreload 21 139754921712424 Watching for file changes with StatReloader
+INFO 2025-05-15 04:39:35,802 autoreload 19 139639694400296 Watching for file changes with StatReloader
+INFO 2025-05-15 04:39:58,987 autoreload 19 139822990773032 Watching for file changes with StatReloader
+INFO 2025-05-15 04:40:58,784 autoreload 20 140237344394024 Watching for file changes with StatReloader
+INFO 2025-05-15 04:40:59,583 basehttp 20 140237278804792 "GET / HTTP/1.1" 200 40675
+INFO 2025-05-15 04:41:10,838 basehttp 20 140237278804792 "GET / HTTP/1.1" 200 40675
+INFO 2025-05-15 04:41:23,488 basehttp 20 140237277743928 "GET /static/images/default-profile.png HTTP/1.1" 304 0
+INFO 2025-05-15 04:41:23,507 basehttp 20 140237278804792 "GET /students/ HTTP/1.1" 200 532528
+INFO 2025-05-15 04:46:33,000 autoreload 21 140595150392104 Watching for file changes with StatReloader
+INFO 2025-05-15 04:49:48,854 autoreload 22 140248157432616 Watching for file changes with StatReloader
+INFO 2025-05-15 04:50:49,626 basehttp 22 140248091659064 - Broken pipe from ('167.94.146.53', 34944)
+INFO 2025-05-15 04:50:53,001 basehttp 22 140248091659064 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 04:50:53,253 basehttp 22 140248091659064 - Broken pipe from ('167.94.146.53', 34980)
+INFO 2025-05-15 04:50:53,802 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-15 04:50:56,915 basehttp 22 140248088345400 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 04:50:58,180 basehttp 22 140248088345400 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 04:50:58,790 basehttp 22 140248088345400 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 04:50:59,413 basehttp 22 140248088345400 code 505, message Invalid HTTP version (2.0)
+ERROR 2025-05-15 04:50:59,414 basehttp 22 140248088345400 "PRI * HTTP/2.0" 505 -
+INFO 2025-05-15 04:51:03,215 basehttp 22 140248088345400 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 04:51:03,733 basehttp 22 140248088345400 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 04:51:04,305 basehttp 22 140248088345400 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-15 04:51:04,305 basehttp 22 140248088345400 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-15 04:57:35,597 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 04:57:35,623 basehttp 22 140248090467128 - Broken pipe from ('111.7.96.148', 20392)
+INFO 2025-05-15 04:57:47,857 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 04:57:48,055 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 04:57:48,226 basehttp 22 140248089332536 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-15 04:57:48,372 basehttp 22 140248090467128 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-15 04:57:53,690 basehttp 22 140248090467128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 04:57:53,864 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 05:29:12,635 basehttp 22 140248090467128 "GET /aaa9 HTTP/1.1" 302 0
+INFO 2025-05-15 05:29:13,396 basehttp 22 140248090467128 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-15 05:29:13,396 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-15 05:29:13,940 basehttp 22 140248090467128 "GET /aab8 HTTP/1.1" 302 0
+INFO 2025-05-15 05:29:14,720 basehttp 22 140248090467128 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-15 05:29:14,720 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-15 05:29:15,324 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 06:01:21,328 basehttp 22 140248090467128 "GET /static/images/default-profile.png HTTP/1.1" 200 1320
+INFO 2025-05-15 07:25:42,622 basehttp 22 140248090467128 code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03O')
+ERROR 2025-05-15 07:25:42,624 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-15 07:25:43,945 basehttp 22 140248090467128 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-15 07:25:43,945 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-15 07:25:44,450 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 07:25:47,687 basehttp 22 140248090467128 "GET /login HTTP/1.1" 302 0
+INFO 2025-05-15 07:25:49,805 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 08:45:58,630 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 09:12:27,654 basehttp 22 140248090467128 code 400, message Bad request syntax ('JDWP-Handshake')
+WARNING 2025-05-15 09:12:27,655 basehttp 22 140248090467128 "JDWP-Handshake" 400 -
+INFO 2025-05-15 09:18:55,537 basehttp 22 140248090467128 code 400, message Bad request syntax ('MGLNDD_101.43.120.237_8000')
+WARNING 2025-05-15 09:18:55,538 basehttp 22 140248090467128 "MGLNDD_101.43.120.237_8000" 400 -
+INFO 2025-05-15 09:50:30,069 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 09:51:42,447 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 09:51:42,714 basehttp 22 140248090467128 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-15 10:05:53,237 basehttp 22 140248090467128 - Broken pipe from ('199.45.154.140', 56184)
+INFO 2025-05-15 10:05:56,777 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 10:05:57,357 basehttp 22 140248090467128 - Broken pipe from ('199.45.154.140', 56212)
+INFO 2025-05-15 10:06:02,667 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 10:06:03,612 basehttp 22 140248090467128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 10:06:04,342 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 10:06:05,024 basehttp 22 140248090467128 code 505, message Invalid HTTP version (2.0)
+ERROR 2025-05-15 10:06:05,025 basehttp 22 140248090467128 "PRI * HTTP/2.0" 505 -
+INFO 2025-05-15 10:06:09,302 basehttp 22 140248090467128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 10:06:10,153 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-15 10:06:13,106 basehttp 22 140248090467128 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-15 10:06:13,106 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-15 11:28:13,480 basehttp 22 140248090467128 - Broken pipe from ('167.94.138.35', 45608)
+INFO 2025-05-15 13:07:12,251 basehttp 22 140248090467128 "GET http://pingjs.qq.com/ping.js HTTP/1.1" 302 0
+INFO 2025-05-15 13:07:12,420 basehttp 22 140248090467128 - Broken pipe from ('89.248.164.165', 60418)
+INFO 2025-05-15 15:33:23,961 basehttp 22 140248090467128 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-15 15:33:23,962 basehttp 22 140248090467128 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-15 17:52:08,926 basehttp 22 140248090467128 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-15 17:52:08,926 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-15 21:10:23,321 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 21:10:23,479 basehttp 22 140248090467128 - Broken pipe from ('64.62.197.148', 20773)
+INFO 2025-05-15 21:10:42,309 basehttp 22 140248090467128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-15 21:10:48,711 basehttp 22 140248090467128 "CONNECT www.shadowserver.org:443 HTTP/1.1" 302 0
+INFO 2025-05-15 21:15:27,104 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-15 21:15:28,789 basehttp 22 140248090467128 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-15 22:40:44,975 basehttp 22 140248089217848 "CONNECT pro.ip-api.com:443 HTTP/1.1" 302 0
+INFO 2025-05-15 22:40:53,694 basehttp 22 140248090467128 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-15 22:40:53,694 basehttp 22 140248090467128 " " 400 -
+INFO 2025-05-16 01:34:30,128 basehttp 22 140248090467128 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 01:34:30,128 basehttp 22 140248090467128 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 01:35:46,018 basehttp 22 140248090467128 "CONNECT pro.ip-api.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 01:35:55,774 basehttp 22 140248089217848 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 01:35:55,774 basehttp 22 140248089217848 " " 400 -
+INFO 2025-05-16 02:24:13,773 basehttp 22 140248090467128 - Broken pipe from ('167.94.145.96', 50888)
+INFO 2025-05-16 02:24:17,551 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 02:24:17,969 basehttp 22 140248090467128 - Broken pipe from ('167.94.145.96', 58848)
+INFO 2025-05-16 02:24:21,354 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 02:24:22,938 basehttp 22 140248090467128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 02:24:23,563 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 02:24:24,176 basehttp 22 140248090467128 code 505, message Invalid HTTP version (2.0)
+ERROR 2025-05-16 02:24:24,176 basehttp 22 140248090467128 "PRI * HTTP/2.0" 505 -
+INFO 2025-05-16 02:24:28,971 basehttp 22 140248090467128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 02:24:30,031 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 02:24:30,620 basehttp 22 140248090467128 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-16 02:24:30,620 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 02:34:12,121 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 02:34:12,380 basehttp 22 140248090467128 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-16 02:34:21,098 basehttp 22 140248089217848 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 02:34:21,199 basehttp 22 140248089217848 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-16 02:34:21,250 basehttp 22 140248087096120 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-16 02:34:21,251 basehttp 22 140248088156984 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css HTTP/1.1" 200 98255
+INFO 2025-05-16 02:34:22,012 basehttp 22 140248086035256 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-16 02:34:22,482 basehttp 22 140248088156984 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6 HTTP/1.1" 200 130396
+INFO 2025-05-16 02:34:25,172 basehttp 22 140248084974392 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-16 02:34:30,094 basehttp 22 140248089217848 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 03:55:42,493 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 04:02:46,249 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 04:02:46,508 basehttp 22 140248090467128 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-16 06:26:36,807 basehttp 22 140248090467128 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 06:26:36,807 basehttp 22 140248090467128 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 06:36:02,514 basehttp 22 140248090467128 - Broken pipe from ('101.251.238.173', 50927)
+INFO 2025-05-16 06:36:02,561 basehttp 22 140248090467128 code 400, message Bad request version ("\x03\x00>\x13\x02\x13\x03\x13\x01À,À0\x00\x9fÌ©Ì¨ÌªÀ+À/\x00\x9eÀ$À(\x00kÀ#À'\x00gÀ")
+ERROR 2025-05-16 06:36:02,561 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 06:36:02,839 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 06:36:05,065 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 06:36:05,125 basehttp 22 140248090467128 "GET /v1/models HTTP/1.1" 302 0
+INFO 2025-05-16 06:36:07,415 basehttp 22 140248090467128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 06:36:09,855 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 06:36:12,070 basehttp 22 140248090467128 - Broken pipe from ('101.251.238.173', 43643)
+INFO 2025-05-16 07:00:13,588 basehttp 22 140248090467128 "GET http://passport.baidu.com/ HTTP/1.1" 302 0
+INFO 2025-05-16 07:00:47,192 basehttp 22 140248090467128 code 400, message Bad request syntax ('\x04\x01\x00Pg)§ê\x00')
+WARNING 2025-05-16 07:00:47,192 basehttp 22 140248090467128 " Pg)§ê " 400 -
+INFO 2025-05-16 07:00:50,908 basehttp 22 140248089217848 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 07:00:50,908 basehttp 22 140248089217848 " " 400 -
+INFO 2025-05-16 07:34:05,505 basehttp 22 140248090467128 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 07:34:05,505 basehttp 22 140248090467128 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 10:36:24,961 basehttp 22 140248090467128 code 400, message Bad request syntax ('\x04\x01\x01»6Ñ\x8b9\x00')
+WARNING 2025-05-16 10:36:24,961 basehttp 22 140248090467128 "»6Ñ9 " 400 -
+INFO 2025-05-16 10:36:25,242 basehttp 22 140248090467128 "CONNECT httpbin.org:443 HTTP/1.0" 302 0
+INFO 2025-05-16 10:43:13,739 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 10:43:13,908 basehttp 22 140248090467128 - Broken pipe from ('64.62.197.147', 21085)
+INFO 2025-05-16 10:43:32,169 basehttp 22 140248090467128 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 10:43:38,268 basehttp 22 140248090467128 "CONNECT www.shadowserver.org:443 HTTP/1.1" 302 0
+INFO 2025-05-16 10:54:24,772 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 10:54:25,360 basehttp 22 140248090467128 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-16 11:01:04,416 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 11:05:55,181 basehttp 22 140248089217848 "CONNECT pro.ip-api.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 11:06:04,932 basehttp 22 140248090467128 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 11:06:04,932 basehttp 22 140248090467128 " " 400 -
+INFO 2025-05-16 11:11:58,336 basehttp 22 140248090467128 code 400, message Bad request syntax ('SSH-2.0-Go')
+WARNING 2025-05-16 11:11:58,336 basehttp 22 140248090467128 "SSH-2.0-Go" 400 -
+INFO 2025-05-16 11:14:38,915 basehttp 22 140248090467128 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-05-16 11:14:39,711 basehttp 22 140248090467128 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4194
+INFO 2025-05-16 11:25:04,076 basehttp 22 140248090467128 "GET /admin/jsi18n/ HTTP/1.1" 302 0
+INFO 2025-05-16 11:25:06,175 basehttp 22 140248090467128 "GET /admin/login/?next=/admin/jsi18n/ HTTP/1.1" 200 4208
+INFO 2025-05-16 12:15:04,700 basehttp 22 140248090467128 "GET /admin/students/class/ HTTP/1.1" 302 0
+WARNING 2025-05-16 12:15:04,819 basehttp 22 140248088169272 "GET /captcha/image/6bb47fbf3bc0abde19a5ba0beea8da755ce7b776/ HTTP/1.1" 410 0
+INFO 2025-05-16 12:15:04,834 basehttp 22 140248090467128 "GET /admin/login/?next=/admin/students/class/ HTTP/1.1" 200 4224
+INFO 2025-05-16 12:17:21,900 basehttp 22 140248090467128 code 400, message Bad request syntax ('\x00\x00\x00TZ\x00\x00\x00\x00\x00\x00\x00\x00\x01\x00\x10\x04\x00(Á\x00\x00\x00\x00\x0f\x02\x00')
+WARNING 2025-05-16 12:17:21,900 basehttp 22 140248090467128 "   TZ          (Á     " 400 -
+INFO 2025-05-16 12:30:28,370 basehttp 22 140248090467128 "GET /admin/users/user/ HTTP/1.1" 302 0
+INFO 2025-05-16 12:30:28,559 basehttp 22 140248090467128 "GET /admin/login/?next=/admin/users/user/ HTTP/1.1" 200 4216
+INFO 2025-05-16 12:37:51,412 basehttp 22 140248090467128 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-16 13:12:56,019 basehttp 22 140248090467128 "GET /admin/students/major/ HTTP/1.1" 302 0
+INFO 2025-05-16 13:12:56,157 basehttp 22 140248090467128 "GET /admin/login/?next=/admin/students/major/ HTTP/1.1" 200 4224
+INFO 2025-05-16 13:30:17,176 basehttp 22 140248090467128 "CONNECT pro.ip-api.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 13:30:25,917 basehttp 22 140248088054584 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 13:30:25,917 basehttp 22 140248088054584 " " 400 -
+INFO 2025-05-16 13:40:37,559 basehttp 22 140248090467128 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 13:40:37,560 basehttp 22 140248090467128 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 15:08:26,212 basehttp 22 140248090467128 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 15:08:26,212 basehttp 22 140248090467128 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 15:10:39,537 basehttp 22 140248090467128 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-16 15:10:39,537 basehttp 22 140248090467128 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 15:10:40,076 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 15:10:40,757 basehttp 22 140248090467128 "GET /login HTTP/1.1" 302 0
+INFO 2025-05-16 15:10:41,218 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 15:16:44,855 basehttp 22 140248090467128 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 15:32:36,134 basehttp 22 140248090467128 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 15:32:36,134 basehttp 22 140248090467128 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 15:42:03,814 basehttp 22 140248090467128 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 15:42:03,814 basehttp 22 140248090467128 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 15:43:48,227 basehttp 22 140248090467128 "CONNECT pro.ip-api.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 15:43:57,978 basehttp 22 140248088054584 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 15:43:57,978 basehttp 22 140248088054584 " " 400 -
+INFO 2025-05-16 16:19:35,967 basehttp 22 140248090467128 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-16 16:19:36,092 basehttp 22 140248086993720 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-16 16:19:36,098 basehttp 22 140248090467128 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-16 16:19:36,109 basehttp 22 140248088054584 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css HTTP/1.1" 200 98255
+INFO 2025-05-16 16:19:36,120 basehttp 22 140248085932856 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-16 16:19:37,208 basehttp 22 140248090467128 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6 HTTP/1.1" 200 130396
+INFO 2025-05-16 16:19:39,776 basehttp 22 140248084871992 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+WARNING 2025-05-16 16:19:40,619 basehttp 22 140248084871992 "GET /favicon.ico HTTP/1.1" 404 8534
+INFO 2025-05-16 16:52:50,694 basehttp 22 140248088054584 "GET http://pingjs.qq.com/ping.js HTTP/1.1" 302 0
+INFO 2025-05-16 16:52:50,863 basehttp 22 140248088054584 - Broken pipe from ('89.248.164.165', 41732)
+INFO 2025-05-16 17:15:24,372 basehttp 22 140248088054584 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 17:15:24,442 basehttp 22 140248085932856 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-16 17:15:24,476 basehttp 22 140248084871992 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css HTTP/1.1" 200 98255
+INFO 2025-05-16 17:15:24,481 basehttp 22 140248086993720 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-16 17:15:25,032 basehttp 22 140248085932856 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-16 17:15:25,548 basehttp 22 140248084871992 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6 HTTP/1.1" 200 130396
+INFO 2025-05-16 17:15:25,772 basehttp 22 140248086993720 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-16 17:15:29,224 basehttp 22 140248085932856 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 17:15:29,348 basehttp 22 140248085932856 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:15:36,007 basehttp 22 140248085932856 "GET /students/ HTTP/1.1" 302 0
+INFO 2025-05-16 17:15:36,141 basehttp 22 140248085932856 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:15:36,245 basehttp 22 140248085932856 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 17:15:36,374 basehttp 22 140248085932856 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:15:38,768 basehttp 22 140248085932856 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 17:15:38,895 basehttp 22 140248085932856 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:15:44,791 basehttp 22 140248085932856 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-16 17:15:44,843 basehttp 22 140248084871992 "GET /static/css/users/login.css HTTP/1.1" 200 4330
+INFO 2025-05-16 17:15:45,005 basehttp 22 140248086993720 "GET /captcha/image/eb2b86fd66db29b2cab0c24af247ef0a3763e3cc/ HTTP/1.1" 200 7089
+INFO 2025-05-16 17:15:45,101 basehttp 22 140248086993720 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 17:15:45,219 basehttp 22 140248086993720 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:15:47,299 basehttp 22 140248086993720 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-16 17:15:47,362 basehttp 22 140248084871992 "GET /static/css/users/register.css HTTP/1.1" 200 4534
+INFO 2025-05-16 17:15:47,420 basehttp 22 140248085932856 "GET /captcha/image/ba1a43d5df1c7224563f521aa7ef87cbb9444268/ HTTP/1.1" 200 7716
+INFO 2025-05-16 17:15:47,510 basehttp 22 140248085932856 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 17:15:47,638 basehttp 22 140248085932856 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:16:59,458 basehttp 22 140248085932856 "POST /register/ HTTP/1.1" 302 0
+INFO 2025-05-16 17:16:59,664 basehttp 22 140248085932856 "GET / HTTP/1.1" 200 40915
+WARNING 2025-05-16 17:17:00,101 basehttp 22 140248085932856 "GET /favicon.ico HTTP/1.1" 404 8534
+INFO 2025-05-16 17:17:03,875 basehttp 22 140248086993720 "GET /static/css/students/by_base_page/about.css HTTP/1.1" 200 2725
+INFO 2025-05-16 17:17:03,909 basehttp 22 140248084871992 "GET /static/images/default-profile.png HTTP/1.1" 200 1320
+INFO 2025-05-16 17:17:04,583 basehttp 22 140248085932856 "GET /students/ HTTP/1.1" 200 519222
+INFO 2025-05-16 17:17:08,331 basehttp 22 140248085932856 "GET /profile/ HTTP/1.1" 200 36804
+INFO 2025-05-16 17:17:08,377 basehttp 22 140248084871992 "GET /static/css/students/profile.css HTTP/1.1" 200 4507
+INFO 2025-05-16 17:17:12,217 basehttp 22 140248084871992 "GET /course_management/ HTTP/1.1" 200 62438
+INFO 2025-05-16 17:17:12,252 basehttp 22 140248085932856 "GET /static/css/students/by_base_page/course_management.css HTTP/1.1" 200 3158
+INFO 2025-05-16 17:17:12,391 basehttp 22 140248084871992 "GET /static/js/course_form_validation.js HTTP/1.1" 200 5215
+INFO 2025-05-16 17:17:18,825 basehttp 22 140248084871992 "GET /query_results/ HTTP/1.1" 200 640731
+INFO 2025-05-16 17:17:48,545 basehttp 22 140248084871992 "GET /about/ HTTP/1.1" 200 90467
+INFO 2025-05-16 17:17:48,592 basehttp 22 140248085932856 "GET /static/images/img.png HTTP/1.1" 200 91367
+WARNING 2025-05-16 17:17:48,734 basehttp 22 140248086993720 "GET /api/placeholder/150/150 HTTP/1.1" 404 8570
+INFO 2025-05-16 17:17:56,086 basehttp 22 140248085932856 "GET /query_results/ HTTP/1.1" 200 640731
+INFO 2025-05-16 17:18:20,971 basehttp 22 140248085932856 "GET /about/ HTTP/1.1" 200 90467
+WARNING 2025-05-16 17:18:21,167 basehttp 22 140248084871992 "GET /api/placeholder/150/150 HTTP/1.1" 404 8570
+INFO 2025-05-16 17:19:25,669 basehttp 22 140248085932856 "GET / HTTP/1.1" 200 40915
+INFO 2025-05-16 17:19:37,723 basehttp 22 140248085932856 "GET /students/ HTTP/1.1" 200 518846
+INFO 2025-05-16 17:19:42,113 basehttp 22 140248085932856 "GET /profile/ HTTP/1.1" 200 36804
+INFO 2025-05-16 17:20:13,408 basehttp 22 140248085932856 "GET /sessions/ HTTP/1.1" 200 27503
+INFO 2025-05-16 17:20:13,455 basehttp 22 140248088054584 "GET /static/css/users/session_management.css HTTP/1.1" 200 1565
+INFO 2025-05-16 17:23:29,395 basehttp 22 140248088054584 "GET /profile/ HTTP/1.1" 302 0
+INFO 2025-05-16 17:23:29,493 basehttp 22 140248088054584 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:25:00,947 basehttp 22 140248088054584 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-16 17:25:05,424 basehttp 22 140248088054584 "GET /register/ HTTP/1.1" 200 27017
+INFO 2025-05-16 17:25:05,937 basehttp 22 140248088054584 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-16 17:25:05,972 basehttp 22 140248085945144 "GET /static/css/users/register.css HTTP/1.1" 200 4534
+INFO 2025-05-16 17:25:05,983 basehttp 22 140248073796408 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css HTTP/1.1" 200 98255
+INFO 2025-05-16 17:25:05,989 basehttp 22 140248072735544 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-16 17:25:05,996 basehttp 22 140248074857272 "GET /captcha/image/4fadb56a7eff2850b15646a66360b869793f481e/ HTTP/1.1" 200 7875
+INFO 2025-05-16 17:25:08,114 basehttp 22 140248072735544 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6 HTTP/1.1" 200 130396
+INFO 2025-05-16 17:25:16,295 basehttp 22 140248088054584 "GET /captcha/image/eb2b86fd66db29b2cab0c24af247ef0a3763e3cc/ HTTP/1.1" 200 7089
+INFO 2025-05-16 17:25:17,467 basehttp 22 140248088054584 "GET /captcha/image/4fadb56a7eff2850b15646a66360b869793f481e/ HTTP/1.1" 200 7875
+INFO 2025-05-16 17:25:59,247 basehttp 22 140248088054584 "GET /sessions/ HTTP/1.1" 302 0
+INFO 2025-05-16 17:25:59,344 basehttp 22 140248088054584 "GET /unauthorized/ HTTP/1.1" 200 2115
+WARNING 2025-05-16 17:26:58,374 basehttp 22 140248088054584 "GET /captcha/image/ba1a43d5df1c7224563f521aa7ef87cbb9444268/ HTTP/1.1" 410 0
+INFO 2025-05-16 17:28:21,204 basehttp 22 140248088054584 "GET /query_results/ HTTP/1.1" 302 0
+INFO 2025-05-16 17:28:21,317 basehttp 22 140248088054584 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:31:55,540 basehttp 22 140248088054584 "GET /robots.txt HTTP/1.1" 302 0
+INFO 2025-05-16 17:31:56,546 basehttp 22 140248088054584 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:32:00,411 basehttp 22 140248088054584 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 17:32:03,856 basehttp 22 140248072735544 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-16 17:32:03,910 basehttp 22 140248085945144 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-16 17:32:04,356 basehttp 22 140248073796408 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-16 17:32:05,869 basehttp 22 140248074857272 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css HTTP/1.1" 200 98255
+INFO 2025-05-16 17:32:07,780 basehttp 22 140248071674680 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-16 17:32:10,142 basehttp 22 140248070613816 "GET /api/placeholder/150/150 HTTP/1.1" 302 0
+INFO 2025-05-16 17:32:10,232 basehttp 22 140248070613816 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 17:32:10,330 basehttp 22 140248071674680 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6 HTTP/1.1" 200 130396
+INFO 2025-05-16 17:44:23,034 basehttp 22 140248088054584 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 17:44:23,291 basehttp 22 140248088054584 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-16 17:51:03,890 basehttp 22 140248088054584 "CONNECT pro.ip-api.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 17:51:13,636 basehttp 22 140248085945144 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 17:51:13,636 basehttp 22 140248085945144 " " 400 -
+INFO 2025-05-16 18:49:03,258 basehttp 22 140248088054584 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 18:49:03,487 basehttp 22 140248088054584 - Broken pipe from ('3.137.73.221', 45108)
+INFO 2025-05-16 18:51:14,226 basehttp 22 140248088054584 code 400, message Bad request syntax ('MGLNDD_101.43.120.237_8000')
+WARNING 2025-05-16 18:51:14,226 basehttp 22 140248088054584 "MGLNDD_101.43.120.237_8000" 400 -
+INFO 2025-05-16 18:52:41,804 basehttp 22 140248088054584 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 18:52:42,027 basehttp 22 140248088054584 - Broken pipe from ('3.137.73.221', 52128)
+INFO 2025-05-16 18:54:45,557 basehttp 22 140248088054584 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03§Tµ£ú]ñ\x8f\x9b*hõ±b\x8e\x17*¥9,µs§¶Ò¯À\x00i]\x8a%\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+ERROR 2025-05-16 18:54:45,557 basehttp 22 140248088054584 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 18:57:16,774 basehttp 22 140248088054584 "GET /static/images/default-profile.png HTTP/1.1" 200 1320
+INFO 2025-05-16 18:57:30,554 basehttp 22 140248085945144 code 400, message Bad request syntax ('SSH-2.0-Go')
+WARNING 2025-05-16 18:57:30,554 basehttp 22 140248085945144 "SSH-2.0-Go" 400 -
+INFO 2025-05-16 18:58:28,820 basehttp 22 140248088054584 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-16 18:58:28,820 basehttp 22 140248088054584 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 19:32:05,885 basehttp 22 140248088054584 "GET /course_management/ HTTP/1.1" 302 0
+INFO 2025-05-16 19:32:06,017 basehttp 22 140248088054584 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-16 20:00:15,740 basehttp 22 140248088054584 "CONNECT pro.ip-api.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 20:00:25,495 basehttp 22 140248085945144 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 20:00:25,495 basehttp 22 140248085945144 " " 400 -
+INFO 2025-05-16 20:01:25,832 basehttp 22 140248088054584 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 20:01:25,833 basehttp 22 140248088054584 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 20:13:44,375 basehttp 22 140248088054584 code 400, message Bad request version ('À\x14À')
+ERROR 2025-05-16 20:13:44,376 basehttp 22 140248088054584 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 20:32:08,301 basehttp 22 140248088054584 code 400, message Bad request syntax ('\x04\x01\x00Pg)§ê\x00')
+WARNING 2025-05-16 20:32:08,302 basehttp 22 140248088054584 " Pg)§ê " 400 -
+INFO 2025-05-16 20:32:13,738 basehttp 22 140248085945144 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 20:32:13,738 basehttp 22 140248085945144 " " 400 -
+INFO 2025-05-16 20:32:24,768 basehttp 22 140248088054584 "GET http://passport.baidu.com/ HTTP/1.1" 302 0
+INFO 2025-05-16 20:37:33,730 basehttp 22 140248088054584 code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+WARNING 2025-05-16 20:37:33,730 basehttp 22 140248088054584 "  /*à     Cookie: mstshash=Administr" 400 -
+INFO 2025-05-16 21:11:20,639 basehttp 22 140248088054584 "GET / HTTP/1.0" 200 37857
+INFO 2025-05-16 21:11:24,752 basehttp 22 140248088054584 "HEAD / HTTP/1.1" 200 0
+INFO 2025-05-16 21:11:34,705 basehttp 22 140248088054584 code 400, message Bad request version ('a\x00®\x13\x02\x13\x03\x13\x01\x00\x05\x00\x16\x003\x009\x005\x00')
+ERROR 2025-05-16 21:11:34,705 basehttp 22 140248088054584 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 22:16:44,744 basehttp 22 140248088054584 "CONNECT pro.ip-api.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 22:16:54,484 basehttp 22 140248085945144 code 400, message Bad request syntax ('\x05\x01\x00')
+WARNING 2025-05-16 22:16:54,485 basehttp 22 140248085945144 " " 400 -
+INFO 2025-05-16 22:19:46,088 basehttp 22 140248088054584 code 400, message Bad request version ('À\x13À')
+ERROR 2025-05-16 22:19:46,088 basehttp 22 140248088054584 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 22:19:46,534 basehttp 22 140248088054584 code 400, message Bad request version ('À(À$À\x14À')
+ERROR 2025-05-16 22:19:46,534 basehttp 22 140248088054584 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 22:32:06,791 basehttp 22 140248088054584 code 400, message Bad request version ('À#À¬À®À+À')
+ERROR 2025-05-16 22:32:06,791 basehttp 22 140248088054584 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-05-16 22:32:10,626 basehttp 22 140248088054584 "GET / HTTP/1.1" 200 37857
+INFO 2025-05-16 22:45:06,394 basehttp 22 140248088054584 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-16 23:21:49,623 basehttp 22 140248088054584 "CONNECT example.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 23:21:51,108 basehttp 22 140248088054584 "CONNECT example.com:443 HTTP/1.1" 302 0
+INFO 2025-05-16 23:21:54,055 basehttp 22 140248088054584 - Broken pipe from ('80.76.49.50', 49420)
+INFO 2025-05-17 02:58:52,675 autoreload 20 140625871563560 Watching for file changes with StatReloader
+INFO 2025-05-17 02:58:56,037 basehttp 20 140625805941560 "GET / HTTP/1.1" 200 37549
+INFO 2025-05-17 02:58:56,122 basehttp 20 140625802484536 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-17 02:58:56,155 basehttp 20 140625805941560 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css HTTP/1.1" 200 98255
+INFO 2025-05-17 02:58:56,172 basehttp 20 140625801423672 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-17 02:58:56,265 basehttp 20 140625804823352 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-17 02:58:57,549 basehttp 20 140625804823352 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6 HTTP/1.1" 200 130396
+INFO 2025-05-17 02:58:59,524 basehttp 20 140625800362808 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-17 02:59:00,572 basehttp 20 140625800362808 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-17 02:59:00,684 basehttp 20 140625800362808 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-20 15:03:19,067 autoreload 19600 924 Watching for file changes with StatReloader
+INFO 2025-05-20 15:47:57,438 autoreload 22520 21932 Watching for file changes with StatReloader
+INFO 2025-05-20 15:53:05,453 autoreload 8152 20120 Watching for file changes with StatReloader
+INFO 2025-05-20 15:56:25,947 autoreload 20220 4204 Watching for file changes with StatReloader
+INFO 2025-05-20 15:56:29,092 basehttp 20220 21228 "GET / HTTP/1.1" 200 38019
+INFO 2025-05-20 15:56:29,626 basehttp 20220 21228 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-20 15:56:29,659 basehttp 20220 16976 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-20 15:56:29,747 basehttp 20220 6564 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-20 15:56:34,052 basehttp 20220 6564 "GET /students/ HTTP/1.1" 302 0
+INFO 2025-05-20 15:56:34,086 basehttp 20220 6564 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-20 15:56:35,892 basehttp 20220 6564 "GET / HTTP/1.1" 200 38019

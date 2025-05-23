@@ -1,0 +1,631 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %}成绩查询{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css' %}">
+    <style>
+        .stats-card {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border-radius: 0.5rem;
+            transition: transform 0.3s;
+        }
+        .stats-card:hover {
+            transform: translateY(-5px);
+        }
+        .grade-badge {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+        }
+        .grade-A\+ { background-color: #28a745; }
+        .grade-A { background-color: #4cd964; }
+        .grade-A\- { background-color: #5ac8fa; }
+        .grade-B\+ { background-color: #5856d6; }
+        .grade-B { background-color: #007bff; }
+        .grade-B\- { background-color: #4b7fd9; }
+        .grade-C\+ { background-color: #34aadc; }
+        .grade-C { background-color: #ff9500; }
+        .grade-C\- { background-color: #ff7f50; }
+        .grade-D\+ { background-color: #ff5733; }
+        .grade-D { background-color: #ff3b30; }
+        .grade-F { background-color: #8e8e93; }
+        .search-container {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .result-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        .score-row:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+        .grade-distribution {
+            height: 200px;
+            margin-top: 20px;
+        }
+        .bar {
+            background-color: #007bff;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- 主体内容区域 -->
+    <main class="container py-4">
+        <div class="page-header d-flex justify-content-between align-items-center mb-4">
+            <h2>成绩查询</h2>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addScoreModal">
+                <i class="bi bi-plus-circle me-1"></i> 添加成绩
+            </button>
+        </div>
+
+        <!-- 消息提示区域 -->
+        {% if messages %}
+        <div class="messages-container mb-3">
+            {% for message in messages %}
+            <div class="alert {% if message.tags == 'success' %}alert-success{% elif message.tags == 'error' %}alert-danger{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- 搜索区域 -->
+        <div class="search-container">
+            <form method="get" action="{% url 'query_results' %}">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="{{ form.student_id.id_for_label }}" class="form-label">学号</label>
+                        {{ form.student_id }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="{{ form.student_name.id_for_label }}" class="form-label">学生姓名</label>
+                        {{ form.student_name }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="{{ form.course_code.id_for_label }}" class="form-label">课程编号</label>
+                        {{ form.course_code }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="{{ form.course_name.id_for_label }}" class="form-label">课程名称</label>
+                        {{ form.course_name }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="{{ form.semester.id_for_label }}" class="form-label">学期</label>
+                        {{ form.semester }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="{{ form.score_min.id_for_label }}" class="form-label">最低分数</label>
+                        {{ form.score_min }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="{{ form.score_max.id_for_label }}" class="form-label">最高分数</label>
+                        {{ form.score_max }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="{{ form.grade.id_for_label }}" class="form-label">等级</label>
+                        {{ form.grade }}
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="reset" class="btn btn-outline-secondary me-2">重置</button>
+                        <button type="submit" class="btn btn-primary">查询</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+        <!-- 统计数据 -->
+        {% if scores %}
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h4>成绩统计</h4>
+                    </div>
+            <div class="col-md-3">
+                <div class="stats-card bg-primary bg-opacity-10 p-3 h-100">
+                    <h6 class="text-primary">总记录数</h6>
+                    <h2>{{ stats.count }}</h2>
+                    <p class="text-muted mb-0">条成绩记录</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card bg-success bg-opacity-10 p-3 h-100">
+                    <h6 class="text-success">平均分</h6>
+                    <h2>{{ stats.avg_score|floatformat:1 }}</h2>
+                    <p class="text-muted mb-0">分</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card bg-warning bg-opacity-10 p-3 h-100">
+                    <h6 class="text-warning">最高分</h6>
+                    <h2>{{ stats.max_score }}</h2>
+                    <p class="text-muted mb-0">分</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card bg-info bg-opacity-10 p-3 h-100">
+                    <h6 class="text-info">通过率</h6>
+                    <h2>{{ stats.pass_rate|floatformat:1 }}%</h2>
+                    <p class="text-muted mb-0">成绩≥60分</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ECharts可视化图表 -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0">成绩数据可视化</h5>
+                </div>
+                    <div class="card-body">
+                        <div class="row">
+                        <div class="col-md-6">
+                                <div id="gradeDistributionPie" style="height: 300px;"></div>
+                        </div>
+                        <div class="col-md-6">
+                                <div id="scoreDistributionBar" style="height: 300px;"></div>
+                        </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+                                <div id="scoreRangeDistribution" style="height: 300px;"></div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 成绩分布图 -->
+                <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0">成绩等级分布</h5>
+                            </div>
+                            <div class="card-body">
+                        <div class="grade-distribution d-flex align-items-end">
+                            {% for grade, count in grade_distribution.items %}
+                                {% if count > 0 %}
+                                <div class="flex-grow-1 text-center mx-1">
+                                    <div class="bar" style="height: {% widthratio count stats.count 100 %}%"></div>
+                                    <div class="mt-2">
+                                        <span class="grade-badge grade-{{ grade }}">{{ grade }}</span>
+                                        <div class="mt-1">{{ count }}人</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+        {% endif %}
+        
+        <!-- 成绩列表 -->
+        <div class="result-container">
+            <div class="card">
+                <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                    <h5 class="mb-0">成绩列表</h5>
+                    <div>
+                        <a href="{% url 'export_scores_csv' %}{% if request.GET %}?{{ request.GET.urlencode }}{% endif %}" class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-file-earmark-arrow-down me-1"></i> 导出CSV
+                        </a>
+                        <button type="button" class="btn btn-outline-secondary btn-sm ms-1" onclick="window.print()">
+                            <i class="bi bi-printer me-1"></i> 打印
+                        </button>
+                    </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                <tr>
+                                    <th>学号</th>
+                                    <th>学生姓名</th>
+                                    <th>课程编号</th>
+                                    <th>课程名称</th>
+                                    <th>分数</th>
+                                    <th>等级</th>
+                                    <th>学期</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for score in scores %}
+                                <tr class="score-row">
+                                    <td>{{ score.student.student_id }}</td>
+                                    <td>{{ score.student.name }}</td>
+                                    <td>{{ score.course.code }}</td>
+                                    <td>{{ score.course.name }}</td>
+                                    <td>{{ score.score }}</td>
+                                    <td>
+                                        <span class="grade-badge grade-{{ score.grade }}">{{ score.grade }}</span>
+                                    </td>
+                                    <td>{{ score.semester }}</td>
+                                    <td>{{ score.created_at|date:"Y-m-d" }}</td>
+                                    <td>
+                                        <a href="{% url 'edit_score' score.id %}" class="btn btn-sm btn-outline-primary">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <a href="{% url 'delete_score' score.id %}" class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="9" class="text-center py-4">暂无成绩数据</td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- 添加成绩模态框 -->
+    <div class="modal fade" id="addScoreModal" tabindex="-1" aria-labelledby="addScoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addScoreModalLabel">添加成绩</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form method="post" action="{% url 'add_score' %}" id="addScoreForm">
+                    {% csrf_token %}
+                <div class="modal-body">
+                        <div class="row mb-3">
+                        <div class="col-md-6">
+                                <label for="id_student" class="form-label">学生</label>
+                                <select name="student" id="id_student" class="form-select" required>
+                                    <option value="">请选择学生</option>
+                                    {% for student in student_list|default:'' %}
+                                    <option value="{{ student.id }}">{{ student.name }} ({{ student.student_id }})</option>
+                                    {% endfor %}
+                                </select>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="id_course" class="form-label">课程</label>
+                                <select name="course" id="id_course" class="form-select" required>
+                                    <option value="">请选择课程</option>
+                                    {% for course in course_list|default:'' %}
+                                    <option value="{{ course.id }}">{{ course.name }} ({{ course.code }})</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                        <div class="col-md-6">
+                                <label for="id_score" class="form-label">分数</label>
+                                <input type="number" class="form-control" id="id_score" name="score" min="0" max="100" step="0.1" required>
+                                <div class="form-text">请输入0-100之间的分数，系统将自动计算等级</div>
+                        </div>
+                        <div class="col-md-6">
+                                <label for="id_semester" class="form-label">学期</label>
+                                <input type="text" class="form-control" id="id_semester" name="semester" placeholder="如：2025-1" required>
+                                <div class="form-text">例如：2025-1表示2025年第一学期</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="id_comment" class="form-label">评语</label>
+                            <textarea class="form-control" id="id_comment" name="comment" rows="3"></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            {% if scores %}
+            // 准备成绩等级分布数据
+            const gradeData = [
+                {% for grade, count in grade_distribution.items %}
+                    {% if count > 0 %}
+                    {value: {{ count }}, name: '{{ grade }}'},
+                    {% endif %}
+                {% endfor %}
+            ];
+
+            // 成绩等级分布饼图
+            const gradePieChart = echarts.init(document.getElementById('gradeDistributionPie'));
+            const gradePieOption = {
+                title: {
+                    text: '成绩等级分布',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b}: {c} ({d}%)'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    data: gradeData.map(item => item.name)
+                },
+                series: [
+                    {
+                        name: '成绩等级',
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        avoidLabelOverlap: false,
+                        itemStyle: {
+                            borderRadius: 10,
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: '18',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        data: gradeData
+                    }
+                ]
+            };
+            gradePieChart.setOption(gradePieOption);
+
+            // 成绩区间分布柱状图
+            const scoreBarChart = echarts.init(document.getElementById('scoreDistributionBar'));
+            const scoreBarOption = {
+                title: {
+                    text: '成绩区间分布',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    data: ['0-59', '60-69', '70-79', '80-89', '90-100'],
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '人数'
+                },
+                series: [
+                    {
+                        name: '人数',
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: [
+                            {
+                                value: {{ fail_score_count }},
+                                itemStyle: { color: '#ff3b30' }
+                            },
+                            {
+                                value: {{ pass_score_count }},
+                                itemStyle: { color: '#ff9500' }
+                            },
+                            {
+                                value: {{ good_score_count }},
+                                itemStyle: { color: '#4cd964' }
+                            },
+                            {
+                                value: {{ better_score_count }},
+                                itemStyle: { color: '#5ac8fa' }
+                            },
+                            {
+                                value: {{ excellent_score_count }},
+                                itemStyle: { color: '#007bff' }
+                            }
+                        ]
+                    }
+                ]
+            };
+            scoreBarChart.setOption(scoreBarOption);
+
+            // 分数区间分布折线图
+            const scoreRangeChart = echarts.init(document.getElementById('scoreRangeDistribution'));
+            const scoreRangeOption = {
+                title: {
+                    text: '分数段人数统计',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['学生人数'],
+                    bottom: '0%'
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '10%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['0-10', '11-20', '21-30', '31-40', '41-50', '51-60', '61-70', '71-80', '81-90', '91-100']
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '人数'
+                },
+                series: [
+                    {
+                        name: '学生人数',
+                        type: 'line',
+                        stack: 'Total',
+                        areaStyle: {},
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        data: [
+                            {{ score_range_0_10 }},
+                            {{ score_range_11_20 }},
+                            {{ score_range_21_30 }},
+                            {{ score_range_31_40 }},
+                            {{ score_range_41_50 }},
+                            {{ score_range_51_60 }},
+                            {{ score_range_61_70 }},
+                            {{ score_range_71_80 }},
+                            {{ score_range_81_90 }},
+                            {{ score_range_91_100 }}
+                        ]
+                    }
+                ]
+            };
+            scoreRangeChart.setOption(scoreRangeOption);
+
+            // 窗口大小变化时重新调整图表大小
+            window.addEventListener('resize', function() {
+                gradePieChart.resize();
+                scoreBarChart.resize();
+                scoreRangeChart.resize();
+            });
+            {% endif %}
+
+            // 如果需要在模态框打开时加载学生和课程数据，可以在这里添加AJAX请求
+            const addScoreModal = document.getElementById('addScoreModal');
+            if (addScoreModal) {
+                addScoreModal.addEventListener('show.bs.modal', function(event) {
+                    // 这里可以添加AJAX请求，获取最新的学生和课程列表
+                    fetch('/api/students/')
+                        .then(response => response.json())
+                        .then(data => {
+                            // 填充学生下拉列表
+                            const studentSelect = document.getElementById('id_student');
+                            // 清空现有选项
+                            studentSelect.innerHTML = '<option value="">请选择学生</option>';
+                            // 添加新选项
+                            data.forEach(student => {
+                                const option = document.createElement('option');
+                                option.value = student.id;
+                                option.textContent = `${student.name} (${student.student_id})`;
+                                studentSelect.appendChild(option);
+                            });
+                        })
+                        .catch(error => console.error('Error loading students:', error));
+                        
+                    fetch('/api/courses/')
+                        .then(response => response.json())
+                        .then(data => {
+                            // 填充课程下拉列表
+                            const courseSelect = document.getElementById('id_course');
+                            // 清空现有选项
+                            courseSelect.innerHTML = '<option value="">请选择课程</option>';
+                            // 添加新选项
+                            data.forEach(course => {
+                                const option = document.createElement('option');
+                                option.value = course.id;
+                                option.textContent = `${course.name} (${course.code})`;
+                                courseSelect.appendChild(option);
+                            });
+                        })
+                        .catch(error => console.error('Error loading courses:', error));
+                });
+            }
+            
+            // 表单验证
+            const addScoreForm = document.getElementById('addScoreForm');
+            if (addScoreForm) {
+                addScoreForm.addEventListener('submit', function(event) {
+                    let isValid = true;
+                    
+                    const student = document.getElementById('id_student');
+                    const course = document.getElementById('id_course');
+                    const score = document.getElementById('id_score');
+                    const semester = document.getElementById('id_semester');
+                    
+                    // 清除之前的错误提示
+                    document.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
+                    document.querySelectorAll('.invalid-feedback').forEach(el => el.remove());
+                    
+                    // 验证学生
+                    if (!student.value) {
+                        showError(student, '请选择学生');
+                        isValid = false;
+                    }
+                    
+                    // 验证课程
+                    if (!course.value) {
+                        showError(course, '请选择课程');
+                        isValid = false;
+                    }
+                    
+                    // 验证分数
+                    if (!score.value) {
+                        showError(score, '请输入分数');
+                        isValid = false;
+                    } else if (isNaN(score.value) || parseFloat(score.value) < 0 || parseFloat(score.value) > 100) {
+                        showError(score, '分数必须在0-100之间');
+                        isValid = false;
+                    }
+                    
+                    // 验证学期
+                    if (!semester.value) {
+                        showError(semester, '请输入学期');
+                        isValid = false;
+                    }
+                    
+                    if (!isValid) {
+                        event.preventDefault();
+                    }
+                });
+            }
+            
+            function showError(element, message) {
+                element.classList.add('is-invalid');
+                
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'invalid-feedback';
+                errorDiv.textContent = message;
+                
+                element.parentNode.appendChild(errorDiv);
+            }
+        });
+    </script>
+{% endblock %}

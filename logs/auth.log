@@ -1,0 +1,18 @@
+INFO 2025-05-08 00:18:24,436 views 注销成功 - 用户: sqhh99, IP: 127.0.0.1
+ERROR 2025-05-15 02:44:14,884 Redis连接检查失败: Connection closed by server. 127.0.0.1 System
+ERROR 2025-05-15 02:44:25,036 Redis连接检查失败: Connection closed by server. 127.0.0.1 System
+ERROR 2025-05-15 02:44:34,003 Redis连接检查失败: Connection closed by server. 127.0.0.1 System
+ERROR 2025-05-15 02:44:40,759 Redis连接检查失败: Connection closed by server. 127.0.0.1 System
+ERROR 2025-05-15 02:49:03,977 Redis连接检查失败: Connection closed by server. 127.0.0.1 System
+WARNING 2025-05-15 02:49:07,032 会话引擎已切换到数据库回退模式 127.0.0.1 System
+WARNING 2025-05-15 02:49:20,722 登录失败(表单验证错误) - IP: 127.0.0.1 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+INFO 2025-05-15 02:49:34,536 登录尝试 - 用户: root, IP: 127.0.0.1, 设备: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+ERROR 2025-05-15 02:52:14,829 Redis连接检查失败: Connection closed by server. 127.0.0.1 System
+WARNING 2025-05-15 02:54:12,338 登录失败(表单验证错误) - IP: 127.0.0.1 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+INFO 2025-05-15 02:54:22,477 登录尝试 - 用户: root, IP: 127.0.0.1, 设备: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+INFO 2025-05-15 02:54:23,731 登录成功 - 用户: root, IP: 127.0.0.1 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+INFO 2025-05-16 17:16:58,960 娉ㄥ唽灏濊瘯 - 鐢ㄦ埛: SQHH99, 閭: sqhh99@outlook.com, IP: 111.60.88.232 111.60.88.232 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+INFO 2025-05-16 17:16:59,450 娉ㄥ唽鎴愬姛 - 鐢ㄦ埛: SQHH99, IP: 111.60.88.232 111.60.88.232 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0
+ERROR 2025-05-20 15:03:20,607 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
+ERROR 2025-05-20 15:47:58,886 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
+ERROR 2025-05-20 15:53:06,861 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System

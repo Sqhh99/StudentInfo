@@ -1,0 +1,127 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/users/admin/session_health.css' %}">
+{% endblock %}
+
+{% block content %}
+<div id="content-main">
+    <h1>会话健康状态</h1>
+    
+    <div class="refresh-btn">
+        <a href="{% url 'admin:session-health' %}" class="button">刷新状态</a>
+    </div>
+    
+    <div class="health-card">
+        <h3>会话配置</h3>
+        <div class="info-group">
+            <span class="info-label">会话引擎:</span>
+            <span class="info-value">{{ session_info.session_engine }}</span>
+        </div>
+        <div class="info-group">
+            <span class="info-label">Cookie名称:</span>
+            <span class="info-value">{{ session_info.session_cookie_name }}</span>
+        </div>
+        <div class="info-group">
+            <span class="info-label">Cookie有效期:</span>
+            <span class="info-value">{{ session_info.session_cookie_age }} 秒 (约 {{ session_info.session_cookie_age|floatformat:0|divisibleby:86400 }} 天)</span>
+        </div>
+        <div class="info-group">
+            <span class="info-label">每次请求保存:</span>
+            <span class="info-value">{% if session_info.save_every_request %}是{% else %}否{% endif %}</span>
+        </div>
+        <div class="info-group">
+            <span class="info-label">浏览器关闭时过期:</span>
+            <span class="info-value">{% if session_info.expire_at_browser_close %}是{% else %}否{% endif %}</span>
+        </div>
+    </div>
+    
+    <div class="health-card">
+        <h3>数据库会话状态</h3>
+        <div class="info-group">
+            <span class="info-label">活跃会话数:</span>
+            <span class="info-value">{{ db_session_count }}</span>
+        </div>
+        
+        <h4>最近会话</h4>
+        {% if recent_sessions %}
+            <table class="session-table">
+                <thead>
+                    <tr>
+                        <th>会话键</th>
+                        <th>用户</th>
+                        <th>IP地址</th>
+                        <th>过期时间</th>
+                        <th>最后活动</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for session in recent_sessions %}
+                    <tr>
+                        <td>{{ session.session_key|truncatechars:10 }}</td>
+                        <td>{{ session.user }}</td>
+                        <td>{{ session.ip_address }}</td>
+                        <td>{{ session.expire_date }}</td>
+                        <td>
+                            {% if session.last_activity %}
+                                {{ session.last_activity|timeformat:"%Y-%m-%d %H:%M:%S" }}
+                            {% else %}
+                                未知
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>没有找到活跃会话</p>
+        {% endif %}
+    </div>
+    
+    {% if redis_info %}
+    <div class="health-card">
+        <h3>Redis 会话存储</h3>
+        
+        {% if redis_info.redis_connection == 'OK' %}
+            <div class="alert alert-success">
+                <span class="status-indicator status-ok"></span>
+                Redis连接正常
+            </div>
+            
+            <div class="info-group">
+                <span class="info-label">会话键数量:</span>
+                <span class="info-value">{{ redis_info.session_keys_count }}</span>
+            </div>
+            <div class="info-group">
+                <span class="info-label">内存使用:</span>
+                <span class="info-value">{{ redis_info.used_memory_human }}</span>
+            </div>
+            <div class="info-group">
+                <span class="info-label">连接客户端数:</span>
+                <span class="info-value">{{ redis_info.connected_clients }}</span>
+            </div>
+        {% else %}
+            <div class="alert alert-danger">
+                <span class="status-indicator status-error"></span>
+                Redis连接错误
+            </div>
+            <div class="info-group">
+                <span class="info-label">错误信息:</span>
+                <span class="info-value">{{ redis_info.error }}</span>
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    
+    <div class="health-card">
+        <h3>会话管理建议</h3>
+        <ul>
+            <li>定期监控会话数量，异常增长可能表明问题或攻击</li>
+            <li>如Redis用作会话存储，确保有足够内存并配置合理的过期策略</li>
+            <li>大量会话可能会影响系统性能，请考虑合理设置会话超时</li>
+            <li>定期清理过期会话: <code>python manage.py clearsessions</code></li>
+        </ul>
+    </div>
+</div>
+{% endblock %} 

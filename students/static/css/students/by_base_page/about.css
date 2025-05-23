@@ -1,0 +1,151 @@
+.hero-section {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    padding: 2rem;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+.feature-icon {
+    width: 4rem;
+    height: 4rem;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.team-member {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    width: 2rem;
+    height: 2rem;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: #0d6efd;
+    color: white;
+}
+
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background-color: #dee2e6;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    margin-bottom: 3rem;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-content {
+    position: relative;
+    width: 45%;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+}
+
+.timeline-content:before {
+    content: '';
+    position: absolute;
+    top: 1.5rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    box-shadow: 0 0 0 4px #f8f9fa;
+}
+
+.timeline-left {
+    margin-right: auto;
+}
+
+.timeline-left:before {
+    right: -2rem;
+}
+
+.timeline-right {
+    margin-left: auto;
+}
+
+.timeline-right:before {
+    left: -2rem;
+}
+
+.timeline-date {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    background-color: #0d6efd;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+footer {
+    background-color: #212529;
+    color: #fff;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+@media (max-width: 767.98px) {
+    .timeline:before {
+        left: 2rem;
+    }
+
+    .timeline-content {
+        width: 85%;
+        margin-left: auto !important;
+    }
+
+    .timeline-content:before {
+        left: -2rem !important;
+    }
+}

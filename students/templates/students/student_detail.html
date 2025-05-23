@@ -1,0 +1,106 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %}学生详情 - {{ student.name }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/by_base_page/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/student_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>学生详情</h2>
+            <div>
+                <a href="{% url 'students' %}" class="btn btn-outline-secondary me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-arrow-left me-1" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+                    </svg>
+                    返回列表
+                </a>
+                <a href="{% url 'edit_student' student.id %}" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-pencil-square me-1" viewBox="0 0 16 16">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                        <path fill-rule="evenodd"
+                              d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                    </svg>
+                    编辑信息
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 text-center mb-4 mb-md-0">
+                        {% if student.profile_image %}
+                            <img src="{{ student.profile_image.url }}" alt="{{ student.name }}"
+                                 class="profile-image mb-3">
+                        {% else %}
+                            <img src="{% static 'images/default-profile.png' %}" alt="{{ student.name }}"
+                                 class="profile-image mb-3">
+                        {% endif %}
+                        <h4 class="mb-1">{{ student.name }}</h4>
+                        <p class="text-muted mb-2">{{ student.student_id }}</p>
+                        <span class="status-badge status-{{ student.status }}">{{ student.get_status_display }}</span>
+                    </div>
+                    <div class="col-md-9 student-info">
+                        <h4 class="border-bottom pb-2 mb-4">基本信息</h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="info-label">性别</div>
+                                <div class="info-value">{{ student.get_gender_display }}</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-label">班级</div>
+                                <div class="info-value">{{ student.class_obj.name }}</div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="info-label">专业</div>
+                                <div class="info-value">{{ student.major.name }}</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="info-label">入学时间</div>
+                                <div class="info-value">{{ student.admission_date|date:"Y年m月d日" }}</div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="info-label">创建时间</div>
+                                <div class="info-value">{{ student.created_at|date:"Y-m-d H:i:s" }}</div>
+                            </div>
+                        </div>
+
+                        <h4 class="border-bottom pb-2 mb-4 mt-5">联系信息</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="info-label">联系电话</div>
+                                <div class="info-value">{{ student.phone|default:"未提供" }}</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="info-label">电子邮箱</div>
+                                <div class="info-value">{{ student.email|default:"未提供" }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white d-flex justify-content-end">
+                <a href="{% url 'delete_student' student.id %}" class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-trash me-1" viewBox="0 0 16 16">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                    删除学生
+                </a>
+            </div>
+        </div>
+    </main>
+{% endblock %} 

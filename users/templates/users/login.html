@@ -1,0 +1,393 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录 - 学生管理系统</title>
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/users/login.css' %}">
+    <style>
+        .captcha {
+            display: flex;
+            align-items: center;
+        }
+        .captcha input {
+            flex: 1;
+            border-radius: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border: 1px solid #ced4da;
+            height: 38px;
+        }
+        .captcha img {
+            height: 38px;
+            margin: 0 10px;
+            border-radius: 0.375rem;
+            border: 1px solid #ced4da;
+        }
+        .captcha a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+            border-radius: 0.375rem;
+            color: #6c757d;
+            text-decoration: none;
+        }
+        .captcha a:hover {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+        .captcha a:after {
+            content: "\F116";
+            font-family: "bootstrap-icons", serif;
+        }
+    </style>
+</head>
+<body>
+<!-- 隐私与Cookie同意横幅 -->
+<div class="toast-container position-fixed bottom-0 start-0 p-3" style="z-index: 1080;">
+    <div id="cookieConsent" class="toast show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="toast-header">
+            <i class="bi bi-shield-lock me-2 text-primary"></i>
+            <strong class="me-auto">隐私与Cookie政策</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            <p>我们使用Cookie来提升您的浏览体验并分析网站流量。继续使用本网站即表示您同意我们的<a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">隐私政策</a>。</p>
+            <div class="mt-2 pt-2 border-top d-flex justify-content-end gap-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-dismiss="toast">仅必要Cookie</button>
+                <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="toast" id="acceptAllCookies">接受所有Cookie</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container login-container">
+    <div class="row justify-content-center w-100">
+        <div class="col-lg-10">
+            <div class="card login-card">
+                <div class="row g-0">
+                    <!-- 左侧信息栏 -->
+                    <div class="col-lg-5 d-none d-lg-block">
+                        <div class="login-sidebar h-100">
+                            <div class="login-sidebar-content">
+                                <div class="d-flex align-items-center mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                                         class="bi bi-mortarboard-fill me-2" viewBox="0 0 16 16">
+                                        <path d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z"/>
+                                        <path d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z"/>
+                                    </svg>
+                                    <span class="fs-4 fw-bold">学生管理系统</span>
+                                </div>
+
+                                <h2 class="fw-bold mb-4">欢迎回来！</h2>
+                                <p class="mb-5">登录您的账户，体验完整的学生管理系统功能。需要帮助请联系系统管理员。</p>
+
+                                <div class="login-features">
+                                    <div class="login-feature-item">
+                                        <div class="login-feature-icon">
+                                            <i class="bi bi-shield-check"></i>
+                                        </div>
+                                        <div>安全的用户认证系统</div>
+                                    </div>
+                                    <div class="login-feature-item">
+                                        <div class="login-feature-icon">
+                                            <i class="bi bi-person-badge"></i>
+                                        </div>
+                                        <div>基于角色的权限控制</div>
+                                    </div>
+                                    <div class="login-feature-item">
+                                        <div class="login-feature-icon">
+                                            <i class="bi bi-database-check"></i>
+                                        </div>
+                                        <div>数据完整性保护</div>
+                                    </div>
+                                    <div class="login-feature-item">
+                                        <div class="login-feature-icon">
+                                            <i class="bi bi-clock-history"></i>
+                                        </div>
+                                        <div>记录登录活动和IP信息</div>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-info mt-4">
+                                    <i class="bi bi-info-circle-fill me-2"></i>本系统支持安全登录，所有登录行为将被记录
+                                </div>
+
+                                <div class="mt-5 text-center">
+                                    <p class="mb-0 text-white-50">© 2025 学生管理系统. 保留所有权利</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 右侧表单 -->
+                    <div class="col-lg-7">
+                        <div class="login-form">
+                            <form action="/login/" method="post">
+                                {% csrf_token %}
+                                <h3 class="text-center mb-4 fw-bold">账户登录</h3>
+
+                                <div class="login-security-badge mb-4 text-center">
+                                    <i class="bi bi-shield-lock text-success"></i>
+                                    <span>安全连接</span>
+                                </div>
+
+                                {% if messages %}
+                                <div class="messages mb-4">
+                                    {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="loginUsername" name="username" placeholder="用户名" required value="{{ form.username.value|default:'' }}">
+                                    <label for="loginUsername">用户名</label>
+                                    {% if form.username.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.username.errors.0 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    <input type="password" class="form-control" id="loginPassword" name="password" placeholder="密码" required>
+                                    <label for="loginPassword">密码</label>
+                                    <div class="password-toggle">
+                                        <i class="bi bi-eye" id="togglePassword"></i>
+                                    </div>
+                                    {% if form.password.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.password.errors.0 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <!-- 验证码字段 -->
+                                <div class="mb-3">
+                                    <label for="id_captcha_1" class="form-label">验证码</label>
+                                    <div class="captcha-container">
+                                        {{ form.captcha }}
+                                    </div>
+                                    {% if form.captcha.errors %}
+                                    <div class="invalid-feedback d-block">
+                                        {{ form.captcha.errors.0 }}
+                                    </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="rememberMe" name="remember_me" {% if form.remember_me.value %}checked{% endif %}>
+                                            <label class="form-check-label" for="rememberMe">
+                                                记住我
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">忘记密码？</a>
+                                    </div>
+                                </div>
+
+                                <!-- 隐藏的Cookie同意字段 -->
+                                <input type="hidden" name="cookie_consent" id="cookieConsentInput" value="necessary">
+
+                                {% if login_error %}
+                                <div class="alert alert-danger" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ login_error }}
+                                </div>
+                                {% endif %}
+
+                                <div class="login-authorization mb-4">
+                                    <p class="small text-muted">
+                                        <i class="bi bi-info-circle me-1"></i>
+                                        登录即表示您授权系统记录您的登录信息，包括IP地址和设备信息，用于安全审计目的。
+                                    </p>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-login">
+                                        <i class="bi bi-box-arrow-in-right me-2"></i>安全登录
+                                    </button>
+                                </div>
+
+                                <div class="divider-text">
+                                    <span>或使用第三方账号登录</span>
+                                </div>
+
+                                <div class="text-center mb-4">
+                                    <a href="#" class="social-btn bg-primary text-white" title="使用Facebook登录">
+                                        <i class="bi bi-facebook"></i>
+                                    </a>
+                                    <a href="#" class="social-btn bg-info text-white" title="使用Twitter登录">
+                                        <i class="bi bi-twitter"></i>
+                                    </a>
+                                    <a href="#" class="social-btn bg-danger text-white" title="使用Google登录">
+                                        <i class="bi bi-google"></i>
+                                    </a>
+                                    <a href="#" class="social-btn bg-dark text-white" title="使用GitHub登录">
+                                        <i class="bi bi-github"></i>
+                                    </a>
+                                </div>
+
+                                <div class="text-center">
+                                    <p>还没有账户？ <a href="/register/" class="text-primary fw-bold">立即注册</a></p>
+                                </div>
+                            </form>
+
+                            <!-- 返回主页 -->
+                            <div class="text-center mt-4">
+                                <a href="{% url 'index' %}" class="text-secondary">
+                                    <i class="bi bi-arrow-left me-1"></i> 返回主页
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 忘记密码模态框 -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">
+                    <i class="bi bi-key me-2"></i>找回密码
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>请输入您的注册邮箱，我们将向您发送密码重置链接。</p>
+                <form id="forgotPasswordForm">
+                    <div class="mb-3">
+                        <label for="resetEmail" class="form-label">电子邮箱</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            <input type="email" class="form-control" id="resetEmail" required>
+                        </div>
+                    </div>
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle-fill me-2"></i>
+                        密码重置链接将在30分钟内有效，请及时查收邮件并重置密码。
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="submit" form="forgotPasswordForm" class="btn btn-primary">
+                    <i class="bi bi-send me-1"></i>发送重置链接
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 隐私政策模态框 -->
+<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="privacyModalLabel">
+                    <i class="bi bi-shield-lock me-2"></i>隐私政策
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5>1. 信息收集</h5>
+                <p>我们收集的个人信息包括：姓名、联系方式、学术记录等。这些信息用于提供和改进我们的服务。</p>
+
+                <h5>2. 信息使用</h5>
+                <p>收集的信息仅用于系统管理、服务提供和用户支持。未经您的同意，我们不会向第三方披露您的个人信息。</p>
+
+                <h5>3. 数据安全</h5>
+                <p>我们采取适当的安全措施保护您的个人信息免受未经授权的访问或披露。</p>
+
+                <h5>4. 授权说明</h5>
+                <p>当您登录系统时，我们会记录您的IP地址、设备信息和登录时间，这些信息用于安全审计和防止未授权访问。</p>
+
+                <h5>5. Cookie使用</h5>
+                <p>我们使用Cookie来提升用户体验，包括：</p>
+                <ul>
+                    <li>必要Cookie：用于系统基本功能</li>
+                    <li>功能Cookie：记住您的登录状态和偏好设置</li>
+                    <li>分析Cookie：了解用户如何使用我们的网站</li>
+                </ul>
+
+                <h5>6. 隐私政策更新</h5>
+                <p>我们可能会定期更新本隐私政策。任何更改都将在此页面上发布。</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">我已阅读并同意</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JavaScript 和 Popper.js -->
+<script src="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 密码显示/隐藏功能
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('loginPassword');
+    
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+    }
+    
+    // Cookie同意功能
+    const cookieConsent = document.getElementById('cookieConsent');
+    const acceptAllCookies = document.getElementById('acceptAllCookies');
+    
+    // 检查是否已经同意Cookie政策
+    if (localStorage.getItem('cookieConsent')) {
+        cookieConsent.classList.remove('show');
+    }
+    
+    // 接受所有Cookie
+    if (acceptAllCookies) {
+        acceptAllCookies.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'all');
+        });
+    }
+    
+    // 监测登录尝试
+    const loginForm = document.querySelector('form');
+    if (loginForm) {
+        loginForm.addEventListener('submit', function() {
+            // 记录登录尝试
+            if (localStorage.getItem('loginAttempts')) {
+                let attempts = parseInt(localStorage.getItem('loginAttempts'));
+                localStorage.setItem('loginAttempts', attempts + 1);
+            } else {
+                localStorage.setItem('loginAttempts', 1);
+            }
+            
+            // 记录最后一次登录尝试时间
+            localStorage.setItem('lastLoginAttempt', new Date().toISOString());
+        });
+    }
+});
+</script>
+</body>
+</html>

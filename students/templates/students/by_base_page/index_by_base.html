@@ -1,0 +1,580 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %} 学生管理系统 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/by_base_page/index.css' %}">
+    <style>
+        .hero-section {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+            margin-bottom: 2rem;
+        }
+        .stats-card {
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .feature-box {
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            height: 100%;
+            transition: all 0.3s;
+        }
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: rgba(13, 110, 253, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .quick-links {
+            margin-bottom: 2rem;
+        }
+        .quick-link-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            transition: all 0.3s;
+            height: 100%;
+        }
+        .quick-link-card:hover {
+            transform: translateY(-5px);
+            background-color: #f8f9fa;
+        }
+        .quick-link-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #0d6efd;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <!-- 欢迎区域 -->
+        <div class="hero-section text-center">
+            <h1 class="display-5 fw-bold">欢迎使用学生管理系统</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">高效便捷的学生信息管理平台，助力教育信息化建设，提升学校管理效率。</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'students' %}" class="btn btn-primary btn-lg px-4 gap-3">
+                            <i class="bi bi-person-vcard me-2"></i>管理学生
+                        </a>
+                        <a href="{% url 'query_results' %}" class="btn btn-outline-primary btn-lg px-4">
+                            <i class="bi bi-graph-up me-2"></i>查看成绩
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-primary btn-lg px-4 gap-3">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>登录系统
+                        </a>
+                        <a href="{% url 'about' %}" class="btn btn-outline-secondary btn-lg px-4">
+                            <i class="bi bi-info-circle me-2"></i>了解更多
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计数据卡片 -->
+        <div class="container px-4 py-4">
+            <h2 class="pb-2 border-bottom">系统概况</h2>
+            <div class="row g-4 py-4">
+                <div class="col-md-3">
+                    <div class="stats-card bg-primary bg-opacity-10">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h3 class="fs-2">{{ student_count|default:"0" }}</h3>
+                                <p class="mb-0">学生总数</p>
+                            </div>
+                            <div>
+                                <i class="bi bi-people fs-1 text-primary opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card bg-success bg-opacity-10">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h3 class="fs-2">{{ class_count|default:"0" }}</h3>
+                                <p class="mb-0">班级总数</p>
+                            </div>
+                            <div>
+                                <i class="bi bi-grid-3x3-gap fs-1 text-success opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card bg-warning bg-opacity-10">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h3 class="fs-2">{{ course_count|default:"0" }}</h3>
+                                <p class="mb-0">课程总数</p>
+                            </div>
+                            <div>
+                                <i class="bi bi-book fs-1 text-warning opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stats-card bg-info bg-opacity-10">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h3 class="fs-2">{{ score_count|default:"0" }}</h3>
+                                <p class="mb-0">成绩记录</p>
+                            </div>
+                            <div>
+                                <i class="bi bi-clipboard-data fs-1 text-info opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 数据可视化部分 -->
+        <div class="row my-5">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-white">
+                        <h5 class="mb-0">系统数据统计</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="studentsByClass" style="height: 350px;"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="scoreOverview" style="height: 350px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 快捷入口 -->
+        <div class="container px-4 py-3 quick-links">
+            <h2 class="pb-2 border-bottom">快捷入口</h2>
+            <div class="row g-4 py-4">
+                <div class="col-md-3">
+                    <a href="{% url 'students' %}" class="text-decoration-none text-dark">
+                        <div class="quick-link-card">
+                            <i class="bi bi-person-vcard quick-link-icon"></i>
+                            <h5>学生管理</h5>
+                            <p class="text-muted">查看和管理学生信息</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'course_management' %}" class="text-decoration-none text-dark">
+                        <div class="quick-link-card">
+                            <i class="bi bi-book quick-link-icon"></i>
+                            <h5>课程管理</h5>
+                            <p class="text-muted">管理课程信息和安排</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'query_results' %}" class="text-decoration-none text-dark">
+                        <div class="quick-link-card">
+                            <i class="bi bi-graph-up quick-link-icon"></i>
+                            <h5>成绩查询</h5>
+                            <p class="text-muted">查询和分析学生成绩</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="{% url 'about' %}" class="text-decoration-none text-dark">
+                        <div class="quick-link-card">
+                            <i class="bi bi-info-circle quick-link-icon"></i>
+                            <h5>关于系统</h5>
+                            <p class="text-muted">了解系统功能和帮助</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 功能区域 -->
+        <div class="container px-4 py-3">
+            <h2 class="pb-2 border-bottom">主要功能</h2>
+            <div class="row g-4 py-4">
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="icon-box">
+                            <i class="bi bi-person-fill"></i>
+                        </div>
+                        <h3 class="fs-4">学生信息管理</h3>
+                        <p>全面管理学生基本信息，包括个人资料、联系方式、家庭情况等，支持数据导入导出。</p>
+                        <a href="{% url 'students' %}" class="btn btn-sm btn-outline-primary">开始使用</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="icon-box">
+                            <i class="bi bi-book-fill"></i>
+                        </div>
+                        <h3 class="fs-4">课程管理</h3>
+                        <p>灵活设置学期课程，安排教师授课，学生选课操作简单，课程信息一目了然。</p>
+                        <a href="{% url 'course_management' %}" class="btn btn-sm btn-outline-primary">开始使用</a>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="feature-box">
+                        <div class="icon-box">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <h3 class="fs-4">成绩统计分析</h3>
+                        <p>自动计算各科成绩，生成统计图表，支持多维度成绩分析，助力教学质量提升。</p>
+                        <a href="{% url 'query_results' %}" class="btn btn-sm btn-outline-primary">开始使用</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最新公告区域 -->
+        <div class="container px-4 py-3">
+            <h2 class="pb-2 border-bottom">最新公告</h2>
+            <div class="list-group mt-3 mb-4">
+                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">2025学年第一学期选课通知</h6>
+                            <p class="mb-0 opacity-75">请各位学生于5月1日至5月15日完成下学期课程选择</p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">3天前</small>
+                    </div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">系统维护通知</h6>
+                            <p class="mb-0 opacity-75">系统将于本周六晚22:00-次日凌晨2:00进行升级维护</p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">1周前</small>
+                    </div>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0">期末考试安排已发布</h6>
+                            <p class="mb-0 opacity-75">请登录系统查看个人考试时间及地点安排</p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">2周前</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- 如果用户已登录，显示快速操作区域 -->
+        {% if user.is_authenticated %}
+        <div class="container px-4 py-3">
+            <h2 class="pb-2 border-bottom">快速操作</h2>
+            <div class="row g-4 py-4">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start">
+                        <div class="flex-shrink-0">
+                            <div class="p-3 bg-primary bg-opacity-10 rounded-circle">
+                                <i class="bi bi-plus-circle text-primary fs-4"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h4>添加新记录</h4>
+                            <p>快速添加新的学生、课程或成绩记录到系统中。</p>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'add_student' %}" class="btn btn-outline-primary btn-sm">添加学生</a>
+                                <a href="{% url 'add_course' %}" class="btn btn-outline-primary btn-sm">添加课程</a>
+                                <a href="{% url 'add_score' %}" class="btn btn-outline-primary btn-sm">添加成绩</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex align-items-start">
+                        <div class="flex-shrink-0">
+                            <div class="p-3 bg-success bg-opacity-10 rounded-circle">
+                                <i class="bi bi-file-earmark-arrow-down text-success fs-4"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h4>导出数据</h4>
+                            <p>将系统中的学生、课程或成绩数据导出为CSV格式。</p>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'export_students_csv' %}" class="btn btn-outline-success btn-sm">导出学生</a>
+                                <a href="{% url 'export_courses_csv' %}" class="btn btn-outline-success btn-sm">导出课程</a>
+                                <a href="{% url 'export_scores_csv' %}" class="btn btn-outline-success btn-sm">导出成绩</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 最近学生列表 -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">最近学生</h5>
+                        <a href="{% url 'students' %}" class="btn btn-sm btn-outline-primary">查看所有</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>学号</th>
+                                        <th>姓名</th>
+                                        <th>班级</th>
+                                        <th>专业</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for student in recent_students %}
+                                    <tr>
+                                        <td>{{ student.student_id }}</td>
+                                        <td>{{ student.name }}</td>
+                                        <td>{{ student.class_obj.name }}</td>
+                                        <td>{{ student.major.name }}</td>
+                                        <td>
+                                            <a href="{% url 'student_detail' student.id %}" class="btn btn-sm btn-outline-primary">
+                                                <i class="bi bi-eye"></i> 查看
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="5" class="text-center">暂无学生记录</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 专业学生分布图
+            const studentsByClassChart = echarts.init(document.getElementById('studentsByClass'));
+            const studentsByClassOption = {
+                title: {
+                    text: '专业学生分布',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item',
+                    formatter: '{a} <br/>{b}: {c}人 ({d}%)'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+                    type: 'scroll',
+                    textStyle: {
+                        fontSize: 12
+                    }
+                },
+                series: [
+                    {
+                        name: '学生人数',
+                        type: 'pie',
+                        radius: '50%',
+                        avoidLabelOverlap: true,
+                        label: {
+                            show: true,
+                            formatter: '{b}: {c}人',
+                            position: 'outside'
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: 14,
+                                fontWeight: 'bold'
+                            }
+                        },
+                        data: [
+                            {% for item in major_student_counts %}
+                            { value: {{ item.value }}, name: '{{ item.name }}' },
+                            {% endfor %}
+                            {% if not major_student_counts %}
+                            { value: 0, name: '暂无数据' }
+                            {% endif %}
+                        ],
+                        itemStyle: {
+                            borderRadius: 5,
+                            borderColor: '#fff',
+                            borderWidth: 1
+                        }
+                    }
+                ]
+            };
+            studentsByClassChart.setOption(studentsByClassOption);
+            
+            // 成绩概览图
+            const scoreOverviewChart = echarts.init(document.getElementById('scoreOverview'));
+            const scoreOverviewOption = {
+                title: {
+                    text: '学生成绩概览',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['优秀', '良好', '合格', '不及格'],
+                    bottom: '0%'
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '10%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    name: '人数',
+                    boundaryGap: [0, 0.01]
+                },
+                yAxis: {
+                    type: 'category',
+                    data: [
+                        {% for item in major_student_counts %}
+                        '{{ item.name }}',
+                        {% endfor %}
+                    ],
+                    axisTick: { show: false }
+                },
+                series: [
+                    {
+                        name: '优秀',
+                        type: 'bar',
+                        stack: 'total',
+                        label: {
+                            show: true
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        itemStyle: {
+                            color: '#4cd964'
+                        },
+                        data: [
+                            {{ excellent_cs|default:0 }}, 
+                            {{ excellent_se|default:0 }}, 
+                            {{ excellent_ds|default:0 }}, 
+                            {{ excellent_ai|default:0 }},
+                            {{ excellent_ne|default:0 }}
+                        ]
+                    },
+                    {
+                        name: '良好',
+                        type: 'bar',
+                        stack: 'total',
+                        label: {
+                            show: true
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        itemStyle: {
+                            color: '#5ac8fa'
+                        },
+                        data: [
+                            {{ good_cs|default:0 }}, 
+                            {{ good_se|default:0 }}, 
+                            {{ good_ds|default:0 }}, 
+                            {{ good_ai|default:0 }},
+                            {{ good_ne|default:0 }}
+                        ]
+                    },
+                    {
+                        name: '合格',
+                        type: 'bar',
+                        stack: 'total',
+                        label: {
+                            show: true
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        itemStyle: {
+                            color: '#ff9500'
+                        },
+                        data: [
+                            {{ pass_cs|default:0 }}, 
+                            {{ pass_se|default:0 }}, 
+                            {{ pass_ds|default:0 }}, 
+                            {{ pass_ai|default:0 }},
+                            {{ pass_ne|default:0 }}
+                        ]
+                    },
+                    {
+                        name: '不及格',
+                        type: 'bar',
+                        stack: 'total',
+                        label: {
+                            show: true
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        itemStyle: {
+                            color: '#ff3b30'
+                        },
+                        data: [
+                            {{ fail_cs|default:0 }}, 
+                            {{ fail_se|default:0 }}, 
+                            {{ fail_ds|default:0 }}, 
+                            {{ fail_ai|default:0 }},
+                            {{ fail_ne|default:0 }}
+                        ]
+                    }
+                ]
+            };
+            scoreOverviewChart.setOption(scoreOverviewOption);
+            
+            // 窗口大小变化时重新调整图表大小
+            window.addEventListener('resize', function() {
+                studentsByClassChart.resize();
+                scoreOverviewChart.resize();
+            });
+        });
+    </script>
+{% endblock %}

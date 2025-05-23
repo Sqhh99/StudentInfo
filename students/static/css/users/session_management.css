@@ -1,0 +1,82 @@
+.session-card {
+    border-radius: 10px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075);
+    transition: all 0.3s;
+    background-color: #fff;
+    border: none;
+    margin-bottom: 1.5rem;
+}
+
+.session-card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+}
+
+.session-card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px 10px 0 0;
+    font-weight: 600;
+}
+
+.session-info-item {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+}
+
+.session-info-label {
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.session-info-value {
+    font-weight: 500;
+}
+
+.session-meta {
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0 0 10px 10px;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.activity-table {
+    margin-bottom: 0;
+}
+
+.activity-table th, .activity-table td {
+    padding: 0.75rem 1rem;
+}
+
+.btn-session {
+    border-radius: 50px;
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.btn-session:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1);
+}
+
+.session-timer {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 1rem;
+}
+
+.progress {
+    height: 6px;
+    border-radius: 3px;
+    margin-top: 0.5rem;
+}

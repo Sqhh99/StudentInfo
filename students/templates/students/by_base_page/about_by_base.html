@@ -1,0 +1,1161 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %} 关于我们 {% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/by_base_page/about.css' %}">
+    <style>
+        .roadmap-timeline {
+            padding: 20px 0;
+        }
+        .timeline-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background-color: #dee2e6;
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .timeline-badge {
+            position: absolute;
+            top: 20px;
+            left: -15px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .col-md-6:nth-child(even) .timeline-badge {
+            left: auto;
+            right: -15px;
+        }
+        .feature-icon {
+            background-color: rgba(13, 110, 253, 0.1);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+        .feature-card {
+            height: 100%;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            transition: all 0.3s;
+            background-color: #fff;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(13, 110, 253, 0.1);
+            transition: all 0.3s;
+        }
+        .social-icons a:hover {
+            background-color: #0d6efd;
+            color: #fff !important;
+        }
+        .hero-section {
+            padding: 4rem 0;
+            background-color: #f8f9fa;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 110, 253, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+            z-index: 0;
+        }
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+        @media (max-width: 767.98px) {
+            .timeline-line {
+                left: 15px;
+            }
+            .timeline-badge {
+                left: 0;
+            }
+            .col-md-6:nth-child(even) .timeline-badge {
+                left: 0;
+                right: auto;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <!-- 主体内容区域 -->
+    <main>
+        <!-- 英雄区域 -->
+        <div class="hero-section text-center">
+            <div class="container">
+                <h1 class="display-4 fw-bold mb-4">关于学生管理系统</h1>
+                <p class="lead mb-4">我们致力于为教育机构提供全面、高效、智能的学生信息管理解决方案</p>
+                <div class="d-flex justify-content-center">
+                    <a href="#contact" class="btn btn-primary btn-lg px-4 me-2">联系我们</a>
+                    <a href="#features" class="btn btn-outline-secondary btn-lg px-4">了解更多</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 系统介绍 -->
+        <section class="mb-5" id="intro">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src="{% static 'images/img.png' %}" class="img-fluid rounded shadow" alt="系统截图">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="fw-bold mb-4">现代化的学生管理解决方案</h2>
+                        <p class="lead mb-4">
+                            学生管理系统是一款专为各类教育机构设计的综合性管理软件，旨在简化学生信息管理、课程安排、成绩记录等日常工作流程，提升教育管理效率。</p>
+                        <p class="mb-4">
+                            我们的系统采用最新的技术架构，提供直观的用户界面和强大的功能模块，能够满足从小型培训机构到大型学校的不同需求。系统支持多角色访问控制，确保数据安全的同时，为管理者、教师和学生提供个性化的操作体验。</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="d-flex mb-3">
+                                    <div class="me-3 text-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">易于操作</h6>
+                                        <p class="text-muted small mb-0">直观的界面设计，降低学习成本</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex mb-3">
+                                    <div class="me-3 text-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">数据安全</h6>
+                                        <p class="text-muted small mb-0">多重加密保障信息安全</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex mb-3">
+                                    <div class="me-3 text-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">高度定制</h6>
+                                        <p class="text-muted small mb-0">根据机构需求进行个性化配置</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="d-flex mb-3">
+                                    <div class="me-3 text-primary">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"></path>
+                                            <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">实时分析</h6>
+                                        <p class="text-muted small mb-0">强大的数据统计和分析能力</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 核心功能 -->
+        <section class="py-5 bg-light" id="features">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">核心功能</h2>
+                    <p class="lead">全面满足教育管理的各项需求，提供一站式解决方案</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0d6efd"
+                                     class="bi bi-person-vcard" viewBox="0 0 16 16">
+                                    <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5ZM9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8Zm1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5Z"></path>
+                                    <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2ZM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12V4Z"></path>
+                                </svg>
+                            </div>
+                            <h4>学生信息管理</h4>
+                            <p>
+                                全面记录和管理学生的基本信息、学籍信息、联系方式等，支持信息批量导入导出，便于快速查询和统计分析。</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">✓ 学生档案电子化</li>
+                                <li class="mb-2">✓ 批量导入导出</li>
+                                <li class="mb-2">✓ 信息变更记录</li>
+                                <li>✓ 智能搜索查询</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0d6efd"
+                                     class="bi bi-book" viewBox="0 0 16 16">
+                                    <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"></path>
+                                </svg>
+                            </div>
+                            <h4>课程管理</h4>
+                            <p>
+                                灵活配置课程信息，包括课程类型、学分、授课教师等，实现课程的智能排课和选课管理，减轻教务工作负担。</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">✓ 课程信息管理</li>
+                                <li class="mb-2">✓ 教学大纲管理</li>
+                                <li class="mb-2">✓ 智能排课系统</li>
+                                <li>✓ 在线选课功能</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0d6efd"
+                                     class="bi bi-graph-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z"></path>
+                                </svg>
+                            </div>
+                            <h4>成绩管理与分析</h4>
+                            <p>
+                                全方位记录学生各科目成绩，支持多种成绩录入方式，提供丰富的统计分析功能，助力教育质量提升。</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">✓ 多维度成绩录入</li>
+                                <li class="mb-2">✓ 成绩统计分析</li>
+                                <li class="mb-2">✓ 学习趋势追踪</li>
+                                <li>✓ 个性化成绩报告</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0d6efd"
+                                     class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                    <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0z"></path>
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"></path>
+                                </svg>
+                            </div>
+                            <h4>考勤管理</h4>
+                            <p>自动化的考勤记录系统，支持多种签到方式，实时统计出勤率，便于及时发现并解决出勤问题。</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">✓ 多种考勤方式</li>
+                                <li class="mb-2">✓ 实时考勤统计</li>
+                                <li class="mb-2">✓ 异常考勤预警</li>
+                                <li>✓ 考勤报表导出</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0d6efd"
+                                     class="bi bi-chat-dots" viewBox="0 0 16 16">
+                                    <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
+                                    <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9.06 9.06 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.437 10.437 0 0 1-.524 2.318l-.003.011a10.722 10.722 0 0 1-.244.637c-.079.186.074.394.273.362a21.673 21.673 0 0 0 .693-.125zm.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6c0 3.193-3.004 6-7 6a8.06 8.06 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a10.97 10.97 0 0 0 .398-2z"></path>
+                                </svg>
+                            </div>
+                            <h4>沟通协作</h4>
+                            <p>内置即时通讯工具，促进教师、学生和家长之间的高效沟通，建立紧密的教育共同体。</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">✓ 即时消息通知</li>
+                                <li class="mb-2">✓ 班级群组交流</li>
+                                <li class="mb-2">✓ 家校互动平台</li>
+                                <li>✓ 在线会议功能</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#0d6efd"
+                                     class="bi bi-shield-lock" viewBox="0 0 16 16">
+                                    <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"></path>
+                                    <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z"></path>
+                                </svg>
+                            </div>
+                            <h4>安全与隐私保护</h4>
+                            <p>采用先进的数据加密和访问控制技术，确保学生和教师的个人信息安全，严格遵守相关法规要求。</p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">✓ 数据加密存储</li>
+                                <li class="mb-2">✓ 角色权限控制</li>
+                                <li class="mb-2">✓ 操作日志审计</li>
+                                <li>✓ 数据备份恢复</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 系统优势 -->
+        <section class="py-5" id="advantages">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">为什么选择我们</h2>
+                    <p class="lead">全方位满足现代教育信息化需求，助力教育机构实现数字化转型</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-primary rounded-circle p-3 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                         class="bi bi-lightning-charge" viewBox="0 0 16 16">
+                                        <path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold">高效便捷</h4>
+                                <p>
+                                    自动化处理教育管理流程，将繁琐的手工作业变为简单的电子操作，大幅提升工作效率，节省管理成本。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-primary rounded-circle p-3 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                         class="bi bi-fingerprint" viewBox="0 0 16 16">
+                                        <path d="M8.06 6.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5Z"></path>
+                                        <path d="M6.53 7.144A.5.5 0 0 1 7 7.5V8a.5.5 0 0 1-1 0v-.5a.5.5 0 0 1 .53-.356Z"></path>
+                                        <path d="M5 6.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5Z"></path>
+                                        <path d="M10 6.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 1 1-1 0V7a.5.5 0 0 1 .5-.5Zm2.5 2.5a.5.5 0 1 1-1 0 3 3 0 1 0-6 0 .5.5 0 0 1-1 0 4 4 0 1 1 8 0ZM7 5.5a.5.5 0 0 1 .5.5v1.5a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5ZM14 8A6 6 0 1 1 2 8a6 6 0 0 1 12 0ZM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold">安全可靠</h4>
+                                <p>采用业界领先的安全技术和标准，保障系统运行稳定和数据安全，符合教育行业数据保护要求。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-primary rounded-circle p-3 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                         class="bi bi-bar-chart-steps" viewBox="0 0 16 16">
+                                        <path d="M.5 0a.5.5 0 0 1 .5.5v15a.5.5 0 0 1-1 0V.5A.5.5 0 0 1 .5 0zM2 1.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-6a.5.5 0 0 1-.5-.5v-1zm2 4a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold">数据驱动</h4>
+                                <p>强大的数据分析能力，将教育数据转化为可视化的统计图表，为教育决策提供科学依据。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-primary rounded-circle p-3 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                         class="bi bi-layers" viewBox="0 0 16 16">
+                                        <path d="M8.235 1.559a.5.5 0 0 0-.47 0l-7.5 4a.5.5 0 0 0 0 .882L3.188 8 .765 9.559a.5.5 0 0 0 0 .882l7.5 4a.5.5 0 0 0 .47 0l7.5-4a.5.5 0 0 0 0-.882L12.813 8l2.922-1.559a.5.5 0 0 0 0-.882l-7.5-4zm3.515 7.008L14.438 10 8 13.433 1.562 10 4.25 8.567l3.515 1.874a.5.5 0 0 0 .47 0l3.515-1.874zM8 9.433 1.562 6 8 2.567 14.438 6 8 9.433z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold">模块化设计</h4>
+                                <p>系统采用模块化设计，客户可根据实际需求选择所需模块，同时支持二次开发和功能扩展。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-primary rounded-circle p-3 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                         class="bi bi-cloud" viewBox="0 0 16 16">
+                                        <path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold">云端部署</h4>
+                                <p>支持云端部署和多终端访问，让管理者和师生随时随地通过电脑、平板或手机访问系统。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="d-flex">
+                            <div class="flex-shrink-0 me-3">
+                                <div class="bg-primary rounded-circle p-3 text-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                         class="bi bi-headset" viewBox="0 0 16 16">
+                                        <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <h4 class="fw-bold">专业服务</h4>
+                                <p>
+                                    专业的技术支持团队提供7*24小时响应服务，确保系统稳定运行，解决客户使用过程中的各类问题。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 发展历程 -->
+        <section class="py-5 bg-light" id="history">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">发展历程</h2>
+                    <p class="lead">十年专注教育信息化，持续创新，不断进步</p>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content timeline-left">
+                            <span class="timeline-date">2015年</span>
+                            <h5 class="fw-bold">学生管理系统1.0发布</h5>
+                            <p>首个版本正式发布，实现基础的学生信息管理功能，获得多家小型教育机构的采用。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content timeline-right">
+                            <span class="timeline-date">2017年</span>
+                            <h5 class="fw-bold">课程管理模块上线</h5>
+                            <p>系统迎来重大升级，增加课程管理和排课功能，大幅提升教务管理效率。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content timeline-left">
+                            <span class="timeline-date">2019年</span>
+                            <h5 class="fw-bold">成绩分析模块上线</h5>
+                            <p>引入大数据分析技术，提供强大的成绩统计和分析功能，助力精准教学。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content timeline-right">
+                            <span class="timeline-date">2021年</span>
+                            <h5 class="fw-bold">移动端应用发布</h5>
+                            <p>推出iOS和Android移动应用，实现师生随时随地访问系统，提升使用便捷性。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content timeline-left">
+                            <span class="timeline-date">2023年</span>
+                            <h5 class="fw-bold">智能分析引擎上线</h5>
+                            <p>引入AI技术，提供智能学情分析和个性化教学建议，开启教育管理智能化新时代。</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content timeline-right">
+                            <span class="timeline-date">2025年</span>
+                            <h5 class="fw-bold">全新版本重磅发布</h5>
+                            <p>全新架构设计，优化用户体验，新增多项功能，全面提升教育管理信息化水平。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 团队介绍 -->
+        <section class="py-5" id="team">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">我们的团队</h2>
+                    <p class="lead">专业的技术团队，丰富的教育经验，为您提供最佳解决方案</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-member">
+                            <img src="/api/placeholder/150/150" alt="CEO头像">
+                            <h5 class="fw-bold mt-3 mb-1">张明</h5>
+                            <p class="text-muted mb-2">创始人 & CEO</p>
+                            <p class="small px-3 mb-3">
+                                前知名教育集团CTO，拥有20年教育信息化经验，对教育行业有深刻理解。</p>
+                            <div class="social-links">
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-linkedin" viewBox="0 0 16 16">
+                                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-twitter" viewBox="0 0 16 16">
+                                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-member">
+                            <img src="/api/placeholder/150/150" alt="CTO头像">
+                            <h5 class="fw-bold mt-3 mb-1">李华</h5>
+                            <p class="text-muted mb-2">技术总监 & CTO</p>
+                            <p class="small px-3 mb-3">拥有丰富的系统架构和开发经验，曾任多家互联网公司技术负责人。</p>
+                            <div class="social-links">
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-linkedin" viewBox="0 0 16 16">
+                                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-github" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-member">
+                            <img src="/api/placeholder/150/150" alt="产品总监头像">
+                            <h5 class="fw-bold mt-3 mb-1">王芳</h5>
+                            <p class="text-muted mb-2">产品总监</p>
+                            <p class="small px-3 mb-3">前高校教务处副主任，深入了解教育管理流程和痛点，擅长产品设计。</p>
+                            <div class="social-links">
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-linkedin" viewBox="0 0 16 16">
+                                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-twitter" viewBox="0 0 16 16">
+                                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="team-member">
+                            <img src="/api/placeholder/150/150" alt="客户经理头像">
+                            <h5 class="fw-bold mt-3 mb-1">赵强</h5>
+                            <p class="text-muted mb-2">客户成功经理</p>
+                            <p class="small px-3 mb-3">拥有10年教育软件实施和客户服务经验，深受客户信赖和好评。</p>
+                            <div class="social-links">
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-linkedin" viewBox="0 0 16 16">
+                                        <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"></path>
+                                    </svg>
+                                </a>
+                                <a href="#" class="social-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-twitter" viewBox="0 0 16 16">
+                                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我们 -->
+        <section class="py-5 bg-light" id="contact">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">联系我们</h2>
+                    <p class="lead">随时了解更多信息，或告诉我们您的需求</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="fw-bold mb-4">联系方式</h4>
+                                <div class="d-flex mb-4">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="bg-primary text-white rounded p-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                 fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+                                                <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"></path>
+                                                <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">公司地址</h6>
+                                        <p class="text-muted mb-0">北京市海淀区中关村大街1号</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-4">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="bg-primary text-white rounded p-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                 fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">电子邮箱</h6>
+                                        <p class="text-muted mb-0">info@studentmanagementsystem.com</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-4">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="bg-primary text-white rounded p-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                 fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                                                <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">联系电话</h6>
+                                        <p class="text-muted mb-0">400-123-4567</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0 me-3">
+                                        <div class="bg-primary text-white rounded p-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                 fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"></path>
+                                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">工作时间</h6>
+                                        <p class="text-muted mb-0">周一至周五: 9:00 - 18:00</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h4 class="fw-bold mb-4">发送消息</h4>
+                                <form>
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">姓名</label>
+                                            <input type="text" class="form-control" id="name"
+                                                   placeholder="请输入您的姓名" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">电子邮箱</label>
+                                            <input type="email" class="form-control" id="email"
+                                                   placeholder="请输入您的电子邮箱" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">联系电话</label>
+                                            <input type="tel" class="form-control" id="phone"
+                                                   placeholder="请输入您的联系电话">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="subject" class="form-label">主题</label>
+                                            <input type="text" class="form-control" id="subject"
+                                                   placeholder="请输入消息主题" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="message" class="form-label">消息内容</label>
+                                            <textarea class="form-control" id="message" rows="5"
+                                                      placeholder="请输入您的消息内容" required></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-primary">发送消息</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系我们 区域后添加以下内容 -->
+        
+        <!-- 技术规格 -->
+        <section class="py-5 bg-light" id="tech-specs">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">技术规格</h2>
+                    <p class="lead">基于现代技术栈的高性能系统架构</p>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <h4 class="card-title"><i class="bi bi-stack text-primary me-2"></i>后端技术</h4>
+                                <hr>
+                                <ul class="list-unstyled">
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">编程语言：</div>
+                                            <div>Python 3.10+</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">Web框架：</div>
+                                            <div>Django 5.2</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">数据库：</div>
+                                            <div>SQLite3 (开发环境), PostgreSQL/MySQL (生产环境)</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">缓存系统：</div>
+                                            <div>Redis</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">API架构：</div>
+                                            <div>RESTful API</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <h4 class="card-title"><i class="bi bi-laptop text-primary me-2"></i>前端技术</h4>
+                                <hr>
+                                <ul class="list-unstyled">
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">框架：</div>
+                                            <div>Bootstrap 5.3</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">JavaScript：</div>
+                                            <div>原生JS，可选择性集成Vue.js/React</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">图表库：</div>
+                                            <div>Chart.js</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">模板引擎：</div>
+                                            <div>Django Template</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">响应式设计：</div>
+                                            <div>支持各类终端设备</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row g-4 mt-2">
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <h4 class="card-title"><i class="bi bi-shield-lock text-primary me-2"></i>安全特性</h4>
+                                <hr>
+                                <ul class="list-unstyled">
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">数据加密：</div>
+                                            <div>采用AES-256加密敏感数据</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">认证系统：</div>
+                                            <div>支持多因素认证</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">角色权限：</div>
+                                            <div>细粒度的RBAC权限控制</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">安全合规：</div>
+                                            <div>符合教育行业数据保护标准</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <h4 class="card-title"><i class="bi bi-gear text-primary me-2"></i>部署与扩展</h4>
+                                <hr>
+                                <ul class="list-unstyled">
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">部署方式：</div>
+                                            <div>On-premise或云托管</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">容器化：</div>
+                                            <div>支持Docker容器部署</div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-3">
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">负载均衡：</div>
+                                            <div>支持水平扩展</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="d-flex">
+                                            <div class="fw-bold me-2">备份策略：</div>
+                                            <div>自动定时备份与灾难恢复</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 开发团队 -->
+        <section class="py-5" id="team">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">开发团队</h2>
+                    <p class="lead">由经验丰富的教育科技专家组成的专业团队</p>
+                </div>
+                
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card border-0 shadow-sm text-center h-100">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <img src="/static/images/default-profile.png" alt="团队成员" class="rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
+                                </div>
+                                <h5 class="card-title">张明</h5>
+                                <p class="text-muted">项目负责人</p>
+                                <p class="small">10年教育信息化项目经验，曾主导多个大型学校管理系统开发</p>
+                                <div class="social-icons">
+                                    <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
+                                    <a href="#" class="text-primary me-2"><i class="bi bi-github"></i></a>
+                                    <a href="#" class="text-primary"><i class="bi bi-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card border-0 shadow-sm text-center h-100">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <img src="/static/images/default-profile.png" alt="团队成员" class="rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
+                                </div>
+                                <h5 class="card-title">李华</h5>
+                                <p class="text-muted">后端开发工程师</p>
+                                <p class="small">Python专家，精通Django框架，拥有丰富的数据库设计经验</p>
+                                <div class="social-icons">
+                                    <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
+                                    <a href="#" class="text-primary me-2"><i class="bi bi-github"></i></a>
+                                    <a href="#" class="text-primary"><i class="bi bi-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card border-0 shadow-sm text-center h-100">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <img src="/static/images/default-profile.png" alt="团队成员" class="rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
+                                </div>
+                                <h5 class="card-title">王梅</h5>
+                                <p class="text-muted">前端设计师</p>
+                                <p class="small">UI/UX设计专家，注重用户体验和交互设计，创造直观友好的界面</p>
+                                <div class="social-icons">
+                                    <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
+                                    <a href="#" class="text-primary me-2"><i class="bi bi-github"></i></a>
+                                    <a href="#" class="text-primary"><i class="bi bi-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 col-lg-3">
+                        <div class="card border-0 shadow-sm text-center h-100">
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <img src="/static/images/default-profile.png" alt="团队成员" class="rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
+                                </div>
+                                <h5 class="card-title">刘强</h5>
+                                <p class="text-muted">教育顾问</p>
+                                <p class="small">前高校教务处主任，提供专业的教育管理流程指导和系统需求分析</p>
+                                <div class="social-icons">
+                                    <a href="#" class="text-primary me-2"><i class="bi bi-linkedin"></i></a>
+                                    <a href="#" class="text-primary me-2"><i class="bi bi-github"></i></a>
+                                    <a href="#" class="text-primary"><i class="bi bi-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 更新路线图 -->
+        <section class="py-5 bg-light" id="roadmap">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">系统更新路线图</h2>
+                    <p class="lead">持续迭代优化，不断满足教育信息化的新需求</p>
+                </div>
+                
+                <div class="position-relative roadmap-timeline mb-5">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="timeline-item shadow-sm">
+                                <div class="timeline-badge bg-success text-white">
+                                    <i class="bi bi-check-lg"></i>
+                                </div>
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h5>V1.0 核心功能版 <span class="badge bg-success">已发布</span></h5>
+                                        <p class="text-muted">2025年1月</p>
+                                        <ul>
+                                            <li>学生基本信息管理</li>
+                                            <li>课程管理功能</li>
+                                            <li>成绩录入与查询</li>
+                                            <li>用户权限管理</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="timeline-item shadow-sm">
+                                <div class="timeline-badge bg-primary text-white">
+                                    <i class="bi bi-gear"></i>
+                                </div>
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h5>V1.5 数据分析版 <span class="badge bg-primary">开发中</span></h5>
+                                        <p class="text-muted">2025年7月</p>
+                                        <ul>
+                                            <li>高级数据分析功能</li>
+                                            <li>可定制化的数据仪表盘</li>
+                                            <li>成绩趋势预测</li>
+                                            <li>学生画像分析</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="timeline-item shadow-sm">
+                                <div class="timeline-badge bg-secondary text-white">
+                                    <i class="bi bi-calendar"></i>
+                                </div>
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h5>V2.0 移动应用版 <span class="badge bg-secondary">计划中</span></h5>
+                                        <p class="text-muted">2025年12月</p>
+                                        <ul>
+                                            <li>移动应用支持 (iOS/Android)</li>
+                                            <li>推送通知系统</li>
+                                            <li>离线数据同步</li>
+                                            <li>移动端扫码考勤</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="timeline-item shadow-sm">
+                                <div class="timeline-badge bg-secondary text-white">
+                                    <i class="bi bi-calendar"></i>
+                                </div>
+                                <div class="card border-0">
+                                    <div class="card-body">
+                                        <h5>V3.0 智能教育版 <span class="badge bg-secondary">规划中</span></h5>
+                                        <p class="text-muted">2026年6月</p>
+                                        <ul>
+                                            <li>AI辅助教学功能</li>
+                                            <li>个性化学习路径推荐</li>
+                                            <li>智能题库与测评系统</li>
+                                            <li>教学质量智能评估</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 常见问题 -->
+        <section class="py-5" id="faq">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3">常见问题</h2>
+                    <p class="lead">解答您可能遇到的问题</p>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item border-0 mb-3 shadow-sm">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        系统支持多少用户同时在线访问？
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        我们的系统采用高效的服务器架构和优化的代码结构，标准配置下支持500-1000名用户同时在线访问。对于更大规模的机构，我们提供扩展方案，通过集群部署可以支持上万用户的并发访问，满足各类教育机构的需求。
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item border-0 mb-3 shadow-sm">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        如何保障系统中学生数据的安全？
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        系统采用多层次的数据安全保护措施：1) 数据传输采用SSL/TLS加密；2) 敏感信息使用AES-256算法加密存储；3) 严格的权限控制确保用户只能访问其权限范围内的数据；4) 定期进行安全审计和渗透测试；5) 完善的数据备份和恢复机制。此外，我们严格遵守相关数据保护法规，确保学生个人信息得到妥善保护。
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item border-0 mb-3 shadow-sm">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        系统是否支持与其他学校管理软件集成？
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        是的，我们的系统提供标准化的API接口，支持与第三方系统的数据交换和集成。常见的集成场景包括：1) 与财务系统集成处理学费支付；2) 与图书馆管理系统共享用户数据；3) 与校园一卡通系统对接；4) 导入导出各类教务数据。我们还提供定制化的集成服务，可以根据学校的具体需求开发专门的接口。
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item border-0 mb-3 shadow-sm">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        使用系统需要什么样的硬件配置？
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        对于端用户（教师、学生、管理员），只需要一台能够连接互联网并安装现代浏览器的设备即可使用系统，支持PC、平板和智能手机。对于服务器端，建议的最低配置为：4核CPU、8GB内存、100GB存储空间。对于500人以上的机构，我们建议8核CPU、16GB内存、SSD存储。我们也提供云托管方案，无需学校自行维护服务器。
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item border-0 mb-3 shadow-sm">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        提供哪些技术支持和培训服务？
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        我们提供全方位的技术支持和培训服务：1) 7×24小时在线技术支持；2) 详细的用户手册和视频教程；3) 现场或远程的管理员培训；4) 定期的系统使用培训班；5) 线上问答社区。对于VIP客户，我们还提供专属技术顾问，帮助解决系统使用中的各种问题，并提供个性化的系统优化建议。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js' %}"></script>
+{% endblock %}

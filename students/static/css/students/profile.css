@@ -1,0 +1,231 @@
+body {
+    background-color: #f5f7fb;
+}
+
+/* 侧边导航栏样式 */
+.profile-sidebar {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    height: 100%;
+}
+
+.profile-sidebar .nav-link {
+    padding: 0.75rem 1.25rem;
+    color: #495057;
+    position: relative;
+    transition: all 0.3s;
+    border-radius: 8px;
+    margin: 5px 10px;
+}
+
+.profile-sidebar .nav-link:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+.profile-sidebar .nav-link.active {
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+    font-weight: 500;
+}
+
+.profile-sidebar .nav-link i {
+    width: 24px;
+    text-align: center;
+    margin-right: 10px;
+}
+
+/* 个人信息头部样式 */
+.profile-header {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #edf2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #0d6efd;
+    margin: 0 auto 1rem;
+    border: 5px solid #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.profile-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.profile-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(135deg, #4e73df 0%, #3b5998 100%);
+    border-radius: 12px 12px 0 0;
+    z-index: 0;
+}
+
+.profile-content {
+    position: relative;
+    z-index: 1;
+    padding-top: 50px;
+}
+
+/* 卡片样式 */
+.profile-card {
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.profile-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+}
+
+.profile-card-header {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+/* 列表项样式 */
+.list-group-item-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.2s;
+}
+
+.list-group-item-profile:hover {
+    background-color: #f8f9fa;
+}
+
+.list-group-item-profile .label {
+    color: #6c757d;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.list-group-item-profile .value {
+    font-weight: 500;
+    color: #212529;
+}
+
+/* 按钮样式 */
+.btn-edit-profile {
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.btn-edit-profile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* 活动状态卡片 */
+.activity-item {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    transition: all 0.2s;
+}
+
+.activity-item:hover {
+    background-color: #f8f9fa;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(13, 110, 253, 0.1);
+    color: #0d6efd;
+}
+
+/* 密码修改进度指示器 */
+.password-strength-meter {
+    height: 6px;
+    background-color: #e9ecef;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.password-criteria .check-icon {
+    color: #6c757d;
+}
+
+.password-criteria .active .check-icon {
+    color: #198754;
+}
+
+.page-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.3);
+    z-index: 1040;
+}
+
+/* 统计卡片 */
+.stat-card {
+    padding: 1.25rem;
+    border-radius: 12px;
+    height: 100%;
+    transition: all 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.stat-title {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}

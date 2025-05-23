@@ -1,0 +1,77 @@
+{% extends 'students/base.html' %}
+{% load static %}
+
+{% block title %}删除确认 - {{ student.name }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/by_base_page/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/students/student_confirm_delete.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>删除确认</h2>
+            <a href="{% url 'student_detail' student.id %}" class="btn btn-outline-secondary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-left me-1" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>
+                </svg>
+                返回详情
+            </a>
+        </div>
+
+        <div class="card delete-container">
+            <div class="card-body">
+                <div class="alert alert-danger">
+                    <h5 class="alert-heading">警告</h5>
+                    <p>您正在尝试删除学生信息。此操作<strong>不可逆</strong>，删除后数据将无法恢复。</p>
+                </div>
+
+                <div class="text-center mb-4">
+                    <h4>确定要删除以下学生信息吗？</h4>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-center mb-4">
+                    {% if student.profile_image %}
+                        <img src="{{ student.profile_image.url }}" alt="{{ student.name }}" class="profile-image me-3">
+                    {% else %}
+                        <img src="{% static 'images/default-profile.png' %}" alt="{{ student.name }}"
+                             class="profile-image me-3">
+                    {% endif %}
+                    <div class="student-info">
+                        <div><strong>{{ student.name }}</strong></div>
+                        <div class="text-muted">{{ student.student_id }}</div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <div><strong>班级：</strong> {{ student.class_obj.name }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div><strong>专业：</strong> {{ student.major.name }}</div>
+                    </div>
+                </div>
+
+                <form method="post" class="mt-4">
+                    {% csrf_token %}
+                    <div class="d-flex justify-content-center">
+                        <a href="{% url 'student_detail' student.id %}" class="btn btn-outline-secondary me-2">取消</a>
+                        <button type="submit" class="btn btn-danger">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-trash me-1" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                <path fill-rule="evenodd"
+                                      d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>
+                            确认删除
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %} 
