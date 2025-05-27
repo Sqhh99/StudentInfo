@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('students.urls')),
     path('', include('users.urls')),
+    path('student/', include('student_portal.urls')),  # 学生门户URL
     
     # 添加验证码URL
     path('captcha/', include('captcha.urls')),

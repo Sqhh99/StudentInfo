@@ -1,0 +1,235 @@
+{% extends 'student_portal/base.html' %}
+{% load static %}
+
+{% block title %}仪表板{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1><i class="bi bi-speedometer2 me-2"></i>学习仪表板</h1>
+    <p class="text-muted">欢迎回来，{{ student.name }}！</p>
+</div>
+
+<!-- 统计卡片 -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="stats-card primary">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>{{ avg_score|floatformat:1 }}</h3>
+                    <p class="mb-0">平均成绩</p>
+                </div>
+                <i class="bi bi-graph-up fs-1 opacity-75"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card success">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>{{ total_courses }}</h3>
+                    <p class="mb-0">已修课程</p>
+                </div>
+                <i class="bi bi-book fs-1 opacity-75"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card info">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>{{ enrolled_courses_count }}</h3>
+                    <p class="mb-0">本学期选课</p>
+                </div>
+                <i class="bi bi-calendar-check fs-1 opacity-75"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stats-card warning">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h3>{{ notifications.count }}</h3>
+                    <p class="mb-0">未读通知</p>
+                </div>
+                <i class="bi bi-bell fs-1 opacity-75"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- 最近成绩 -->
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-clipboard-data me-2"></i>最近成绩</h5>
+            </div>
+            <div class="card-body">
+                {% if recent_scores %}
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>课程名称</th>
+                                    <th>成绩</th>
+                                    <th>等级</th>
+                                    <th>学期</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for score in recent_scores %}
+                                <tr>
+                                    <td>{{ score.course.name }}</td>
+                                    <td>{{ score.score }}</td>
+                                    <td>
+                                        <span class="grade-badge grade-{{ score.grade }}">{{ score.grade }}</span>
+                                    </td>
+                                    <td>{{ score.semester }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center">
+                        <a href="{% url 'student_portal:my_grades' %}" class="btn btn-outline-primary">
+                            查看全部成绩 <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="text-center py-4">
+                        <i class="bi bi-clipboard-x text-muted" style="font-size: 3rem;"></i>
+                        <p class="text-muted mt-2">暂无成绩记录</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 成绩分布图表和通知 -->
+    <div class="col-md-4">
+        <!-- 成绩分布 -->
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-pie-chart me-2"></i>成绩分布</h5>
+            </div>
+            <div class="card-body">
+                <div id="gradeChart" style="height: 250px;"></div>
+            </div>
+        </div>
+
+        <!-- 最新通知 -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-bell me-2"></i>最新通知</h5>
+            </div>
+            <div class="card-body">
+                {% if notifications %}
+                    {% for notification in notifications|slice:":3" %}
+                    <div class="notification-item {% if not notification.is_read %}unread{% endif %}">
+                        <h6>{{ notification.title }}</h6>
+                        <p class="small text-muted mb-1">{{ notification.content|truncatechars:50 }}</p>
+                        <small class="text-muted">{{ notification.created_at|date:"m-d H:i" }}</small>
+                    </div>
+                    {% endfor %}
+                    <div class="text-center mt-3">
+                        <a href="{% url 'student_portal:notifications' %}" class="btn btn-outline-primary btn-sm">
+                            查看全部通知 <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="text-center py-3">
+                        <i class="bi bi-bell-slash text-muted" style="font-size: 2rem;"></i>
+                        <p class="text-muted mt-2 mb-0">暂无通知</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 快速导航 -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-lightning me-2"></i>快速导航</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'student_portal:my_grades' %}" class="btn btn-outline-primary w-100 h-100 d-flex flex-column justify-content-center">
+                            <i class="bi bi-clipboard-data fs-2 mb-2"></i>
+                            <span>查看成绩</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'student_portal:course_selection' %}" class="btn btn-outline-success w-100 h-100 d-flex flex-column justify-content-center">
+                            <i class="bi bi-book fs-2 mb-2"></i>
+                            <span>选课系统</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'student_portal:my_schedule' %}" class="btn btn-outline-info w-100 h-100 d-flex flex-column justify-content-center">
+                            <i class="bi bi-calendar3 fs-2 mb-2"></i>
+                            <span>我的课表</span>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <a href="{% url 'student_portal:profile' %}" class="btn btn-outline-warning w-100 h-100 d-flex flex-column justify-content-center">
+                            <i class="bi bi-person fs-2 mb-2"></i>
+                            <span>个人信息</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 成绩分布饼图
+    const gradeChart = echarts.init(document.getElementById('gradeChart'));
+    const gradeOption = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['A等级', 'B等级', 'C等级', 'D等级', 'F等级']
+        },
+        series: [
+            {
+                name: '成绩分布',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    {value: {{ grade_distribution.A }}, name: 'A等级', itemStyle: {color: '#28a745'}},
+                    {value: {{ grade_distribution.B }}, name: 'B等级', itemStyle: {color: '#17a2b8'}},
+                    {value: {{ grade_distribution.C }}, name: 'C等级', itemStyle: {color: '#ffc107'}},
+                    {value: {{ grade_distribution.D }}, name: 'D等级', itemStyle: {color: '#fd7e14'}},
+                    {value: {{ grade_distribution.F }}, name: 'F等级', itemStyle: {color: '#dc3545'}}
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+    gradeChart.setOption(gradeOption);
+    
+    // 响应式图表
+    window.addEventListener('resize', function() {
+        gradeChart.resize();
+    });
+});
+</script>
+{% endblock %}

@@ -16,3 +16,8 @@ INFO 2025-05-16 17:16:59,450 娉ㄥ唽鎴愬姛 - 鐢ㄦ埛: SQHH99, IP: 111.60.88.232 11
 ERROR 2025-05-20 15:03:20,607 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
 ERROR 2025-05-20 15:47:58,886 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
 ERROR 2025-05-20 15:53:06,861 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
+ERROR 2025-05-27 17:57:55,790 Redis连接检查失败: Authentication required. 127.0.0.1 System
+INFO 2025-05-27 19:01:40,187 登录尝试 - 用户: XIAOSHUANG, IP: 127.0.0.1, 设备: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+INFO 2025-05-27 19:01:41,416 登录成功 - 用户: XIAOSHUANG, IP: 127.0.0.1 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+INFO 2025-05-27 19:26:10,519 登录尝试 - 用户: XIAOSHUANG, IP: 127.0.0.1, 设备: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36
+INFO 2025-05-27 19:26:11,620 登录成功 - 用户: XIAOSHUANG, IP: 127.0.0.1 127.0.0.1 Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36

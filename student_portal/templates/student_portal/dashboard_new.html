@@ -1,0 +1,476 @@
+{% extends 'student_portal/base.html' %}
+{% load static %}
+
+{% block title %}仪表板{% endblock %}
+
+{% block extra_css %}
+<style>
+    .dashboard-welcome {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .stats-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        border: none;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+    
+    .stats-card.primary { border-left: 5px solid #007bff; }
+    .stats-card.success { border-left: 5px solid #28a745; }
+    .stats-card.info { border-left: 5px solid #17a2b8; }
+    .stats-card.warning { border-left: 5px solid #ffc107; }
+    
+    .stats-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+    
+    .stats-label {
+        color: #6c757d;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    
+    .stats-trend {
+        margin-top: 10px;
+        font-size: 0.8rem;
+    }
+    
+    .chart-container {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        margin-bottom: 20px;
+    }
+    
+    .notification-preview {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+    
+    .notification-item {
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        border-left: 4px solid #dee2e6;
+        transition: all 0.3s ease;
+    }
+    
+    .notification-item.unread {
+        background: #e3f2fd;
+        border-left-color: #2196f3;
+    }
+    
+    .notification-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .quick-nav-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .quick-nav-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    .quick-nav-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        opacity: 0.8;
+    }
+    
+    .grade-badge {
+        padding: 4px 8px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    .grade-A { background: #d4edda; color: #155724; }
+    .grade-B { background: #d1ecf1; color: #0c5460; }
+    .grade-C { background: #fff3cd; color: #856404; }
+    .grade-D { background: #f8d7da; color: #721c24; }
+    .grade-F { background: #f5c6cb; color: #721c24; }
+    
+    .progress-ring {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 20px;
+    }
+    
+    .section-title {
+        color: #343a40;
+        font-weight: 600;
+        margin-bottom: 20px;
+        position: relative;
+        padding-left: 15px;
+    }
+    
+    .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 20px;
+        background: linear-gradient(45deg, #007bff, #28a745);
+        border-radius: 2px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- 欢迎横幅 -->
+<div class="dashboard-welcome">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="mb-2">
+                <i class="fas fa-tachometer-alt me-3"></i>
+                欢迎回来，{{ student.name }}！
+            </h1>
+            <p class="mb-0 opacity-90">
+                学号：{{ student.student_id }} | 专业：{{ student.major.name }} | 班级：{{ student.class_obj.name }}
+            </p>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="h3 mb-1">{{ "now"|date:"Y年m月d日" }}</div>
+            <div class="opacity-90">{{ "now"|date:"l" }}</div>
+        </div>
+    </div>
+</div>
+
+<!-- 统计卡片 -->
+<div class="row mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stats-card primary">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="stats-number text-primary">{{ total_courses }}</div>
+                    <div class="stats-label">总修课程</div>
+                    <div class="stats-trend">
+                        <i class="fas fa-arrow-up text-success me-1"></i>
+                        <span class="text-success">较上学期增长</span>
+                    </div>
+                </div>
+                <div class="text-primary opacity-50">
+                    <i class="fas fa-graduation-cap" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stats-card success">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="stats-number text-success">{{ avg_score|floatformat:1 }}</div>
+                    <div class="stats-label">平均成绩</div>
+                    <div class="stats-trend">
+                        <i class="fas fa-chart-line text-success me-1"></i>
+                        <span class="text-success">成绩优良</span>
+                    </div>
+                </div>
+                <div class="text-success opacity-50">
+                    <i class="fas fa-chart-line" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stats-card info">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="stats-number text-info">{{ enrolled_courses_count }}</div>
+                    <div class="stats-label">本学期选课</div>
+                    <div class="stats-trend">
+                        <i class="fas fa-check-circle text-success me-1"></i>
+                        <span class="text-success">选课完成</span>
+                    </div>
+                </div>
+                <div class="text-info opacity-50">
+                    <i class="fas fa-book-open" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="stats-card warning">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="stats-number text-warning">{{ unread_notifications|default:0 }}</div>
+                    <div class="stats-label">未读通知</div>
+                    <div class="stats-trend">
+                        {% if unread_notifications > 0 %}
+                        <i class="fas fa-exclamation-circle text-warning me-1"></i>
+                        <span class="text-warning">需要查看</span>
+                        {% else %}
+                        <i class="fas fa-check text-success me-1"></i>
+                        <span class="text-success">全部已读</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="text-warning opacity-50">
+                    <i class="fas fa-bell" style="font-size: 3rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- 左侧主要内容 -->
+    <div class="col-lg-8">
+        <!-- 最近成绩 -->
+        <div class="chart-container">
+            <h5 class="section-title">
+                <i class="fas fa-chart-bar me-2"></i>最近成绩
+            </h5>
+            {% if recent_scores %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-light">
+                            <tr>
+                                <th><i class="fas fa-book me-1"></i>课程名称</th>
+                                <th><i class="fas fa-star me-1"></i>成绩</th>
+                                <th><i class="fas fa-medal me-1"></i>等级</th>
+                                <th><i class="fas fa-calendar me-1"></i>学期</th>
+                                <th><i class="fas fa-user me-1"></i>教师</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for score in recent_scores %}
+                            <tr>
+                                <td>
+                                    <strong>{{ score.course.name }}</strong>
+                                    <small class="text-muted d-block">{{ score.course.code }}</small>
+                                </td>
+                                <td>
+                                    <span class="h6 mb-0">{{ score.score }}</span>
+                                </td>
+                                <td>
+                                    <span class="grade-badge grade-{{ score.grade }}">{{ score.grade }}</span>
+                                </td>
+                                <td>{{ score.semester }}</td>
+                                <td>{{ score.course.teacher }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{% url 'student_portal:my_grades' %}" class="btn btn-primary">
+                        <i class="fas fa-eye me-2"></i>查看全部成绩
+                    </a>
+                </div>
+            {% else %}
+                <div class="text-center py-5">
+                    <i class="fas fa-clipboard-list text-muted" style="font-size: 4rem;"></i>
+                    <h5 class="text-muted mt-3">暂无成绩记录</h5>
+                    <p class="text-muted">成绩发布后将在这里显示</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- 快速导航 -->
+        <div class="chart-container">
+            <h5 class="section-title">
+                <i class="fas fa-rocket me-2"></i>快速导航
+            </h5>
+            <div class="row">
+                <div class="col-md-3 col-6 mb-3">
+                    <a href="{% url 'student_portal:my_grades' %}" class="quick-nav-card">
+                        <div class="quick-nav-icon text-primary">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="h6 mb-0">查看成绩</div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <a href="{% url 'student_portal:course_selection' %}" class="quick-nav-card">
+                        <div class="quick-nav-icon text-success">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="h6 mb-0">选课系统</div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <a href="{% url 'student_portal:my_schedule' %}" class="quick-nav-card">
+                        <div class="quick-nav-icon text-info">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="h6 mb-0">我的课表</div>
+                    </a>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <a href="{% url 'student_portal:profile' %}" class="quick-nav-card">
+                        <div class="quick-nav-icon text-warning">
+                            <i class="fas fa-user-edit"></i>
+                        </div>
+                        <div class="h6 mb-0">个人信息</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 右侧边栏 -->
+    <div class="col-lg-4">
+        <!-- 成绩分布图表 -->
+        <div class="chart-container">
+            <h5 class="section-title">
+                <i class="fas fa-pie-chart me-2"></i>成绩分布
+            </h5>
+            <div id="gradeChart" style="height: 300px;"></div>
+        </div>
+
+        <!-- 最新通知 -->
+        <div class="notification-preview">
+            <h5 class="section-title">
+                <i class="fas fa-bell me-2"></i>最新通知
+            </h5>
+            {% if notifications %}
+                {% for notification in notifications|slice:":4" %}
+                <div class="notification-item {% if not notification.is_read %}unread{% endif %}">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1">{{ notification.title|truncatechars:30 }}</h6>
+                            <p class="text-muted small mb-1">{{ notification.content|truncatechars:60 }}</p>
+                            <small class="text-muted">
+                                <i class="fas fa-clock me-1"></i>{{ notification.created_at|date:"m-d H:i" }}
+                            </small>
+                        </div>
+                        {% if not notification.is_read %}
+                        <span class="badge bg-primary">新</span>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="text-center mt-3">
+                    <a href="{% url 'student_portal:notifications' %}" class="btn btn-outline-primary">
+                        <i class="fas fa-eye me-2"></i>查看全部通知
+                    </a>
+                </div>
+            {% else %}
+                <div class="text-center py-4">
+                    <i class="fas fa-bell-slash text-muted" style="font-size: 3rem;"></i>
+                    <h6 class="text-muted mt-2">暂无通知</h6>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 成绩分布饼图
+    const gradeChart = echarts.init(document.getElementById('gradeChart'));
+    const gradeOption = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c}门课程 ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            top: 'center',
+            textStyle: {
+                fontSize: 12
+            }
+        },
+        series: [
+            {
+                name: '成绩分布',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['65%', '50%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '16',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: {{ grade_distribution.A }}, name: 'A等级', itemStyle: {color: '#28a745'}},
+                    {value: {{ grade_distribution.B }}, name: 'B等级', itemStyle: {color: '#17a2b8'}},
+                    {value: {{ grade_distribution.C }}, name: 'C等级', itemStyle: {color: '#ffc107'}},
+                    {value: {{ grade_distribution.D }}, name: 'D等级', itemStyle: {color: '#fd7e14'}},
+                    {value: {{ grade_distribution.F }}, name: 'F等级', itemStyle: {color: '#dc3545'}}
+                ]
+            }
+        ]
+    };
+    gradeChart.setOption(gradeOption);
+    
+    // 响应式图表
+    window.addEventListener('resize', function() {
+        gradeChart.resize();
+    });
+    
+    // 添加加载动画
+    setTimeout(function() {
+        document.querySelectorAll('.stats-card, .chart-container, .notification-preview').forEach(function(el, index) {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            
+            setTimeout(function() {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
+    }, 100);
+});
+</script>
+{% endblock %}

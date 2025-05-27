@@ -1,0 +1,261 @@
+{% extends 'student_portal/base.html' %}
+{% load static %}
+
+{% block title %}选课系统{% endblock %}
+
+{% block extra_css %}
+<style>
+    .course-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        margin-bottom: 20px;
+    }
+    .course-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transform: translateY(-2px);
+    }
+    .course-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 8px 8px 0 0;
+    }
+    .course-info {
+        padding: 20px;
+    }
+    .enrolled-badge {
+        background-color: #28a745;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.8em;
+    }
+    .full-badge {
+        background-color: #dc3545;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 0.8em;
+    }
+    .capacity-bar {
+        height: 8px;
+        background-color: #e9ecef;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 10px 0;
+    }
+    .capacity-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #28a745, #ffc107, #dc3545);
+        transition: width 0.3s ease;
+    }
+    .filter-section {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- 页面标题 -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-graduation-cap"></i> 选课系统</h2>
+        <div class="d-flex gap-2">
+            <span class="badge badge-primary">已选课程: {{ enrolled_courses.count }}</span>
+            <span class="badge badge-info">可选课程: {{ available_courses.count }}</span>
+        </div>
+    </div>
+
+    <!-- 筛选区域 -->
+    <div class="filter-section">
+        <form method="get" class="row">
+            <div class="col-md-3">
+                <label class="form-label">课程名称</label>
+                <input type="text" class="form-control" name="search" value="{{ request.GET.search }}" 
+                       placeholder="搜索课程名称...">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">学分</label>
+                <select name="credit" class="form-control">
+                    <option value="">全部</option>
+                    {% for credit in credits %}
+                        <option value="{{ credit }}" {% if request.GET.credit == credit|stringformat:"s" %}selected{% endif %}>
+                            {{ credit }}学分
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label">课程状态</label>
+                <select name="status" class="form-control">
+                    <option value="">全部</option>
+                    <option value="available" {% if request.GET.status == "available" %}selected{% endif %}>可选课程</option>
+                    <option value="enrolled" {% if request.GET.status == "enrolled" %}selected{% endif %}>已选课程</option>
+                    <option value="full" {% if request.GET.status == "full" %}selected{% endif %}>已满课程</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">排序方式</label>
+                <select name="sort" class="form-control">
+                    <option value="name" {% if request.GET.sort == "name" %}selected{% endif %}>课程名称</option>
+                    <option value="credit" {% if request.GET.sort == "credit" %}selected{% endif %}>学分</option>
+                    <option value="capacity" {% if request.GET.sort == "capacity" %}selected{% endif %}>容量</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="fas fa-search"></i> 筛选
+                </button>
+                <a href="{% url 'student_portal:course_selection' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-reset"></i> 重置
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <!-- 消息提示 -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- 课程列表 -->
+    <div class="row">
+        {% for course in courses %}
+            <div class="col-md-6 col-lg-4">
+                <div class="course-card">
+                    <div class="course-header">
+                        <h5 class="mb-1">{{ course.name }}</h5>
+                        <small class="opacity-75">课程代码: {{ course.id }}</small>
+                    </div>
+                    <div class="course-info">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <strong>学分:</strong> {{ course.credit }}
+                            </div>
+                            <div class="col-6">
+                                <strong>学时:</strong> {{ course.period }}
+                            </div>
+                        </div>
+                        
+                        <!-- 容量信息 -->
+                        <div class="mb-3">
+                            <div class="d-flex justify-content-between">
+                                <span><strong>容量:</strong></span>
+                                <span>{{ course.current_enrollment }}/{{ course.max_capacity }}</span>
+                            </div>
+                            <div class="capacity-bar">
+                                <div class="capacity-fill" style="width: {{ course.capacity_percentage }}%"></div>
+                            </div>
+                        </div>
+
+                        <!-- 状态和操作 -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            {% if course.id in enrolled_course_ids %}
+                                <span class="enrolled-badge">已选课程</span>
+                                <form method="post" action="{% url 'student_portal:drop_course' course.id %}" 
+                                      onsubmit="return confirm('确定要退选这门课程吗？');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                                        <i class="fas fa-times"></i> 退选
+                                    </button>
+                                </form>
+                            {% elif course.current_enrollment >= course.max_capacity %}
+                                <span class="full-badge">课程已满</span>
+                                <button class="btn btn-secondary btn-sm" disabled>
+                                    <i class="fas fa-ban"></i> 无法选课
+                                </button>
+                            {% else %}
+                                <span class="text-success"><i class="fas fa-check-circle"></i> 可选</span>
+                                <form method="post" action="{% url 'student_portal:enroll_course' course.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-plus"></i> 选课
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+
+                        <!-- 课程描述 -->
+                        {% if course.description %}
+                            <div class="mt-3">
+                                <small class="text-muted">{{ course.description|truncatewords:15 }}</small>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h4 class="text-muted">没有找到课程</h4>
+                    <p class="text-muted">请尝试调整筛选条件</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- 分页 -->
+    {% if is_paginated %}
+        <nav aria-label="课程分页">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}{% if request.GET.credit %}credit={{ request.GET.credit }}&{% endif %}{% if request.GET.status %}status={{ request.GET.status }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ page_obj.previous_page_number }}">
+                            上一页
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}{% if request.GET.credit %}credit={{ request.GET.credit }}&{% endif %}{% if request.GET.status %}status={{ request.GET.status }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ num }}">
+                                {{ num }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if request.GET.search %}search={{ request.GET.search }}&{% endif %}{% if request.GET.credit %}credit={{ request.GET.credit }}&{% endif %}{% if request.GET.status %}status={{ request.GET.status }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ page_obj.next_page_number }}">
+                            下一页
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // 自动隐藏消息提示
+    setTimeout(function() {
+        $('.alert').fadeOut('slow');
+    }, 5000);
+    
+    // 容量条动画
+    $('.capacity-fill').each(function() {
+        var width = $(this).css('width');
+        $(this).css('width', '0').animate({width: width}, 1000);
+    });
+});
+</script>
+{% endblock %}

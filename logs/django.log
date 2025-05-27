@@ -1612,3 +1612,832 @@ INFO 2025-05-20 15:56:29,747 basehttp 20220 6564 "GET /static/js/echarts.min.js 
 INFO 2025-05-20 15:56:34,052 basehttp 20220 6564 "GET /students/ HTTP/1.1" 302 0
 INFO 2025-05-20 15:56:34,086 basehttp 20220 6564 "GET /unauthorized/ HTTP/1.1" 200 2115
 INFO 2025-05-20 15:56:35,892 basehttp 20220 6564 "GET / HTTP/1.1" 200 38019
+INFO 2025-05-27 17:57:55,317 autoreload 25568 10128 Watching for file changes with StatReloader
+INFO 2025-05-27 18:00:25,824 autoreload 17104 3864 Watching for file changes with StatReloader
+INFO 2025-05-27 18:00:28,360 basehttp 17104 12392 "GET / HTTP/1.1" 200 38019
+INFO 2025-05-27 18:00:28,693 basehttp 17104 12392 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 18:00:28,701 basehttp 17104 12392 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 18:00:32,625 basehttp 17104 12392 "GET /students/ HTTP/1.1" 302 0
+INFO 2025-05-27 18:00:32,633 basehttp 17104 12392 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 18:00:32,673 basehttp 17104 12392 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 18:00:32,680 basehttp 17104 12392 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 18:00:34,843 basehttp 17104 12392 "GET / HTTP/1.1" 200 38019
+INFO 2025-05-27 18:00:34,966 basehttp 17104 12392 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 18:00:34,972 basehttp 17104 12392 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:00:46,871 autoreload 8992 3624 Watching for file changes with StatReloader
+INFO 2025-05-27 19:00:54,301 basehttp 8992 13400 "GET / HTTP/1.1" 200 38019
+INFO 2025-05-27 19:00:55,060 basehttp 8992 15344 "GET /static/css/students/by_base_page/index.css HTTP/1.1" 200 762
+INFO 2025-05-27 19:00:55,085 basehttp 8992 11692 "GET /static/js/echarts.min.js HTTP/1.1" 200 1034102
+INFO 2025-05-27 19:00:55,111 basehttp 8992 13400 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.css HTTP/1.1" 200 267476
+INFO 2025-05-27 19:00:55,122 basehttp 8992 12528 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js HTTP/1.1" 200 80599
+INFO 2025-05-27 19:00:55,130 basehttp 8992 12368 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/bootstrap-icons.css HTTP/1.1" 200 98255
+INFO 2025-05-27 19:00:55,300 basehttp 8992 12368 "GET /static/plugs/bootstrap-icons-1.11.3/package/font/fonts/bootstrap-icons.woff2?dd67030699838ea613ee6dbda90effa6 HTTP/1.1" 200 130396
+INFO 2025-05-27 19:00:55,490 basehttp 8992 12368 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:00:55,500 basehttp 8992 12368 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:01:16,183 basehttp 8992 12368 "GET /lohin HTTP/1.1" 302 0
+INFO 2025-05-27 19:01:16,187 basehttp 8992 12368 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:01:16,223 basehttp 8992 12368 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:01:16,232 basehttp 8992 12368 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:01:23,183 basehttp 8992 12368 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-27 19:01:23,221 basehttp 8992 12368 "GET /static/css/users/login.css HTTP/1.1" 200 4330
+INFO 2025-05-27 19:01:23,329 basehttp 8992 12528 "GET /captcha/image/256c5877b58c9c9c91f5b2e0fa2c8b2367452886/ HTTP/1.1" 200 8147
+INFO 2025-05-27 19:01:23,340 basehttp 8992 12528 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:01:23,344 basehttp 8992 12528 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:01:41,474 basehttp 8992 12528 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:01:41,663 basehttp 8992 12528 "GET / HTTP/1.1" 200 41081
+WARNING 2025-05-27 19:01:41,913 basehttp 8992 12528 "GET /favicon.ico HTTP/1.1" 404 11702
+INFO 2025-05-27 19:01:48,215 basehttp 8992 12528 "GET /login/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:01:48,415 basehttp 8992 12528 "GET / HTTP/1.1" 200 41081
+WARNING 2025-05-27 19:02:06,834 basehttp 8992 12528 "GET /dashboard HTTP/1.1" 404 11696
+INFO 2025-05-27 19:02:27,416 basehttp 8992 12528 "GET /student HTTP/1.1" 301 0
+ERROR 2025-05-27 19:02:27,617 log 8992 12368 Internal Server Error: /student/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 64, in student_login
+    return render(request, 'student_portal/login.html', {'form': form})
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 976, in do_if
+    nodelist = parser.parse(("endif",))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 228, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' appears more than once
+ERROR 2025-05-27 19:02:27,635 basehttp 8992 12368 "GET /student/ HTTP/1.1" 500 220038
+INFO 2025-05-27 19:02:51,597 basehttp 8992 24252 "GET /?id=bd7d8373-c49f-4192-a709-1bf0c505b539&vscodeBrowserReqId=1748343771500 HTTP/1.1" 200 38019
+WARNING 2025-05-27 19:03:29,670 basehttp 8992 12368 "GET /student_portal/ HTTP/1.1" 404 11714
+INFO 2025-05-27 19:04:17,529 autoreload 20604 3056 Watching for file changes with StatReloader
+ERROR 2025-05-27 19:04:22,032 log 20604 17608 Internal Server Error: /student/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 64, in student_login
+    return render(request, 'student_portal/login.html', {'form': form})
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 976, in do_if
+    nodelist = parser.parse(("endif",))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 228, in do_block
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'block' tag with name 'content' appears more than once
+ERROR 2025-05-27 19:04:22,041 basehttp 20604 17608 "GET /student/ HTTP/1.1" 500 220181
+INFO 2025-05-27 19:07:10,504 autoreload 9024 22772 Watching for file changes with StatReloader
+INFO 2025-05-27 19:07:19,336 basehttp 20604 17608 "GET /student/ HTTP/1.1" 200 15705
+INFO 2025-05-27 19:07:19,571 basehttp 20604 17608 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css HTTP/1.1" 200 220780
+INFO 2025-05-27 19:07:25,718 basehttp 20604 17608 "GET /student/grades/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:07:25,848 basehttp 20604 17608 "GET /student/login/ HTTP/1.1" 200 15690
+INFO 2025-05-27 19:07:27,482 basehttp 20604 17608 "GET /student/courses/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:07:27,612 basehttp 20604 17608 "GET /student/login/ HTTP/1.1" 200 15690
+INFO 2025-05-27 19:07:28,698 basehttp 20604 17608 "GET /student/schedule/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:07:28,833 basehttp 20604 17608 "GET /student/login/ HTTP/1.1" 200 15690
+WARNING 2025-05-27 19:07:43,927 basehttp 20604 17608 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 11813
+INFO 2025-05-27 19:07:43,979 basehttp 20604 17608 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js.map HTTP/1.1" 200 333974
+INFO 2025-05-27 19:07:44,072 basehttp 20604 17608 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css.map HTTP/1.1" 200 568408
+INFO 2025-05-27 19:07:54,934 basehttp 20604 17608 "GET /student/login/ HTTP/1.1" 200 15413
+INFO 2025-05-27 19:08:03,274 basehttp 20604 17608 "GET /student/ HTTP/1.1" 200 15413
+INFO 2025-05-27 19:09:46,686 autoreload 10824 20756 Watching for file changes with StatReloader
+ERROR 2025-05-27 19:09:51,206 log 10824 14876 Internal Server Error: /student/login/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 68, in student_login
+    return render(request, 'student_portal/login.html', {'form': form})
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 134, in render
+    compiled_parent = self.get_parent(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 131, in get_parent
+    return self.find_template(parent, context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 109, in find_template
+    template, origin = context.template.engine.find_template(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 523, in parse
+    self.unclosed_block_tag(parse_until)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 590, in unclosed_block_tag
+    raise self.error(token, msg)
+django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 333: 'if'. Looking for one of: elif, else, endif.
+ERROR 2025-05-27 19:09:51,221 basehttp 10824 14876 "GET /student/login/ HTTP/1.1" 500 210496
+INFO 2025-05-27 19:09:51,447 basehttp 10824 14876 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:09:51,457 basehttp 10824 14876 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:11:00,883 autoreload 13820 24248 Watching for file changes with StatReloader
+INFO 2025-05-27 19:11:09,047 basehttp 13820 13400 "GET /student/login/ HTTP/1.1" 200 12297
+INFO 2025-05-27 19:11:09,321 basehttp 13820 13400 "GET /static/plugs/bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css HTTP/1.1" 200 220780
+INFO 2025-05-27 19:11:09,440 basehttp 13820 13400 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:11:09,449 basehttp 13820 13400 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:11:46,582 basehttp 13820 13400 "POST /student/login/ HTTP/1.1" 200 12593
+INFO 2025-05-27 19:11:46,638 basehttp 13820 13400 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:11:46,643 basehttp 13820 13400 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:11:52,456 basehttp 13820 13400 "POST /student/login/ HTTP/1.1" 200 12593
+INFO 2025-05-27 19:11:52,506 basehttp 13820 13400 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:11:52,513 basehttp 13820 13400 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:12:37,814 basehttp 13820 13400 "POST /student/login/ HTTP/1.1" 200 12593
+INFO 2025-05-27 19:12:37,856 basehttp 13820 13400 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:12:37,860 basehttp 13820 13400 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:23:31,670 autoreload 19692 17312 Watching for file changes with StatReloader
+INFO 2025-05-27 19:23:48,106 autoreload 19692 17312 D:\a_django_project\StudentInfo\student_portal\views.py changed, reloading.
+INFO 2025-05-27 19:23:50,102 autoreload 25200 23248 Watching for file changes with StatReloader
+INFO 2025-05-27 19:24:47,637 autoreload 25200 23248 D:\a_django_project\StudentInfo\student_portal\views.py changed, reloading.
+INFO 2025-05-27 19:24:49,617 autoreload 10412 24928 Watching for file changes with StatReloader
+INFO 2025-05-27 19:25:01,030 autoreload 23432 2284 Watching for file changes with StatReloader
+INFO 2025-05-27 19:25:12,258 basehttp 23432 12192 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 19:25:16,382 basehttp 23432 12192 "GET /query_results/ HTTP/1.1" 200 1234073
+INFO 2025-05-27 19:25:24,803 basehttp 23432 12192 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 19:25:32,047 basehttp 23432 15580 "GET /student/login/ HTTP/1.1" 200 12278
+INFO 2025-05-27 19:25:32,302 basehttp 23432 15580 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:25:32,312 basehttp 23432 15580 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:25:43,631 basehttp 23432 15580 "POST /student/login/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:25:43,691 basehttp 23432 15580 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:25:43,696 basehttp 23432 15580 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:25:48,736 basehttp 23432 15580 "POST /student/login/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:25:48,789 basehttp 23432 15580 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:25:48,794 basehttp 23432 15580 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:25:52,425 basehttp 23432 15580 "GET /student/dashboard/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:25:52,432 basehttp 23432 15580 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:25:52,502 basehttp 23432 15580 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:25:52,508 basehttp 23432 15580 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:25:54,186 basehttp 23432 15580 "GET /login/ HTTP/1.1" 200 18849
+INFO 2025-05-27 19:25:54,304 basehttp 23432 7468 "GET /captcha/image/67026b0d0291041b3e4135adef4efecff7a682f9/ HTTP/1.1" 200 9216
+INFO 2025-05-27 19:25:54,431 basehttp 23432 15580 "GET /static/css/users/login.css HTTP/1.1" 200 4330
+INFO 2025-05-27 19:25:54,455 basehttp 23432 15580 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-05-27 19:25:54,461 basehttp 23432 15580 "GET /unauthorized/ HTTP/1.1" 200 2115
+INFO 2025-05-27 19:26:11,709 basehttp 23432 15580 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:26:11,955 basehttp 23432 15580 "GET / HTTP/1.1" 200 41081
+WARNING 2025-05-27 19:26:12,270 basehttp 23432 15580 "GET /favicon.ico HTTP/1.1" 404 11702
+INFO 2025-05-27 19:26:15,693 basehttp 23432 15580 "GET /student/login HTTP/1.1" 301 0
+INFO 2025-05-27 19:26:15,818 basehttp 23432 7468 "GET /student/login/ HTTP/1.1" 200 12569
+INFO 2025-05-27 19:26:20,271 basehttp 23432 7468 "GET /student HTTP/1.1" 301 0
+INFO 2025-05-27 19:26:20,391 basehttp 23432 256 "GET /student/ HTTP/1.1" 200 12278
+INFO 2025-05-27 19:26:25,611 basehttp 23432 256 "POST /student/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:26:42,081 basehttp 23432 256 "POST /student/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:26:44,432 basehttp 23432 256 "GET /student/dashboard/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:26:44,534 basehttp 23432 256 "GET /student/login/ HTTP/1.1" 200 12554
+INFO 2025-05-27 19:26:45,669 basehttp 23432 256 "GET /student/dashboard/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:26:45,811 basehttp 23432 256 "GET /student/login/ HTTP/1.1" 200 12554
+INFO 2025-05-27 19:26:46,849 basehttp 23432 256 "GET /student/dashboard/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:26:47,085 basehttp 23432 256 "GET /student/login/ HTTP/1.1" 200 12554
+INFO 2025-05-27 19:26:48,246 basehttp 23432 256 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 19:26:51,062 basehttp 23432 256 "GET /students/ HTTP/1.1" 200 608588
+INFO 2025-05-27 19:26:51,101 basehttp 23432 256 "GET /static/css/students/by_base_page/about.css HTTP/1.1" 200 2725
+INFO 2025-05-27 19:26:51,103 basehttp 23432 4452 "GET /static/images/default-profile.png HTTP/1.1" 200 1320
+INFO 2025-05-27 19:26:58,861 basehttp 23432 4452 "POST /student/login/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:35:08,883 autoreload 5848 19592 Watching for file changes with StatReloader
+INFO 2025-05-27 19:35:25,174 basehttp 5848 11356 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 19:35:30,429 basehttp 5848 24880 "POST /student/login/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:35:35,897 basehttp 5848 24880 "POST /student/login/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:36:10,595 basehttp 5848 11356 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 19:36:23,292 basehttp 5848 11356 "GET /student HTTP/1.1" 301 0
+INFO 2025-05-27 19:36:23,401 basehttp 5848 20304 "GET /student/ HTTP/1.1" 200 12278
+INFO 2025-05-27 19:36:31,120 basehttp 5848 20304 "POST /student/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:38:18,598 autoreload 14624 10180 Watching for file changes with StatReloader
+INFO 2025-05-27 19:38:22,948 basehttp 14624 21844 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 19:38:28,126 basehttp 14624 21488 "POST /student/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:38:33,153 basehttp 14624 21488 "POST /student/ HTTP/1.1" 200 12574
+INFO 2025-05-27 19:42:03,238 autoreload 23412 8068 Watching for file changes with StatReloader
+INFO 2025-05-27 19:42:07,587 basehttp 23412 20380 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 19:42:14,361 basehttp 23412 20380 "GET /student/ HTTP/1.1" 200 12278
+INFO 2025-05-27 19:42:20,460 basehttp 23412 20380 "POST /student/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:42:20,625 basehttp 23412 20380 "GET /student/dashboard/ HTTP/1.1" 200 23243
+INFO 2025-05-27 19:42:26,056 basehttp 23412 20380 "GET /student/grades/ HTTP/1.1" 200 26078
+INFO 2025-05-27 19:42:28,091 basehttp 23412 20380 "GET /student/courses/ HTTP/1.1" 200 16621
+ERROR 2025-05-27 19:42:30,768 log 23412 20380 Internal Server Error: /student/schedule/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 302, in my_schedule
+    return render(request, 'student_portal/my_schedule.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: student_portal/my_schedule.html
+ERROR 2025-05-27 19:42:30,777 basehttp 23412 20380 "GET /student/schedule/ HTTP/1.1" 500 105972
+INFO 2025-05-27 19:42:38,678 basehttp 23412 22612 "GET /student/login/ HTTP/1.1" 200 12278
+INFO 2025-05-27 19:42:45,271 basehttp 23412 22612 "POST /student/login/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:42:45,410 basehttp 23412 22612 "GET /student/dashboard/ HTTP/1.1" 200 23243
+ERROR 2025-05-27 19:42:49,500 log 23412 22612 Internal Server Error: /student/profile/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 341, in profile
+    return render(request, 'student_portal/profile.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'change_password' not found. 'change_password' is not a valid view function or pattern name.
+ERROR 2025-05-27 19:42:49,513 basehttp 23412 22612 "GET /student/profile/ HTTP/1.1" 500 205606
+INFO 2025-05-27 19:42:54,257 basehttp 23412 22612 "GET /student/logout/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:42:54,363 basehttp 23412 22612 "GET /student/login/ HTTP/1.1" 200 12565
+INFO 2025-05-27 19:43:02,193 basehttp 23412 22612 "POST /student/login/ HTTP/1.1" 200 12295
+INFO 2025-05-27 19:43:05,703 basehttp 23412 22612 "POST /student/login/ HTTP/1.1" 200 12295
+INFO 2025-05-27 19:46:46,740 autoreload 25248 18384 Watching for file changes with StatReloader
+INFO 2025-05-27 19:46:51,714 basehttp 25248 18948 "GET /student/login/ HTTP/1.1" 200 12278
+INFO 2025-05-27 19:46:58,998 basehttp 25248 18948 "POST /student/login/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:46:59,147 basehttp 25248 18948 "GET /student/dashboard/ HTTP/1.1" 200 23235
+INFO 2025-05-27 19:47:04,710 basehttp 25248 18948 "GET /student/grades/ HTTP/1.1" 200 27065
+INFO 2025-05-27 19:47:09,940 basehttp 25248 18948 "GET /student/courses/ HTTP/1.1" 200 16618
+ERROR 2025-05-27 19:47:13,091 log 25248 18948 Internal Server Error: /student/schedule/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 302, in my_schedule
+    return render(request, 'student_portal/my_schedule.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: student_portal/my_schedule.html
+ERROR 2025-05-27 19:47:13,097 basehttp 25248 18948 "GET /student/schedule/ HTTP/1.1" 500 106132
+ERROR 2025-05-27 19:47:23,373 log 25248 18948 Internal Server Error: /student/notifications/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 367, in notifications
+    return render(request, 'student_portal/notifications.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'mark_notification_read' with no arguments not found. 1 pattern(s) tried: ['student/notification/(?P<notification_id>[0-9]+)/read/\\Z']
+ERROR 2025-05-27 19:47:23,383 basehttp 25248 18948 "GET /student/notifications/ HTTP/1.1" 500 197770
+INFO 2025-05-27 19:48:16,883 autoreload 22960 10948 Watching for file changes with StatReloader
+INFO 2025-05-27 19:49:24,548 autoreload 8768 22828 Watching for file changes with StatReloader
+INFO 2025-05-27 19:49:34,820 basehttp 8768 4048 "GET /student/login/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:49:35,006 basehttp 8768 4048 "GET /student/dashboard/ HTTP/1.1" 200 22948
+INFO 2025-05-27 19:49:37,544 basehttp 8768 4048 "GET /student/schedule/ HTTP/1.1" 200 23513
+INFO 2025-05-27 19:49:42,211 basehttp 8768 4048 "GET /student/courses/ HTTP/1.1" 200 16618
+ERROR 2025-05-27 19:49:43,097 log 8768 4048 Internal Server Error: /student/notifications/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 366, in notifications
+    return render(request, 'student_portal/notifications.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'mark_notification_read' with no arguments not found. 1 pattern(s) tried: ['student/notification/(?P<notification_id>[0-9]+)/read/\\Z']
+ERROR 2025-05-27 19:49:43,108 basehttp 8768 4048 "GET /student/notifications/ HTTP/1.1" 500 197770
+INFO 2025-05-27 19:51:12,348 autoreload 5372 14796 Watching for file changes with StatReloader
+ERROR 2025-05-27 19:51:16,341 log 5372 13408 Internal Server Error: /student/notifications/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 366, in notifications
+    return render(request, 'student_portal/notifications.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'mark_notification_unread' not found. 'mark_notification_unread' is not a valid view function or pattern name.
+ERROR 2025-05-27 19:51:16,367 basehttp 5372 13408 "GET /student/notifications/ HTTP/1.1" 500 195987
+ERROR 2025-05-27 19:51:21,874 log 5372 13408 Internal Server Error: /student/notifications/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 366, in notifications
+    return render(request, 'student_portal/notifications.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'mark_notification_unread' not found. 'mark_notification_unread' is not a valid view function or pattern name.
+ERROR 2025-05-27 19:51:21,881 basehttp 5372 13408 "GET /student/notifications/ HTTP/1.1" 500 196154
+INFO 2025-05-27 19:55:54,803 autoreload 4004 21036 Watching for file changes with StatReloader
+INFO 2025-05-27 19:56:24,812 basehttp 4004 14936 "GET /student/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:56:25,008 basehttp 4004 14936 "GET /student/dashboard/ HTTP/1.1" 200 22953
+ERROR 2025-05-27 19:56:26,916 log 4004 14936 Internal Server Error: /student/notifications/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 367, in notifications
+    return render(request, 'student_portal/notifications.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'mark_notification_unread' with no arguments not found. 1 pattern(s) tried: ['student/notification/(?P<notification_id>[0-9]+)/unread/\\Z']
+ERROR 2025-05-27 19:56:26,933 basehttp 4004 14936 "GET /student/notifications/ HTTP/1.1" 500 198165
+INFO 2025-05-27 19:59:29,222 autoreload 23456 24484 Watching for file changes with StatReloader
+INFO 2025-05-27 19:59:36,066 basehttp 23456 5356 "GET /student/ HTTP/1.1" 302 0
+INFO 2025-05-27 19:59:36,273 basehttp 23456 5356 "GET /student/dashboard/ HTTP/1.1" 200 22953
+INFO 2025-05-27 19:59:39,029 basehttp 23456 5356 "GET /student/notifications/ HTTP/1.1" 200 53936
+ERROR 2025-05-27 19:59:55,856 log 23456 5356 Internal Server Error: /student/profile/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 341, in profile
+    return render(request, 'student_portal/profile.html', context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\backends\django.py", line 107, in render
+    return self.template.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 171, in render
+    return self._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 1016, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\base.py", line 977, in render_annotated
+    return self.render(context)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\template\defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\urls\resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'change_password' not found. 'change_password' is not a valid view function or pattern name.
+ERROR 2025-05-27 19:59:55,868 basehttp 23456 5356 "GET /student/profile/ HTTP/1.1" 500 205438
+INFO 2025-05-27 20:01:58,607 autoreload 18128 20436 Watching for file changes with StatReloader
+INFO 2025-05-27 20:03:04,097 autoreload 2740 14632 Watching for file changes with StatReloader
+INFO 2025-05-27 20:03:11,417 basehttp 2740 24460 "GET /student/ HTTP/1.1" 302 0
+INFO 2025-05-27 20:03:11,597 basehttp 2740 24460 "GET /student/dashboard/ HTTP/1.1" 200 22953
+INFO 2025-05-27 20:03:13,945 basehttp 2740 24460 "GET /student/notifications/ HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:19,922 basehttp 2740 24460 "GET /student/notifications/?sort=-created_at HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:22,156 basehttp 2740 24460 "GET /student/notifications/?sort=priority HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:23,817 basehttp 2740 24460 "GET /student/notifications/?sort=type HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:25,322 basehttp 2740 24460 "GET /student/notifications/?filter=unread HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:26,083 basehttp 2740 24460 "GET /student/notifications/?filter=important HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:26,891 basehttp 2740 24460 "GET /student/notifications/?filter=system HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:27,474 basehttp 2740 24460 "GET /student/notifications/?filter=academic HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:31,037 basehttp 2740 24460 "GET /student/profile/ HTTP/1.1" 200 28719
+WARNING 2025-05-27 20:03:31,082 basehttp 2740 24460 "GET /static/images/default-avatar.png HTTP/1.1" 404 1889
+INFO 2025-05-27 20:03:46,303 basehttp 2740 3652 "GET /student/notifications/ HTTP/1.1" 200 53936
+INFO 2025-05-27 20:03:47,066 basehttp 2740 3652 "GET /student/schedule/ HTTP/1.1" 200 23522
+INFO 2025-05-27 20:03:48,371 basehttp 2740 3652 "GET /student/courses/ HTTP/1.1" 200 16621
+INFO 2025-05-27 20:03:49,048 basehttp 2740 3652 "GET /student/grades/ HTTP/1.1" 200 26078
+INFO 2025-05-27 20:04:01,309 basehttp 2740 3652 "GET /student/dashboard/ HTTP/1.1" 200 22953
+INFO 2025-05-27 20:04:06,084 basehttp 2740 3652 "GET /student/profile/ HTTP/1.1" 200 28719
+WARNING 2025-05-27 20:04:06,128 basehttp 2740 3652 "GET /static/images/default-avatar.png HTTP/1.1" 404 1889
+INFO 2025-05-27 20:09:04,310 autoreload 21812 17344 Watching for file changes with StatReloader
+INFO 2025-05-27 20:09:46,763 autoreload 21812 17344 D:\a_django_project\StudentInfo\student_portal\views.py changed, reloading.
+INFO 2025-05-27 20:09:49,581 autoreload 14364 16800 Watching for file changes with StatReloader
+INFO 2025-05-27 20:10:28,079 autoreload 14364 16800 D:\a_django_project\StudentInfo\student_portal\views.py changed, reloading.
+INFO 2025-05-27 20:10:30,027 autoreload 22028 8040 Watching for file changes with StatReloader
+INFO 2025-05-27 20:10:36,311 autoreload 22028 8040 D:\a_django_project\StudentInfo\student_portal\views.py changed, reloading.
+INFO 2025-05-27 20:10:38,482 autoreload 8864 8644 Watching for file changes with StatReloader
+INFO 2025-05-27 20:10:43,537 autoreload 5236 3824 Watching for file changes with StatReloader
+INFO 2025-05-27 20:10:57,785 basehttp 8864 13636 "GET / HTTP/1.1" 200 41081
+WARNING 2025-05-27 20:10:58,323 basehttp 8864 13636 "GET /favicon.ico HTTP/1.1" 404 11702
+INFO 2025-05-27 20:11:04,365 basehttp 8864 22324 "GET /student/ HTTP/1.1" 302 0
+INFO 2025-05-27 20:11:04,502 basehttp 8864 22324 "GET /student/dashboard/ HTTP/1.1" 200 0
+INFO 2025-05-27 20:11:10,864 basehttp 8864 22324 "GET /student/dashboard/ HTTP/1.1" 200 0
+INFO 2025-05-27 20:11:11,689 basehttp 8864 22324 "GET /student/dashboard/ HTTP/1.1" 200 0
+INFO 2025-05-27 20:11:17,012 basehttp 8864 22324 "GET /student/ HTTP/1.1" 302 0
+INFO 2025-05-27 20:11:17,153 basehttp 8864 22324 "GET /student/dashboard/ HTTP/1.1" 200 0
+INFO 2025-05-27 20:11:23,443 basehttp 8864 22324 "GET /student/login/ HTTP/1.1" 302 0
+INFO 2025-05-27 20:11:23,571 basehttp 8864 22324 "GET /student/dashboard/ HTTP/1.1" 200 0
+INFO 2025-05-27 20:11:38,364 basehttp 8864 22324 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 20:11:40,934 basehttp 8864 22324 "GET /profile/ HTTP/1.1" 200 36799
+INFO 2025-05-27 20:11:41,179 basehttp 8864 22324 "GET /static/css/students/profile.css HTTP/1.1" 200 4507
+INFO 2025-05-27 20:11:44,738 basehttp 8864 22324 - Broken pipe from ('127.0.0.1', 5767)
+INFO 2025-05-27 20:11:45,112 basehttp 8864 24880 "GET /query_results/ HTTP/1.1" 200 1234073
+INFO 2025-05-27 20:11:47,573 basehttp 8864 24880 "GET /course_management/ HTTP/1.1" 200 63202
+INFO 2025-05-27 20:11:47,608 basehttp 8864 7884 "GET /static/js/course_form_validation.js HTTP/1.1" 200 5215
+INFO 2025-05-27 20:11:47,609 basehttp 8864 24880 "GET /static/css/students/by_base_page/course_management.css HTTP/1.1" 200 3158
+INFO 2025-05-27 20:12:23,113 autoreload 1552 1624 Watching for file changes with StatReloader
+INFO 2025-05-27 20:12:35,087 basehttp 1552 3540 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 20:12:36,853 basehttp 1552 3540 "GET /student/dashboard/ HTTP/1.1" 200 0
+INFO 2025-05-27 20:12:41,484 basehttp 1552 3540 "GET /student/ HTTP/1.1" 302 0
+INFO 2025-05-27 20:12:41,593 basehttp 1552 3540 "GET /student/dashboard/ HTTP/1.1" 200 0
+INFO 2025-05-27 20:15:47,951 autoreload 2188 24656 Watching for file changes with StatReloader
+INFO 2025-05-27 20:16:18,235 autoreload 16272 22176 Watching for file changes with StatReloader
+INFO 2025-05-27 20:16:51,972 basehttp 16272 5864 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 20:16:55,459 basehttp 16272 5864 "GET /student/ HTTP/1.1" 302 0
+ERROR 2025-05-27 20:16:55,587 log 16272 5864 Internal Server Error: /student/dashboard/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 70, in dashboard
+    enrolled_courses_count = enrollments.count()
+NameError: name 'enrollments' is not defined
+ERROR 2025-05-27 20:16:55,592 basehttp 16272 5864 "GET /student/dashboard/ HTTP/1.1" 500 90258
+INFO 2025-05-27 20:16:56,456 basehttp 16272 15344 "GET /student/ HTTP/1.1" 302 0
+ERROR 2025-05-27 20:16:56,583 log 16272 15344 Internal Server Error: /student/dashboard/
+Traceback (most recent call last):
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "D:\Anaconda\envs\django\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\a_django_project\StudentInfo\student_portal\views.py", line 70, in dashboard
+    enrolled_courses_count = enrollments.count()
+NameError: name 'enrollments' is not defined
+ERROR 2025-05-27 20:16:56,585 basehttp 16272 15344 "GET /student/dashboard/ HTTP/1.1" 500 89984
+INFO 2025-05-27 20:18:34,059 autoreload 3980 8600 Watching for file changes with StatReloader
+INFO 2025-05-27 20:18:44,734 autoreload 3980 8600 D:\a_django_project\StudentInfo\student_portal\views.py changed, reloading.
+INFO 2025-05-27 20:18:46,782 autoreload 4788 17852 Watching for file changes with StatReloader
+INFO 2025-05-27 20:19:03,795 autoreload 11340 20372 Watching for file changes with StatReloader
+INFO 2025-05-27 20:19:07,421 basehttp 4788 15560 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 20:19:09,741 basehttp 4788 15560 "GET /student/dashboard/ HTTP/1.1" 200 30780
+INFO 2025-05-27 20:19:15,458 basehttp 4788 15560 "GET /student/grades/ HTTP/1.1" 200 26078
+INFO 2025-05-27 20:19:16,552 basehttp 4788 15560 "GET /student/courses/ HTTP/1.1" 200 16621
+INFO 2025-05-27 20:19:17,917 basehttp 4788 15560 "GET /student/schedule/ HTTP/1.1" 200 23522
+INFO 2025-05-27 20:19:18,850 basehttp 4788 15560 "GET /student/notifications/ HTTP/1.1" 200 55868
+INFO 2025-05-27 20:19:19,850 basehttp 4788 15560 "GET /student/profile/ HTTP/1.1" 200 28719
+WARNING 2025-05-27 20:19:19,899 basehttp 4788 15560 "GET /static/images/default-avatar.png HTTP/1.1" 404 1889
+INFO 2025-05-27 20:19:21,063 basehttp 4788 8040 "GET /student/notifications/ HTTP/1.1" 200 55868
+INFO 2025-05-27 20:19:26,604 basehttp 4788 8040 "GET /student/profile/ HTTP/1.1" 200 28719
+WARNING 2025-05-27 20:19:26,643 basehttp 4788 8040 "GET /static/images/default-avatar.png HTTP/1.1" 404 1889
+INFO 2025-05-27 20:19:27,660 basehttp 4788 4932 "GET /student/dashboard/ HTTP/1.1" 200 30780
+INFO 2025-05-27 20:19:32,614 basehttp 4788 4932 "GET /student/grades/ HTTP/1.1" 200 26078
+INFO 2025-05-27 20:19:34,444 basehttp 4788 4932 "GET /student/dashboard/ HTTP/1.1" 200 30780
+INFO 2025-05-27 20:24:04,395 autoreload 19964 3644 Watching for file changes with StatReloader
+INFO 2025-05-27 20:24:09,625 basehttp 19964 24884 "GET / HTTP/1.1" 200 41081
+INFO 2025-05-27 20:24:13,679 basehttp 19964 24884 "GET /student/dashboard/ HTTP/1.1" 200 30780
+INFO 2025-05-27 20:24:15,161 basehttp 19964 20500 "GET /student/?id=b960ae01-aa2a-46c7-98b8-21a7d7cf3bd4&vscodeBrowserReqId=1748348655123 HTTP/1.1" 200 12278
+INFO 2025-05-27 20:24:22,132 basehttp 19964 24884 "GET /student/grades/ HTTP/1.1" 200 26078
+INFO 2025-05-27 20:24:25,597 basehttp 19964 24884 "GET /student/courses/ HTTP/1.1" 200 16621
+INFO 2025-05-27 20:24:26,892 basehttp 19964 24884 "GET /student/schedule/ HTTP/1.1" 200 23522
+INFO 2025-05-27 20:24:27,964 basehttp 19964 24884 "GET /student/notifications/ HTTP/1.1" 200 55868
+INFO 2025-05-27 20:24:29,697 basehttp 19964 24884 "GET /student/profile/ HTTP/1.1" 200 28719
+WARNING 2025-05-27 20:24:29,736 basehttp 19964 24884 "GET /static/images/default-avatar.png HTTP/1.1" 404 1889
+INFO 2025-05-27 20:25:09,362 basehttp 19964 20396 "GET / HTTP/1.1" 200 41081
+WARNING 2025-05-27 20:25:10,031 basehttp 19964 19940 "GET /favicon.ico HTTP/1.1" 404 11702
+INFO 2025-05-27 20:25:15,020 basehttp 19964 18176 "GET /student/ HTTP/1.1" 302 0
+INFO 2025-05-27 20:25:15,210 basehttp 19964 18176 "GET /student/dashboard/ HTTP/1.1" 200 30780
+INFO 2025-05-27 20:25:21,315 basehttp 19964 18176 "GET /student/logout/ HTTP/1.1" 302 0
+INFO 2025-05-27 20:25:21,428 basehttp 19964 18176 "GET /student/login/ HTTP/1.1" 200 12565
+INFO 2025-05-27 20:25:29,761 basehttp 19964 18176 "POST /student/login/ HTTP/1.1" 302 0
+INFO 2025-05-27 20:25:29,903 basehttp 19964 18176 "GET /student/dashboard/ HTTP/1.1" 200 31054
+INFO 2025-05-27 20:25:34,262 basehttp 19964 18176 "GET /student/courses/ HTTP/1.1" 200 16618
+INFO 2025-05-27 20:25:37,070 basehttp 19964 18176 "GET /student/notifications/ HTTP/1.1" 200 55865
+INFO 2025-05-27 20:25:39,235 basehttp 19964 18176 "GET /student/notifications/?filter=unread HTTP/1.1" 200 55865
+INFO 2025-05-27 20:25:40,015 basehttp 19964 18176 "GET /student/notifications/?filter=important HTTP/1.1" 200 55865
+INFO 2025-05-27 20:25:50,239 basehttp 19964 18176 "GET /student/profile/ HTTP/1.1" 200 28709
+WARNING 2025-05-27 20:25:50,283 basehttp 19964 18176 "GET /static/images/default-avatar.png HTTP/1.1" 404 1889
+INFO 2025-05-27 20:25:50,561 basehttp 19964 23212 "GET /student/profile/ HTTP/1.1" 200 28709
+WARNING 2025-05-27 20:25:50,590 basehttp 19964 23212 "GET /static/images/default-avatar.png HTTP/1.1" 404 1889
+INFO 2025-05-27 20:25:54,673 basehttp 19964 22608 "GET /student/grades/ HTTP/1.1" 200 27065
