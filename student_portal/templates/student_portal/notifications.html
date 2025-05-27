@@ -1,0 +1,613 @@
+{% extends 'student_portal/base.html' %}
+{% load static %}
+
+{% block title %}系统通知{% endblock %}
+
+{% block extra_css %}
+<style>
+    .notification-item {
+        background: white;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        border-left: 4px solid #e9ecef;
+    }
+    .notification-item:hover {
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        transform: translateX(5px);
+    }
+    .notification-item.unread {
+        border-left-color: #007bff;
+        background: linear-gradient(to right, #f8f9ff, white);
+    }
+    .notification-item.important {
+        border-left-color: #dc3545;
+        background: linear-gradient(to right, #fff5f5, white);
+    }
+    .notification-item.success {
+        border-left-color: #28a745;
+        background: linear-gradient(to right, #f0fff0, white);
+    }
+    .notification-item.warning {
+        border-left-color: #ffc107;
+        background: linear-gradient(to right, #fffbf0, white);
+    }
+    .notification-header {
+        padding: 20px 20px 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .notification-title {
+        font-weight: 600;
+        color: #2d3436;
+        margin-bottom: 5px;
+        flex: 1;
+    }
+    .notification-meta {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-size: 0.85em;
+        color: #6c757d;
+    }
+    .notification-content {
+        padding: 0 20px 20px 20px;
+        color: #495057;
+        line-height: 1.6;
+    }
+    .notification-actions {
+        padding: 0 20px 20px 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+    .notification-type-badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.75em;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .type-system {
+        background-color: #e3f2fd;
+        color: #1565c0;
+    }
+    .type-academic {
+        background-color: #f3e5f5;
+        color: #7b1fa2;
+    }
+    .type-course {
+        background-color: #e8f5e8;
+        color: #2e7d32;
+    }
+    .type-exam {
+        background-color: #fff3e0;
+        color: #ef6c00;
+    }
+    .type-emergency {
+        background-color: #ffebee;
+        color: #c62828;
+    }
+    .filter-tabs {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .filter-tabs .nav-link {
+        border: none;
+        border-radius: 20px;
+        padding: 8px 20px;
+        margin-right: 10px;
+        transition: all 0.3s ease;
+        color: #6c757d;
+    }
+    .filter-tabs .nav-link.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    .filter-tabs .nav-link:hover {
+        background-color: #f8f9fa;
+        color: #495057;
+    }
+    .filter-tabs .nav-link.active:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    .notification-stats {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .stat-item {
+        text-align: center;
+        padding: 15px;
+    }
+    .stat-number {
+        font-size: 1.8em;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .stat-label {
+        color: #6c757d;
+        font-size: 0.9em;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .empty-state i {
+        font-size: 4em;
+        color: #dee2e6;
+        margin-bottom: 20px;
+    }
+    .bulk-actions {
+        background: white;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: none;
+    }
+    .bulk-actions.active {
+        display: block;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- 页面标题 -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-bell"></i> 系统通知</h2>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" onclick="markAllAsRead()">
+                <i class="fas fa-check-double"></i> 全部已读
+            </button>
+            <button class="btn btn-outline-danger" onclick="deleteSelected()" id="deleteBtn" style="display: none;">
+                <i class="fas fa-trash"></i> 删除选中
+            </button>
+        </div>
+    </div>
+
+    <!-- 通知统计 -->
+    <div class="notification-stats">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number text-primary">{{ unread_count }}</div>
+                    <div class="stat-label">未读通知</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number text-info">{{ total_count }}</div>
+                    <div class="stat-label">总通知数</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number text-warning">{{ important_count }}</div>
+                    <div class="stat-label">重要通知</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-item">
+                    <div class="stat-number text-success">{{ today_count }}</div>
+                    <div class="stat-label">今日通知</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 筛选标签 -->
+    <div class="filter-tabs">
+        <div class="d-flex justify-content-between align-items-center">
+            <ul class="nav nav-tabs border-0">
+                <li class="nav-item">
+                    <a class="nav-link {% if not request.GET.filter %}active{% endif %}" 
+                       href="{% url 'student_portal:notifications' %}">
+                        全部通知
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.GET.filter == 'unread' %}active{% endif %}" 
+                       href="{% url 'student_portal:notifications' %}?filter=unread">
+                        未读通知
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.GET.filter == 'important' %}active{% endif %}" 
+                       href="{% url 'student_portal:notifications' %}?filter=important">
+                        重要通知
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.GET.filter == 'system' %}active{% endif %}" 
+                       href="{% url 'student_portal:notifications' %}?filter=system">
+                        系统通知
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.GET.filter == 'academic' %}active{% endif %}" 
+                       href="{% url 'student_portal:notifications' %}?filter=academic">
+                        学术通知
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="d-flex align-items-center gap-2">
+                <label class="form-check-label me-2">
+                    <input type="checkbox" class="form-check-input" id="selectAll"> 全选
+                </label>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" 
+                            data-bs-toggle="dropdown">
+                        排序
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="?sort=created_at">时间降序</a></li>
+                        <li><a class="dropdown-item" href="?sort=-created_at">时间升序</a></li>
+                        <li><a class="dropdown-item" href="?sort=priority">重要性</a></li>
+                        <li><a class="dropdown-item" href="?sort=type">类型</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 批量操作栏 -->
+    <div class="bulk-actions" id="bulkActions">
+        <div class="d-flex justify-content-between align-items-center">
+            <span>已选择 <span id="selectedCount">0</span> 个通知</span>
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-primary" onclick="markSelectedAsRead()">
+                    <i class="fas fa-check"></i> 标记已读
+                </button>
+                <button class="btn btn-sm btn-danger" onclick="deleteSelected()">
+                    <i class="fas fa-trash"></i> 删除
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 消息提示 -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- 通知列表 -->
+    <div class="notifications-list">
+        {% for notification in notifications %}
+            <div class="notification-item {% if not notification.is_read %}unread{% endif %} 
+                        {% if notification.priority == 'high' %}important{% endif %}
+                        {% if notification.type == 'success' %}success{% endif %}
+                        {% if notification.type == 'warning' %}warning{% endif %}" 
+                 data-id="{{ notification.id }}">
+                
+                <div class="notification-header">
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center mb-2">
+                            <input type="checkbox" class="form-check-input notification-checkbox me-3" 
+                                   value="{{ notification.id }}">
+                            <h6 class="notification-title mb-0">{{ notification.title }}</h6>
+                            {% if not notification.is_read %}
+                                <span class="badge bg-primary ms-2">新</span>
+                            {% endif %}
+                            {% if notification.priority == 'high' %}
+                                <span class="badge bg-danger ms-2">重要</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="notification-meta">
+                            <span class="notification-type-badge type-{{ notification.type }}">
+                                {{ notification.get_type_display }}
+                            </span>
+                            <span><i class="fas fa-calendar"></i> {{ notification.created_at|date:"Y-m-d H:i" }}</span>
+                            {% if notification.sender %}
+                                <span><i class="fas fa-user"></i> {{ notification.sender }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" 
+                                data-bs-toggle="dropdown">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            {% if not notification.is_read %}
+                                <li><a class="dropdown-item" href="#" onclick="markAsRead({{ notification.id }})">
+                                    <i class="fas fa-check"></i> 标记已读
+                                </a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="#" onclick="markAsUnread({{ notification.id }})">
+                                    <i class="fas fa-undo"></i> 标记未读
+                                </a></li>
+                            {% endif %}
+                            <li><a class="dropdown-item text-danger" href="#" onclick="deleteNotification({{ notification.id }})">
+                                <i class="fas fa-trash"></i> 删除
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="notification-content">
+                    {{ notification.content|linebreaks }}
+                </div>
+                
+                {% if notification.action_url or notification.attachment %}
+                    <div class="notification-actions">
+                        {% if notification.action_url %}
+                            <a href="{{ notification.action_url }}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-external-link-alt"></i> 查看详情
+                            </a>
+                        {% endif %}
+                        {% if notification.attachment %}
+                            <a href="{{ notification.attachment.url }}" class="btn btn-sm btn-outline-secondary" 
+                               target="_blank">
+                                <i class="fas fa-paperclip"></i> 下载附件
+                            </a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        {% empty %}
+            <div class="empty-state">
+                <i class="fas fa-bell-slash"></i>
+                <h4 class="text-muted">暂无通知</h4>
+                <p class="text-muted">当前没有符合条件的通知</p>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- 分页 -->
+    {% if is_paginated %}
+        <nav aria-label="通知分页" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ page_obj.previous_page_number }}">
+                            上一页
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ num }}</span>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ num }}">
+                                {{ num }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ page_obj.next_page_number }}">
+                            下一页
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // 自动隐藏消息提示
+    setTimeout(function() {
+        $('.alert').fadeOut('slow');
+    }, 5000);
+    
+    // 全选/取消全选
+    $('#selectAll').change(function() {
+        $('.notification-checkbox').prop('checked', $(this).prop('checked'));
+        updateBulkActions();
+    });
+    
+    // 单个复选框变化
+    $('.notification-checkbox').change(function() {
+        updateBulkActions();
+        
+        // 检查是否所有复选框都被选中
+        var totalCheckboxes = $('.notification-checkbox').length;
+        var checkedCheckboxes = $('.notification-checkbox:checked').length;
+        $('#selectAll').prop('checked', totalCheckboxes === checkedCheckboxes);
+    });
+    
+    // 点击通知项自动标记为已读
+    $('.notification-item.unread').click(function(e) {
+        if (e.target.type !== 'checkbox' && !$(e.target).closest('.dropdown').length) {
+            var notificationId = $(this).data('id');
+            markAsRead(notificationId);
+        }
+    });
+});
+
+function updateBulkActions() {
+    var selectedCount = $('.notification-checkbox:checked').length;
+    $('#selectedCount').text(selectedCount);
+    
+    if (selectedCount > 0) {
+        $('#bulkActions').addClass('active');
+        $('#deleteBtn').show();
+    } else {
+        $('#bulkActions').removeClass('active');
+        $('#deleteBtn').hide();
+    }
+}
+
+function markAsRead(notificationId) {
+    $.post(`/student/notification/${notificationId}/read/`, {
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
+    }, function(response) {
+        if (response.success) {
+            $(`[data-id="${notificationId}"]`).removeClass('unread');
+            $(`[data-id="${notificationId}"] .badge:contains("新")`).remove();
+            
+            // 更新统计数字
+            updateNotificationStats();
+        }
+    });
+}
+
+function markAsUnread(notificationId) {
+    $.post(`/student/notification/${notificationId}/unread/`, {
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
+    }, function(response) {
+        if (response.success) {
+            $(`[data-id="${notificationId}"]`).addClass('unread');
+            $(`[data-id="${notificationId}"] .notification-title`).after('<span class="badge bg-primary ms-2">新</span>');
+            
+            // 更新统计数字
+            updateNotificationStats();
+        }
+    });
+}
+
+function deleteNotification(notificationId) {
+    if (confirm('确定要删除这个通知吗？')) {
+        $.post(`/student/notification/${notificationId}/delete/`, {
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        }, function(response) {
+            if (response.success) {
+                $(`[data-id="${notificationId}"]`).fadeOut(function() {
+                    $(this).remove();
+                    updateNotificationStats();
+                });
+            }
+        });
+    }
+}
+
+function markAllAsRead() {
+    if (confirm('确定要将所有通知标记为已读吗？')) {
+        $.post('/student/notifications/mark-all-read/', {
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        }, function(response) {
+            if (response.success) {
+                $('.notification-item').removeClass('unread');
+                $('.badge:contains("新")').remove();
+                updateNotificationStats();
+                
+                // 显示成功消息
+                showMessage('所有通知已标记为已读', 'success');
+            }
+        });
+    }
+}
+
+function markSelectedAsRead() {
+    var selectedIds = $('.notification-checkbox:checked').map(function() {
+        return $(this).val();
+    }).get();
+    
+    if (selectedIds.length === 0) {
+        showMessage('请先选择要操作的通知', 'warning');
+        return;
+    }
+      $.post('/student/notifications/mark-read/', {
+        'notification_ids': selectedIds,
+        'csrfmiddlewaretoken': '{{ csrf_token }}'
+    }, function(response) {
+        if (response.success) {
+            selectedIds.forEach(function(id) {
+                $(`[data-id="${id}"]`).removeClass('unread');
+                $(`[data-id="${id}"] .badge:contains("新")`).remove();
+            });
+            
+            // 取消选中状态
+            $('.notification-checkbox').prop('checked', false);
+            $('#selectAll').prop('checked', false);
+            updateBulkActions();
+            updateNotificationStats();
+            
+            showMessage(`已将 ${selectedIds.length} 个通知标记为已读`, 'success');
+        }
+    });
+}
+
+function deleteSelected() {
+    var selectedIds = $('.notification-checkbox:checked').map(function() {
+        return $(this).val();
+    }).get();
+    
+    if (selectedIds.length === 0) {
+        showMessage('请先选择要删除的通知', 'warning');
+        return;
+    }
+    
+    if (confirm(`确定要删除选中的 ${selectedIds.length} 个通知吗？`)) {        $.post('/student/notifications/delete/', {
+            'notification_ids': selectedIds,
+            'csrfmiddlewaretoken': '{{ csrf_token }}'
+        }, function(response) {
+            if (response.success) {
+                selectedIds.forEach(function(id) {
+                    $(`[data-id="${id}"]`).fadeOut(function() {
+                        $(this).remove();
+                    });
+                });
+                
+                // 取消选中状态
+                $('.notification-checkbox').prop('checked', false);
+                $('#selectAll').prop('checked', false);
+                updateBulkActions();
+                updateNotificationStats();
+                
+                showMessage(`已删除 ${selectedIds.length} 个通知`, 'success');
+            }
+        });
+    }
+}
+
+function updateNotificationStats() {
+    // 重新计算统计数字
+    var unreadCount = $('.notification-item.unread').length;
+    var totalCount = $('.notification-item').length;
+    
+    $('.stat-number.text-primary').text(unreadCount);
+    $('.stat-number.text-info').text(totalCount);
+}
+
+function showMessage(message, type) {
+    var alertClass = type === 'success' ? 'alert-success' : 
+                    type === 'warning' ? 'alert-warning' : 'alert-danger';
+    
+    var alertHtml = `
+        <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    `;
+    
+    $('.notifications-list').prepend(alertHtml);
+    
+    // 自动隐藏
+    setTimeout(function() {
+        $('.alert').fadeOut('slow');
+    }, 3000);
+}
+</script>
+{% endblock %}

@@ -9,7 +9,7 @@ draw = ImageDraw.Draw(img)
 draw.ellipse((40, 40, 160, 160), fill=(100, 149, 237))  # 绘制圆形
 draw.ellipse((70, 70, 90, 90), fill=(240, 240, 240))  # 左眼
 draw.ellipse((110, 70, 130, 90), fill=(240, 240, 240))  # 右眼
-draw.arc((70, 100, 130, 130), start=0, end=180, fill=(240, 240, 240), width=3)  # 嘴巴
+draw.arc((70, 100, 130, 130), start=0, end=180, fill=(240, 240, 240), width=3)  # 嘴巴、
 
 # 确保目录存在
 img_dir = 'static/images'

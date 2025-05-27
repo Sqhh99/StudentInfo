@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password, check_password
 
 # Create your models here.
 
@@ -57,9 +58,24 @@ class Student(models.Model):
     phone = models.CharField(max_length=20, verbose_name='联系电话', blank=True, null=True)
     email = models.EmailField(max_length=100, verbose_name='电子邮箱', blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active', verbose_name='状态')
+    password = models.CharField(max_length=128, verbose_name='密码', help_text='学生登录密码，默认为学号', default='pbkdf2_sha256$260000$default$default')  # 临时默认值
     profile_image = models.ImageField(upload_to='student_profiles/', verbose_name='头像', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+
+    def set_password(self, raw_password):
+        """设置密码"""
+        self.password = make_password(raw_password)
+        
+    def check_password(self, raw_password):
+        """验证密码"""
+        return check_password(raw_password, self.password)
+    
+    def save(self, *args, **kwargs):
+        """重写save方法，如果是新建学生且没有密码，则设置默认密码为学号"""
+        if not self.pk and not self.password:
+            self.set_password(self.student_id)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.name} ({self.student_id})"

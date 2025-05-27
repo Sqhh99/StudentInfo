@@ -1,0 +1,453 @@
+{% extends 'student_portal/base.html' %}
+{% load static %}
+
+{% block title %}个人资料{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 40px 0;
+        border-radius: 15px 15px 0 0;
+        margin-bottom: 0;
+    }
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 5px solid white;
+        object-fit: cover;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    .profile-info {
+        background: white;
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        padding: 30px;
+        margin-top: -20px;
+        position: relative;
+        z-index: 1;
+    }
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+    .info-item:last-child {
+        border-bottom: none;
+    }
+    .info-label {
+        font-weight: 600;
+        color: #495057;
+        min-width: 120px;
+    }
+    .info-value {
+        color: #6c757d;
+        flex: 1;
+        text-align: right;
+    }
+    .editable-field {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 8px 12px;
+        width: 100%;
+        max-width: 300px;
+    }
+    .edit-mode .info-value {
+        text-align: left;
+    }
+    .stats-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+    .stats-card:hover {
+        transform: translateY(-5px);
+    }
+    .stats-icon {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .stats-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: #2d3436;
+        margin-bottom: 5px;
+    }
+    .stats-label {
+        color: #636e72;
+        font-size: 0.9em;
+    }
+    .achievement-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+        color: #2d3436;
+        padding: 8px 15px;
+        border-radius: 20px;
+        margin: 5px;
+        font-size: 0.85em;
+        font-weight: 600;
+        box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+    }
+    .password-section {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+    .form-floating {
+        margin-bottom: 15px;
+    }
+    .btn-edit {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+    .btn-edit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- 个人资料卡片 -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card border-0">
+                <div class="profile-header text-center">
+                    <img src="{% if student.avatar %}{{ student.avatar.url }}{% else %}{% static 'images/default-avatar.png' %}{% endif %}" 
+                         alt="头像" class="profile-avatar mb-3">
+                    <h3 class="mb-1">{{ student.name }}</h3>
+                    <p class="mb-0 opacity-75">学号: {{ student.student_id }}</p>
+                </div>
+                
+                <div class="profile-info">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5><i class="fas fa-user"></i> 基本信息</h5>
+                        <button class="btn btn-edit" onclick="toggleEditMode()">
+                            <i class="fas fa-edit"></i> <span id="editButtonText">编辑资料</span>
+                        </button>
+                    </div>
+
+                    <!-- 消息提示 -->
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form method="post" enctype="multipart/form-data" id="profileForm">
+                        {% csrf_token %}
+                        
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-id-card"></i> 学号</span>
+                            <span class="info-value">{{ student.student_id }}</span>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-user"></i> 姓名</span>
+                            <div class="info-value">
+                                <span class="view-mode">{{ student.name }}</span>
+                                <input type="text" name="name" value="{{ student.name }}" 
+                                       class="editable-field edit-mode d-none" required>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-venus-mars"></i> 性别</span>
+                            <div class="info-value">
+                                <span class="view-mode">{{ student.get_gender_display|default:"未设置" }}</span>
+                                <select name="gender" class="editable-field edit-mode d-none">
+                                    <option value="">请选择</option>
+                                    <option value="M" {% if student.gender == 'M' %}selected{% endif %}>男</option>
+                                    <option value="F" {% if student.gender == 'F' %}selected{% endif %}>女</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-birthday-cake"></i> 出生日期</span>
+                            <div class="info-value">
+                                <span class="view-mode">{{ student.birth_date|default:"未设置" }}</span>
+                                <input type="date" name="birth_date" value="{{ student.birth_date|date:'Y-m-d' }}" 
+                                       class="editable-field edit-mode d-none">
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-phone"></i> 联系电话</span>
+                            <div class="info-value">
+                                <span class="view-mode">{{ student.phone|default:"未设置" }}</span>
+                                <input type="tel" name="phone" value="{{ student.phone }}" 
+                                       class="editable-field edit-mode d-none" placeholder="请输入手机号码">
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-envelope"></i> 邮箱地址</span>
+                            <div class="info-value">
+                                <span class="view-mode">{{ student.email|default:"未设置" }}</span>
+                                <input type="email" name="email" value="{{ student.email }}" 
+                                       class="editable-field edit-mode d-none" placeholder="请输入邮箱地址">
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-map-marker-alt"></i> 家庭地址</span>
+                            <div class="info-value">
+                                <span class="view-mode">{{ student.address|default:"未设置" }}</span>
+                                <textarea name="address" class="editable-field edit-mode d-none" 
+                                          rows="2" placeholder="请输入家庭地址">{{ student.address }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-label"><i class="fas fa-calendar-alt"></i> 入学时间</span>
+                            <span class="info-value">{{ student.enrollment_date|default:"未设置" }}</span>
+                        </div>
+
+                        <div class="info-item edit-mode d-none">
+                            <span class="info-label"><i class="fas fa-image"></i> 头像</span>
+                            <div class="info-value">
+                                <input type="file" name="avatar" class="editable-field" accept="image/*">
+                                <small class="text-muted d-block mt-1">支持 JPG、PNG 格式，建议尺寸 300x300 像素</small>
+                            </div>
+                        </div>
+
+                        <div class="edit-mode d-none mt-3">
+                            <div class="d-flex gap-2">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save"></i> 保存修改
+                                </button>
+                                <button type="button" class="btn btn-secondary" onclick="cancelEdit()">
+                                    <i class="fas fa-times"></i> 取消
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- 修改密码区域 -->
+                    <div class="password-section">
+                        <h6 class="mb-3"><i class="fas fa-lock"></i> 修改密码</h6>
+                        <form method="post" action="{% url 'student_portal:change_password' %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control" name="old_password" 
+                                               id="oldPassword" placeholder="当前密码" required>
+                                        <label for="oldPassword">当前密码</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control" name="new_password1" 
+                                               id="newPassword1" placeholder="新密码" required>
+                                        <label for="newPassword1">新密码</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control" name="new_password2" 
+                                               id="newPassword2" placeholder="确认新密码" required>
+                                        <label for="newPassword2">确认新密码</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-warning">
+                                <i class="fas fa-key"></i> 修改密码
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 学习统计 -->
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-6 col-lg-12">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stats-number">{{ total_courses }}</div>
+                        <div class="stats-label">总选课程</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-12">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stats-number">{{ total_credits }}</div>
+                        <div class="stats-label">总获学分</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-12">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stats-number">{{ average_score|floatformat:1 }}</div>
+                        <div class="stats-label">平均成绩</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-12">
+                    <div class="stats-card">
+                        <div class="stats-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stats-number">{{ gpa|floatformat:2 }}</div>
+                        <div class="stats-label">GPA</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 成就徽章 -->
+            <div class="card border-0">
+                <div class="card-body">
+                    <h6 class="card-title"><i class="fas fa-medal"></i> 成就徽章</h6>
+                    <div class="text-center">
+                        {% if average_score >= 90 %}
+                            <span class="achievement-badge">
+                                <i class="fas fa-crown"></i> 学霸
+                            </span>
+                        {% endif %}
+                        {% if total_courses >= 10 %}
+                            <span class="achievement-badge">
+                                <i class="fas fa-book"></i> 博学者
+                            </span>
+                        {% endif %}
+                        {% if total_credits >= 20 %}
+                            <span class="achievement-badge">
+                                <i class="fas fa-graduation-cap"></i> 勤奋者
+                            </span>
+                        {% endif %}
+                        {% if gpa >= 3.8 %}
+                            <span class="achievement-badge">
+                                <i class="fas fa-star"></i> 优秀生
+                            </span>
+                        {% endif %}
+                        {% if not average_score and not total_courses %}
+                            <p class="text-muted">继续努力，获得更多成就！</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let isEditMode = false;
+
+function toggleEditMode() {
+    isEditMode = !isEditMode;
+    
+    if (isEditMode) {
+        $('.view-mode').addClass('d-none');
+        $('.edit-mode').removeClass('d-none');
+        $('#editButtonText').text('取消编辑');
+    } else {
+        $('.view-mode').removeClass('d-none');
+        $('.edit-mode').addClass('d-none');
+        $('#editButtonText').text('编辑资料');
+    }
+}
+
+function cancelEdit() {
+    // 重置表单
+    document.getElementById('profileForm').reset();
+    toggleEditMode();
+}
+
+$(document).ready(function() {
+    // 自动隐藏消息提示
+    setTimeout(function() {
+        $('.alert').fadeOut('slow');
+    }, 5000);
+    
+    // 统计卡片动画
+    $('.stats-card').each(function(index) {
+        $(this).delay(index * 100).animate({
+            opacity: 1
+        }, 500);
+    });
+    
+    // 密码强度检查
+    $('#newPassword1').on('input', function() {
+        var password = $(this).val();
+        var strength = checkPasswordStrength(password);
+        
+        // 移除之前的提示
+        $(this).next('.password-strength').remove();
+        
+        if (password.length > 0) {
+            var strengthClass = strength.class;
+            var strengthText = strength.text;
+            
+            $(this).after(`<small class="password-strength text-${strengthClass}">${strengthText}</small>`);
+        }
+    });
+    
+    // 确认密码检查
+    $('#newPassword2').on('input', function() {
+        var password1 = $('#newPassword1').val();
+        var password2 = $(this).val();
+        
+        // 移除之前的提示
+        $(this).next('.password-match').remove();
+        
+        if (password2.length > 0) {
+            if (password1 === password2) {
+                $(this).after('<small class="password-match text-success">密码匹配</small>');
+            } else {
+                $(this).after('<small class="password-match text-danger">密码不匹配</small>');
+            }
+        }
+    });
+});
+
+function checkPasswordStrength(password) {
+    var score = 0;
+    var length = password.length;
+    
+    if (length >= 8) score++;
+    if (/[a-z]/.test(password)) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[^A-Za-z0-9]/.test(password)) score++;
+    
+    if (score < 2) {
+        return {class: 'danger', text: '密码强度：弱'};
+    } else if (score < 4) {
+        return {class: 'warning', text: '密码强度：中'};
+    } else {
+        return {class: 'success', text: '密码强度：强'};
+    }
+}
+</script>
+{% endblock %}

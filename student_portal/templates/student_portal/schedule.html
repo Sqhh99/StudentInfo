@@ -1,0 +1,405 @@
+{% extends 'student_portal/base.html' %}
+{% load static %}
+
+{% block title %}我的课表{% endblock %}
+
+{% block extra_css %}
+<style>
+    .schedule-table {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+    .schedule-table th {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+        padding: 15px 8px;
+        font-weight: 600;
+        border: none;
+    }
+    .schedule-table td {
+        padding: 12px 8px;
+        text-align: center;
+        border: 1px solid #e9ecef;
+        vertical-align: middle;
+        position: relative;
+        height: 80px;
+    }
+    .time-slot {
+        background-color: #f8f9fa;
+        font-weight: 600;
+        color: #495057;
+    }
+    .course-cell {
+        background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        color: white;
+        border-radius: 6px;
+        margin: 2px;
+        padding: 8px 4px;
+        font-size: 12px;
+        line-height: 1.2;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        height: calc(100% - 4px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .course-cell:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .course-name {
+        font-weight: bold;
+        margin-bottom: 2px;
+    }
+    .course-teacher {
+        font-size: 10px;
+        opacity: 0.9;
+    }
+    .schedule-legend {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    .legend-item {
+        display: inline-block;
+        margin-right: 20px;
+        margin-bottom: 10px;
+    }
+    .legend-color {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border-radius: 4px;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+    .schedule-stats {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    .stat-item {
+        text-align: center;
+        padding: 15px;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        margin-bottom: 10px;
+    }
+    .stat-number {
+        font-size: 2em;
+        font-weight: bold;
+        color: #2d3436;
+    }
+    .stat-label {
+        color: #636e72;
+        font-size: 0.9em;
+    }
+    @media (max-width: 768px) {
+        .schedule-table {
+            font-size: 10px;
+        }
+        .schedule-table td {
+            padding: 6px 2px;
+            height: 60px;
+        }
+        .course-cell {
+            font-size: 10px;
+            padding: 4px 2px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- 页面标题 -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-calendar-alt"></i> 我的课表</h2>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" onclick="printSchedule()">
+                <i class="fas fa-print"></i> 打印课表
+            </button>
+            <button class="btn btn-outline-success" onclick="exportSchedule()">
+                <i class="fas fa-download"></i> 导出
+            </button>
+        </div>
+    </div>
+
+    <!-- 课表统计 -->
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="schedule-stats">
+                <h5 class="mb-3"><i class="fas fa-chart-bar"></i> 课表统计</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ total_courses }}</div>
+                            <div class="stat-label">总课程数</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ total_credits }}</div>
+                            <div class="stat-label">总学分</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ weekly_hours }}</div>
+                            <div class="stat-label">周学时</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stat-item">
+                            <div class="stat-number">{{ busy_days }}</div>
+                            <div class="stat-label">上课天数</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="schedule-legend">
+                <h5 class="mb-3"><i class="fas fa-info-circle"></i> 图例说明</h5>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);"></span>
+                    <span>课程</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background-color: #f8f9fa; border: 1px solid #dee2e6;"></span>
+                    <span>空闲时间</span>
+                </div>
+                <div style="margin-top: 10px; font-size: 0.9em; color: #6c757d;">
+                    <i class="fas fa-info-circle"></i> 点击课程格子查看详细信息
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课表 -->
+    <div class="table-responsive">
+        <table class="table schedule-table" id="scheduleTable">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">时间</th>
+                    <th>周一</th>
+                    <th>周二</th>
+                    <th>周三</th>
+                    <th>周四</th>
+                    <th>周五</th>
+                    <th>周六</th>
+                    <th>周日</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for time_slot in time_slots %}
+                <tr>
+                    <td class="time-slot">
+                        <div>第{{ time_slot.period }}节</div>
+                        <small>{{ time_slot.time_range }}</small>
+                    </td>
+                    {% for day in weekdays %}
+                        <td>
+                            {% for course in schedule %}
+                                {% if course.day == day and course.period == time_slot.period %}
+                                    <div class="course-cell" 
+                                         data-toggle="modal" 
+                                         data-target="#courseModal"
+                                         data-course-id="{{ course.course.id }}"
+                                         data-course-name="{{ course.course.name }}"
+                                         data-teacher="{{ course.teacher }}"
+                                         data-location="{{ course.location }}"
+                                         data-time="{{ day_names|slice:day|add:' 第'|add:time_slot.period|add:'节' }}"
+                                         data-credit="{{ course.course.credit }}">
+                                        <div class="course-name">{{ course.course.name }}</div>
+                                        {% if course.teacher %}
+                                            <div class="course-teacher">{{ course.teacher }}</div>
+                                        {% endif %}
+                                        {% if course.location %}
+                                            <div class="course-teacher">{{ course.location }}</div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 今日课程 -->
+    {% if today_courses %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-calendar-day"></i> 今日课程安排</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for course in today_courses %}
+                        <div class="col-md-6 col-lg-4 mb-3">
+                            <div class="card border-left-primary">
+                                <div class="card-body">
+                                    <h6 class="card-title text-primary">{{ course.course.name }}</h6>
+                                    <p class="card-text">
+                                        <small class="text-muted">
+                                            <i class="fas fa-clock"></i> 第{{ course.period }}节
+                                            {% if course.teacher %}
+                                                <br><i class="fas fa-user"></i> {{ course.teacher }}
+                                            {% endif %}
+                                            {% if course.location %}
+                                                <br><i class="fas fa-map-marker-alt"></i> {{ course.location }}
+                                            {% endif %}
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- 课程详情模态框 -->
+<div class="modal fade" id="courseModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title"><i class="fas fa-book"></i> 课程详情</h5>
+                <button type="button" class="close text-white" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-4"><strong>课程名称:</strong></div>
+                    <div class="col-sm-8" id="modalCourseName"></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-4"><strong>授课教师:</strong></div>
+                    <div class="col-sm-8" id="modalTeacher"></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-4"><strong>上课地点:</strong></div>
+                    <div class="col-sm-8" id="modalLocation"></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-4"><strong>上课时间:</strong></div>
+                    <div class="col-sm-8" id="modalTime"></div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm-4"><strong>课程学分:</strong></div>
+                    <div class="col-sm-8" id="modalCredit"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <a href="#" class="btn btn-primary" id="courseDetailLink">查看课程详情</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // 课程详情模态框
+    $('#courseModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var courseName = button.data('course-name');
+        var teacher = button.data('teacher') || '未分配';
+        var location = button.data('location') || '未分配';
+        var time = button.data('time');
+        var credit = button.data('credit');
+        var courseId = button.data('course-id');
+        
+        var modal = $(this);
+        modal.find('#modalCourseName').text(courseName);
+        modal.find('#modalTeacher').text(teacher);
+        modal.find('#modalLocation').text(location);
+        modal.find('#modalTime').text(time);
+        modal.find('#modalCredit').text(credit + '学分');
+        modal.find('#courseDetailLink').attr('href', '/student/courses/' + courseId + '/');
+    });
+});
+
+// 打印课表
+function printSchedule() {
+    var printWindow = window.open('', '_blank');
+    var scheduleTable = document.getElementById('scheduleTable').outerHTML;
+    
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>课表打印</title>
+            <style>
+                body { font-family: Arial, sans-serif; margin: 20px; }
+                table { width: 100%; border-collapse: collapse; }
+                th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+                th { background-color: #f2f2f2; font-weight: bold; }
+                .course-cell { background-color: #e3f2fd; padding: 4px; border-radius: 4px; }
+                .time-slot { background-color: #f5f5f5; font-weight: bold; }
+                @media print {
+                    body { margin: 0; }
+                    table { font-size: 12px; }
+                }
+            </style>
+        </head>
+        <body>
+            <h2 style="text-align: center;">学生课表</h2>
+            <p style="text-align: center;">学生姓名: {{ student.name }} &nbsp;&nbsp; 学号: {{ student.student_id }}</p>
+            ${scheduleTable}
+            <p style="text-align: center; margin-top: 20px; font-size: 12px; color: #666;">
+                打印时间: ${new Date().toLocaleString()}
+            </p>
+        </body>
+        </html>
+    `);
+    
+    printWindow.document.close();
+    printWindow.focus();
+    printWindow.print();
+}
+
+// 导出课表
+function exportSchedule() {
+    // 简单的CSV导出
+    var csv = "时间,周一,周二,周三,周四,周五,周六,周日\n";
+    
+    $('#scheduleTable tbody tr').each(function() {
+        var row = [];
+        $(this).find('td').each(function() {
+            var cellText = $(this).find('.course-cell .course-name').text() || '';
+            row.push('"' + cellText + '"');
+        });
+        csv += row.join(',') + '\n';
+    });
+    
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    var link = document.createElement("a");
+    var url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", "课表_{{ student.name }}_{{ student.student_id }}.csv");
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+</script>
+{% endblock %}
