@@ -81,21 +81,36 @@ class SessionManagementMiddleware:
         """检查Redis连接是否可用"""
         try:
             # 获取Redis配置
-            location = settings.CACHES['default'].get('LOCATION', '')
+            cache_config = settings.CACHES['default']
+            location = cache_config.get('LOCATION', '')
+
             if not location.startswith('redis://'):
                 # 不是Redis缓存后端
                 return
-                
+
             # 尝试解析Redis连接地址
-            # 处理格式: redis://host:port/db
+            # 处理格式: redis://host:port/db 或 redis://:password@host:port/db
             location_without_schema = location[8:]  # 去掉 'redis://'
+
+            # 处理密码认证格式：:password@host:port
+            password = None
+            if '@' in location_without_schema:
+                auth_part, host_part = location_without_schema.split('@', 1)
+                if auth_part.startswith(':'):
+                    password = auth_part[1:]  # 去掉开头的冒号
+                location_without_schema = host_part
+
+            # 从OPTIONS中获取密码（优先级更高）
+            if not password:
+                password = cache_config.get('OPTIONS', {}).get('PASSWORD')
+
             # 处理可能包含数据库号的地址
             if '/' in location_without_schema:
                 host_port, db = location_without_schema.split('/', 1)
             else:
                 host_port = location_without_schema
                 db = '0'
-                
+
             # 提取主机和端口
             if ':' in host_port:
                 host, port_str = host_port.split(':', 1)
@@ -103,22 +118,24 @@ class SessionManagementMiddleware:
             else:
                 host = host_port
                 port = 6379
-            
-            # 尝试连接
+
+            # 尝试连接（包含密码）
             client = redis.Redis(
-                host=host, 
+                host=host,
                 port=port,
+                password=password,  # ✅ 添加密码
                 db=int(db) if db.isdigit() else 0,
                 socket_timeout=1,
                 socket_connect_timeout=1
             )
             client.ping()
             self.redis_available = True
+
         except Exception as e:
             self.redis_available = False
             logger.error(f"Redis连接检查失败: {str(e)}", extra={
-                'ip': '127.0.0.1',  # 默认值，因为这里没有请求上下文
-                'user_agent': 'System'  # 默认值，表示系统级操作
+                'ip': '127.0.0.1',
+                'user_agent': 'System'
             })
             
     def _fallback_to_db_session(self):

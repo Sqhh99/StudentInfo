@@ -237,11 +237,11 @@ LOGGING = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://101.43.120.237:6381',
+        'LOCATION': 'redis://113.46.159.182:6379',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'CONNECTION_POOL_KWARGS': {'max_connections': 100},
-            'PASSWORD': '',  # 如果有密码，请在此设置
+            'PASSWORD': '2932897504xu',  # 如果有密码，请在此设置
             'SOCKET_CONNECT_TIMEOUT': 5,  # 连接超时时间（秒）
             'SOCKET_TIMEOUT': 5,  # 读取超时时间（秒）
             'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',  # 启用压缩

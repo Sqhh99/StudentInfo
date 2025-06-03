@@ -1612,3 +1612,21 @@ INFO 2025-05-20 15:56:29,747 basehttp 20220 6564 "GET /static/js/echarts.min.js 
 INFO 2025-05-20 15:56:34,052 basehttp 20220 6564 "GET /students/ HTTP/1.1" 302 0
 INFO 2025-05-20 15:56:34,086 basehttp 20220 6564 "GET /unauthorized/ HTTP/1.1" 200 2115
 INFO 2025-05-20 15:56:35,892 basehttp 20220 6564 "GET / HTTP/1.1" 200 38019
+INFO 2025-06-03 16:11:45,959 autoreload 22352 17088 Watching for file changes with StatReloader
+INFO 2025-06-03 16:13:22,976 autoreload 22352 17088 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-06-03 16:13:25,245 autoreload 5816 15052 Watching for file changes with StatReloader
+INFO 2025-06-03 16:13:55,992 autoreload 5816 15052 D:\a_django_project\StudentInfo\StudentInfo\settings.py changed, reloading.
+INFO 2025-06-03 16:13:58,201 autoreload 18520 1468 Watching for file changes with StatReloader
+INFO 2025-06-03 16:16:27,778 autoreload 10192 6352 Watching for file changes with StatReloader
+INFO 2025-06-03 16:16:31,794 basehttp 10192 22400 "GET / HTTP/1.1" 200 41081
+INFO 2025-06-03 16:16:37,747 basehttp 10192 22400 "GET /students/ HTTP/1.1" 200 608588
+INFO 2025-06-03 16:16:38,264 basehttp 10192 22444 "GET /static/images/default-profile.png HTTP/1.1" 200 1320
+INFO 2025-06-03 16:16:38,267 basehttp 10192 22400 "GET /static/css/students/by_base_page/about.css HTTP/1.1" 200 2725
+INFO 2025-06-03 16:16:42,492 basehttp 10192 22400 "GET /course_management/ HTTP/1.1" 200 63202
+INFO 2025-06-03 16:16:42,562 basehttp 10192 22400 "GET /static/css/students/by_base_page/course_management.css HTTP/1.1" 200 3158
+INFO 2025-06-03 16:16:42,565 basehttp 10192 22444 "GET /static/js/course_form_validation.js HTTP/1.1" 200 5215
+INFO 2025-06-03 16:16:47,935 basehttp 10192 22444 "GET /query_results/ HTTP/1.1" 200 1234073
+INFO 2025-06-03 16:16:55,325 basehttp 10192 22444 "GET /about/ HTTP/1.1" 200 90471
+INFO 2025-06-03 16:16:55,384 basehttp 10192 22444 "GET /static/images/img.png HTTP/1.1" 200 91367
+WARNING 2025-06-03 16:16:55,495 basehttp 10192 22400 "GET /api/placeholder/150/150 HTTP/1.1" 404 11587
+INFO 2025-06-03 16:17:10,679 basehttp 10192 22400 "GET / HTTP/1.1" 200 41081

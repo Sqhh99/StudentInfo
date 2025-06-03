@@ -16,3 +16,6 @@ INFO 2025-05-16 17:16:59,450 娉ㄥ唽鎴愬姛 - 鐢ㄦ埛: SQHH99, IP: 111.60.88.232 11
 ERROR 2025-05-20 15:03:20,607 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
 ERROR 2025-05-20 15:47:58,886 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
 ERROR 2025-05-20 15:53:06,861 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
+ERROR 2025-06-03 16:11:47,442 Redis连接检查失败: Timeout connecting to server 127.0.0.1 System
+ERROR 2025-06-03 16:13:25,792 Redis连接检查失败: Authentication required. 127.0.0.1 System
+ERROR 2025-06-03 16:13:58,774 Redis连接检查失败: Authentication required. 127.0.0.1 System
